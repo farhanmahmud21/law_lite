@@ -25,8 +25,8 @@
                     
                     <li class="nav-item"><a class="nav-link"
                             href="<?php echo e(route('lawyer.dashboard')); ?>"><?php echo e(__('messages.home')); ?></a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="<?php echo e(route('ai.features')); ?>"><i class="bi bi-robot me-1"></i>AI Features</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                            href="<?php echo e(route('ai.features')); ?>"><i class="bi bi-robot me-1"></i><?php echo e(__('messages.ai_features')); ?></a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="<?php echo e(route('lawyer.articles.index')); ?>"><?php echo e(__('messages.my_articles')); ?></a></li>
                     <li class="nav-item"><a class="nav-link"
@@ -43,7 +43,7 @@
                             href="<?php echo e(Route::has('home') ? route('home') : url('/')); ?>"><?php echo e(__('messages.home')); ?></a>
                     </li>
                     <li class="nav-item"><a class="nav-link"
-                            href="<?php echo e(route('ai.features')); ?>"><i class="bi bi-robot me-1"></i>AI Features</a></li>
+                            href="<?php echo e(route('ai.features')); ?>"><i class="bi bi-robot me-1"></i><?php echo e(__('messages.ai_features')); ?></a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="<?php echo e(route('lawyers.index')); ?>"><?php echo e(__('messages.find_lawyers')); ?></a></li>
                     <li class="nav-item"><a class="nav-link"
@@ -105,9 +105,16 @@
 
                     </a>
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2 rounded-3">
-                        <a class="dropdown-item py-2" href="?lang=en">English</a>
-                        <a class="dropdown-item py-2" href="?lang=bn">বাংলা</a>
+                        <a class="dropdown-item py-2" href="<?php echo e(route('lang.switch', 'en')); ?>">English</a>
+                        <a class="dropdown-item py-2" href="<?php echo e(route('lang.switch', 'bn')); ?>">বাংলা</a>
                     </div>
+                </li>
+
+                <!-- Dark Mode Toggle -->
+                <li class="nav-item ms-2">
+                    <button id="themeToggle" class="btn btn-outline-primary px-3" title="Toggle dark mode">
+                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                    </button>
                 </li>
             </ul>
         </div>

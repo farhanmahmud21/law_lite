@@ -38,8 +38,11 @@ class MessageSent implements ShouldBroadcastNow
      */
     public function broadcastOn(): Channel|array
     {
-        // broadcast to a private channel for the receiver
-        return new PrivateChannel('user.' . $this->message->receiver_id);
+        // broadcast to both sender and receiver channels so both users see the message in real-time
+        return [
+            new PrivateChannel('user.' . $this->message->sender_id),
+            new PrivateChannel('user.' . $this->message->receiver_id),
+        ];
     }
 
     /**
@@ -56,7 +59,8 @@ class MessageSent implements ShouldBroadcastNow
             'content' => $this->message->content,
             'attachment_path' => $this->message->attachment_path,
             'attachment_type' => $this->message->attachment_type,
-            'created_at' => $this->message->created_at,
+            'is_read' => $this->message->is_read,
+            'created_at' => $this->message->created_at?->toIso8601String() ?? ($this->message->created_at ? $this->message->created_at->format('Y-m-d\TH:i:s.u\Z') : null),
         ];
     }
 }

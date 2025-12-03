@@ -1,23 +1,33 @@
-@extends('layouts.app')
+@extends('layouts.landing')
 
 @section('content')
-    <div class="container-fluid py-4" style="height: calc(100vh - 60px);">
-        <div class="row h-100 g-0 rounded-3 shadow-sm overflow-hidden border bg-white">
+    <div class="container-fluid px-2 px-md-4 py-3">
+        <div class="row g-0 rounded-3 shadow overflow-hidden border" style="height: calc(100vh - 100px); min-height: 500px;">
             <!-- Sidebar: Conversation List -->
-            <div class="col-md-4 col-lg-3 border-end d-flex flex-column h-100 bg-light">
-                <div class="p-3 border-bottom bg-white d-flex justify-content-between align-items-center">
+            <div class="col-md-4 col-lg-3 border-end d-flex flex-column bg-light h-100" id="conversation-sidebar">
+                <div class="p-3 border-bottom bg-white d-flex justify-content-between align-items-center flex-shrink-0">
                     <h5 class="mb-0 fw-bold text-primary"><i
                             class="bi bi-chat-dots-fill me-2"></i>{{ __('messages.messages') }}</h5>
-                    @php
-                        $totalUnread = $conversations->sum('unread_count');
-                    @endphp
-                    <span id="total-unread-badge" class="badge bg-danger rounded-pill {{ $totalUnread > 0 ? '' : 'd-none' }}">
-                        {{ $totalUnread }}
-                    </span>
-                </div> <!-- Search (Optional) -->
-                <div class="p-2 bg-light">
+                    <div>
+                        <button class="btn btn-sm btn-primary rounded-circle" onclick="showNewChatModal()" title="New Chat">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        @php
+                            $totalUnread = $conversations->sum('unread_count');
+                        @endphp
+                        <span id="total-unread-badge" class="badge bg-danger rounded-pill {{ $totalUnread > 0 ? '' : 'd-none' }}">
+                            {{ $totalUnread }}
+                        </span>
+                    </div>
+                </div>
+                <!-- Search -->
+                <div class="p-2 bg-light flex-shrink-0">
                     <input type="text" class="form-control form-control-sm" placeholder="{{ __('messages.search') }}..."
                         id="conversation-search">
+                </div>
+
+                <div id="conversation-search-empty" class="text-center text-muted small py-2 d-none">
+                    {{ __('messages.no_conversations') }}
                 </div>
 
                 <div class="list-group list-group-flush overflow-auto flex-grow-1" id="conversation-list">
@@ -27,9 +37,10 @@
                             $lastMsg = $conv['latest_message'];
                             $unread = $conv['unread_count'];
                         @endphp
-                        <a href="#" class="list-group-item list-group-item-action border-0 py-3 conversation-item"
+                        @if($partner)
+                        <a href="#" class="list-group-item list-group-item-action border-0 py-3 conversation-item conversation-link"
                             data-user-id="{{ $partner->id }}"
-                            onclick="event.preventDefault(); openChatWith({{ $partner->id }}, '{{ addslashes($partner->name) }}')">
+                            data-user-name="{{ $partner->name }}">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative">
                                     <img src="https://ui-avatars.com/api/?name={{ urlencode($partner->name) }}&background=random"
@@ -43,20 +54,21 @@
                                 </div>
                                 <div class="ms-3 flex-grow-1 overflow-hidden">
                                     <div class="d-flex justify-content-between align-items-baseline">
-                                        <h6 class="mb-0 text-truncate text-dark fw-semibold">{{ $partner->name }}</h6>
-                                        <small class="text-muted" style="font-size: 0.75rem;">
+                                        <h6 class="mb-0 text-truncate fw-semibold">{{ $partner->name }}</h6>
+                                        <small class="text-muted conversation-updated-at" style="font-size: 0.75rem;">
                                             {{ $lastMsg ? $lastMsg->created_at->shortAbsoluteDiffForHumans() : '' }}
                                         </small>
                                     </div>
-                                    <p class="mb-0 text-muted text-truncate small">
+                                    <p class="mb-0 text-muted text-truncate small conversation-preview">
                                         @if ($lastMsg && $lastMsg->sender_id == auth()->id())
                                             <span class="text-primary">You:</span>
                                         @endif
-                                        {{ $lastMsg ? $lastMsg->content : __('messages.no_messages') }}
+                                        {{ $lastMsg ? \Illuminate\Support\Str::limit($lastMsg->content, 40) : __('messages.no_messages') }}
                                     </p>
                                 </div>
                             </div>
                         </a>
+                        @endif
                     @empty
                         <div class="text-center p-4 text-muted">
                             <i class="bi bi-chat-square text-secondary display-6"></i>
@@ -67,10 +79,10 @@
             </div>
 
             <!-- Main Chat Area -->
-            <div class="col-md-8 col-lg-9 d-flex flex-column h-100 bg-white position-relative">
+            <div class="col-md-8 col-lg-9 d-flex flex-column bg-white h-100" id="chat-area">
                 <!-- Empty State -->
                 <div id="chat-empty-state"
-                    class="d-flex flex-column justify-content-center align-items-center h-100 text-muted">
+                    class="d-flex flex-column justify-content-center align-items-center flex-grow-1 text-muted">
                     <div class="bg-light rounded-circle p-4 mb-3">
                         <i class="bi bi-chat-text display-4 text-primary opacity-50"></i>
                     </div>
@@ -81,8 +93,8 @@
                 <!-- Chat Interface (Hidden by default) -->
                 <div id="chat-interface" class="d-none flex-column h-100">
                     <!-- Header -->
-                    <div class="p-3 border-bottom bg-white d-flex align-items-center shadow-sm z-1">
-                        <button class="btn btn-link d-md-none me-2 text-dark" onclick="toggleSidebar()">
+                    <div class="p-3 border-bottom bg-white d-flex align-items-center shadow-sm flex-shrink-0" style="z-index: 1;">
+                        <button class="btn btn-link d-md-none me-2" onclick="toggleSidebar()">
                             <i class="bi bi-arrow-left"></i>
                         </button>
                         <img id="chat-header-avatar" src="" class="rounded-circle me-3" width="40"
@@ -109,7 +121,7 @@
                     </div>
 
                     <!-- Input Area -->
-                    <div class="p-3 bg-white border-top">
+                    <div class="p-3 bg-white border-top flex-shrink-0">
                         <div class="input-group bg-light rounded-pill border p-1">
                             <button class="btn btn-link text-muted rounded-circle"><i
                                     class="bi bi-emoji-smile"></i></button>
@@ -118,7 +130,7 @@
                                 <i class="bi bi-paperclip"></i>
                             </button>
                             <input type="file" id="file-input" class="d-none" onchange="handleFileSelect(this)">
-                            <input type="text" id="chat-input" class="form-control border-0 bg-transparent shadow-none"
+                            <input type="text" id="chat-input" class="form-control border-0 bg-transparent shadow-none text-body"
                                 placeholder="{{ __('messages.type_message') }}...">
                             <button id="chat-send" class="btn btn-primary rounded-circle ms-2"
                                 style="width: 40px; height: 40px;">
@@ -131,6 +143,29 @@
                                 <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle"
                                     aria-label="Close" onclick="clearFile()"></button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Chat Modal -->
+    <div class="modal fade" id="new-chat-modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">New Conversation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div class="p-2">
+                        <input type="text" class="form-control" id="new-chat-search" placeholder="Search users..." oninput="filterNewChat(this.value)">
+                    </div>
+                    <div class="list-group list-group-flush" id="new-chat-list">
+                        <!-- Users will be loaded here -->
+                        <div class="text-center p-4">
+                            <div class="spinner-border text-primary" role="status"></div>
                         </div>
                     </div>
                 </div>
@@ -204,9 +239,22 @@
             background: #aaa;
         }
 
+        [data-theme="dark"] ::-webkit-scrollbar-track {
+            background: #2b3035;
+        }
+
+        [data-theme="dark"] ::-webkit-scrollbar-thumb {
+            background: #495057;
+        }
+
         .conversation-item:hover,
         .conversation-item.active {
             background-color: #f0f2f5;
+        }
+
+        [data-theme="dark"] .conversation-item:hover,
+        [data-theme="dark"] .conversation-item.active {
+            background-color: #2b3035;
         }
 
         .conversation-item.active {
@@ -215,15 +263,16 @@
 
         .message-bubble {
             max-width: 75%;
-            padding: 10px 15px;
+            padding: 12px 16px;
             border-radius: 18px;
             position: relative;
             font-size: 0.95rem;
-            line-height: 1.4;
+            line-height: 1.5;
+            word-break: break-word;
         }
 
         .message-sent {
-            background-color: #0084ff;
+            background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);
             color: white;
             border-bottom-right-radius: 4px;
         }
@@ -234,10 +283,69 @@
             border-bottom-left-radius: 4px;
         }
 
+        [data-theme="dark"] .message-received {
+            background-color: #383838;
+            color: #e4e6eb;
+        }
+
         .message-time {
             font-size: 0.7rem;
             margin-top: 4px;
             opacity: 0.7;
+        }
+
+        /* Dark mode enhancements */
+        [data-theme="dark"] .bg-white {
+            background-color: #1e1e1e !important;
+        }
+        [data-theme="dark"] .bg-light {
+            background-color: #2b2b2b !important;
+        }
+        [data-theme="dark"] .border {
+            border-color: #3d3d3d !important;
+        }
+        [data-theme="dark"] .border-end {
+            border-color: #3d3d3d !important;
+        }
+        [data-theme="dark"] .border-bottom {
+            border-color: #3d3d3d !important;
+        }
+        [data-theme="dark"] .border-top {
+            border-color: #3d3d3d !important;
+        }
+        [data-theme="dark"] .text-body {
+            color: #e4e6eb !important;
+        }
+        [data-theme="dark"] .form-control {
+            background-color: #2b2b2b !important;
+            color: #e4e6eb !important;
+            border-color: #3d3d3d !important;
+        }
+        [data-theme="dark"] .form-control::placeholder {
+            color: #888 !important;
+        }
+        [data-theme="dark"] .list-group-item {
+            background-color: transparent !important;
+            border-color: #3d3d3d !important;
+            color: #e4e6eb !important;
+        }
+        [data-theme="dark"] .list-group-item h6 {
+            color: #e4e6eb !important;
+        }
+        [data-theme="dark"] #chat-messages {
+            background-color: #1a1a1a !important;
+        }
+        [data-theme="dark"] .shadow-sm {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4) !important;
+        }
+        [data-theme="dark"] .modal-content {
+            background-color: #1e1e1e !important;
+            color: #e4e6eb !important;
+        }
+        [data-theme="dark"] .btn-light {
+            background-color: #3d3d3d !important;
+            border-color: #4d4d4d !important;
+            color: #e4e6eb !important;
         }
 
         .avatar-pulse {
@@ -270,32 +378,216 @@
     </style>
 
     <script>
+        // Debug: Script loaded
+        console.log('Chat script loaded');
+        
         let currentWithUser = null;
-        const userId = {{ auth()->id() }};
+        let isLoadingHistory = false;
+        let isSendingMessage = false;
+        const currentUserId = {{ auth()->id() ?? 'null' }};
+        
+        console.log('Current user ID:', currentUserId);
+        
+        const conversationList = document.getElementById('conversation-list');
+        const conversationSearch = document.getElementById('conversation-search');
+        const conversationSearchEmpty = document.getElementById('conversation-search-empty');
+        
+        // Debug elements existence
+        const uiElements = {
+            conversationList: !!conversationList,
+            conversationSearch: !!conversationSearch,
+            chatEmptyState: !!document.getElementById('chat-empty-state'),
+            chatInterface: !!document.getElementById('chat-interface'),
+            chatMessages: !!document.getElementById('chat-messages')
+        };
+        console.log('UI Elements found:', uiElements);
+
+        if (conversationSearch) {
+            conversationSearch.addEventListener('input', function() {
+                filterConversations(this.value.trim().toLowerCase());
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('.conversation-link');
+            if (link) {
+                e.preventDefault();
+                e.stopPropagation();
+                const partnerId = link.dataset.userId;
+                const partnerName = link.dataset.userName;
+                
+                console.log('Click detected on conversation:', partnerId, partnerName);
+                
+                // Allow clicking even if loading (to switch users or retry)
+                // if (isLoadingHistory) { ... } 
+                
+                openChatWith(partnerId, partnerName);
+            }
+        });
+
+        function filterConversations(term) {
+            if (!conversationList) return;
+            let visibleCount = 0;
+            conversationList.querySelectorAll('.conversation-item').forEach(item => {
+                const name = (item.dataset.userName || '').toLowerCase();
+                const previewText = (item.querySelector('.conversation-preview')?.textContent || '').toLowerCase();
+                const matches = !term || name.includes(term) || previewText.includes(term);
+                item.classList.toggle('d-none', !matches);
+                if (matches) visibleCount++;
+            });
+            if (conversationSearchEmpty) {
+                conversationSearchEmpty.classList.toggle('d-none', visibleCount !== 0 || !term);
+            }
+        }
 
         function csrf() {
-            return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            const meta = document.querySelector('meta[name="csrf-token"]');
+            return meta ? meta.getAttribute('content') : '';
         }
 
         function toggleSidebar() {
-            // Logic for mobile to toggle sidebar visibility
-            // For now, simple implementation or leave for future refinement
+            const sidebar = document.getElementById('conversation-sidebar');
+            const chatArea = document.getElementById('chat-area');
+            if (sidebar && chatArea) {
+                sidebar.classList.toggle('d-none');
+                chatArea.classList.toggle('d-none');
+            }
+        }
+
+        // New Chat Logic
+        let newChatModal = null;
+        
+        async function showNewChatModal() {
+            if (!newChatModal) {
+                newChatModal = new bootstrap.Modal(document.getElementById('new-chat-modal'));
+            }
+            newChatModal.show();
+            
+            const list = document.getElementById('new-chat-list');
+            list.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"></div></div>';
+            
+            try {
+                const res = await fetch('/chat/users', {
+                    headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': csrf() }
+                });
+                const data = await res.json();
+                
+                if (data.ok && data.users) {
+                    list.innerHTML = '';
+                    if (data.users.length === 0) {
+                        list.innerHTML = '<div class="p-4 text-center text-muted">No users found</div>';
+                        return;
+                    }
+                    
+                    data.users.forEach(user => {
+                        const item = document.createElement('a');
+                        item.href = '#';
+                        item.className = 'list-group-item list-group-item-action d-flex align-items-center p-3';
+                        item.onclick = (e) => {
+                            e.preventDefault();
+                            startNewChat(user);
+                        };
+                        
+                        item.innerHTML = `
+                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random" 
+                                class="rounded-circle me-3" width="40" height="40">
+                            <div>
+                                <h6 class="mb-0">${user.name}</h6>
+                                <small class="text-muted">${user.role || 'User'}</small>
+                            </div>
+                        `;
+                        list.appendChild(item);
+                    });
+                }
+            } catch (err) {
+                console.error(err);
+                list.innerHTML = '<div class="p-4 text-center text-danger">Failed to load users</div>';
+            }
+        }
+
+        function filterNewChat(term) {
+            term = term.toLowerCase();
+            document.querySelectorAll('#new-chat-list .list-group-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                item.classList.toggle('d-none', !text.includes(term));
+            });
+        }
+
+        function startNewChat(user) {
+            newChatModal.hide();
+            
+            // Check if conversation already exists in sidebar
+            const existing = document.querySelector(`.conversation-item[data-user-id="${user.id}"]`);
+            if (existing) {
+                existing.click();
+            } else {
+                // Create temporary item in sidebar
+                const tempItem = document.createElement('a');
+                tempItem.href = '#';
+                tempItem.className = 'list-group-item list-group-item-action border-0 py-3 conversation-item conversation-link active';
+                tempItem.dataset.userId = user.id;
+                tempItem.dataset.userName = user.name;
+                
+                tempItem.innerHTML = `
+                    <div class="d-flex align-items-center">
+                        <div class="position-relative">
+                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random"
+                                class="rounded-circle" width="45" height="45">
+                        </div>
+                        <div class="ms-3 flex-grow-1 overflow-hidden">
+                            <div class="d-flex justify-content-between align-items-baseline">
+                                <h6 class="mb-0 text-truncate fw-semibold">${user.name}</h6>
+                                <small class="text-muted conversation-updated-at">Just now</small>
+                            </div>
+                            <p class="mb-0 text-muted text-truncate small conversation-preview">
+                                <span class="text-primary">New conversation</span>
+                            </p>
+                        </div>
+                    </div>
+                `;
+                
+                // Insert at top
+                const list = document.getElementById('conversation-list');
+                if (list.querySelector('.text-center')) {
+                    list.innerHTML = ''; // Remove empty state
+                }
+                list.insertBefore(tempItem, list.firstChild);
+                
+                openChatWith(user.id, user.name);
+            }
         }
 
         async function openChatWith(partnerId, partnerName) {
+            console.log('openChatWith initiated for:', partnerId);
             currentWithUser = partnerId;
 
             // Update UI State
-            document.getElementById('chat-empty-state').classList.add('d-none');
-            document.getElementById('chat-interface').classList.remove('d-none');
-            document.getElementById('chat-interface').classList.add('d-flex');
+            const emptyState = document.getElementById('chat-empty-state');
+            const chatInterface = document.getElementById('chat-interface');
+            
+            if (emptyState) {
+                emptyState.style.display = 'none';
+                emptyState.classList.add('d-none');
+            }
+            
+            if (chatInterface) {
+                chatInterface.style.display = 'flex';
+                chatInterface.classList.remove('d-none');
+                chatInterface.classList.add('d-flex');
+                console.log('Chat interface shown');
+            } else {
+                console.error('Chat interface element not found!');
+                return;
+            }
 
             // Update Header
-            document.getElementById('chat-header-name').textContent = partnerName;
-            document.getElementById('chat-header-avatar').src =
-                `https://ui-avatars.com/api/?name=${encodeURIComponent(partnerName)}&background=random`;
-            document.getElementById('chat-header-status').innerHTML =
-                '<span class="text-muted">Checking status...</span>';
+            const headerName = document.getElementById('chat-header-name');
+            const headerAvatar = document.getElementById('chat-header-avatar');
+            const headerStatus = document.getElementById('chat-header-status');
+
+            if (headerName) headerName.textContent = partnerName;
+            if (headerAvatar) headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(partnerName)}&background=random`;
+            if (headerStatus) headerStatus.innerHTML = '<span class="text-muted">Checking status...</span>';
 
             // Highlight active conversation
             document.querySelectorAll('.conversation-item').forEach(el => el.classList.remove('active', 'bg-light'));
@@ -307,47 +599,75 @@
         }
 
         async function loadHistory(withId) {
+            console.log('loadHistory called for:', withId);
+            
+            isLoadingHistory = true;
             const box = document.getElementById('chat-messages');
-            box.innerHTML =
-                '<div class="d-flex justify-content-center mt-5"><div class="spinner-border text-primary" role="status"></div></div>';
+            if (!box) {
+                console.error('Chat messages container not found');
+                return;
+            }
+
+            box.innerHTML = '<div class="d-flex justify-content-center mt-5"><div class="spinner-border text-primary" role="status"></div></div>';
 
             try {
-                const res = await fetch(`/chat/history/${withId}`, {
+                const url = `/chat/history/${withId}`;
+                console.log('Fetching history from:', url);
+                
+                const res = await fetch(url, {
                     headers: {
-                        'X-CSRF-TOKEN': csrf()
+                        'X-CSRF-TOKEN': csrf(),
+                        'Accept': 'application/json'
                     }
                 });
 
-                if (!res.ok) throw new Error('Failed to load');
+                console.log('API response status:', res.status);
+                
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    console.error('API error response:', errorText);
+                    throw new Error(`Failed to load: ${res.status}`);
+                }
 
                 const json = await res.json();
+                console.log('Chat history data:', json);
+                
+                if (!json.ok) {
+                    throw new Error(json.message || 'Failed to load messages');
+                }
+                
                 box.innerHTML = '';
+
+                // Check if messages exist
+                if (!json.messages || json.messages.length === 0) {
+                    box.innerHTML = '<div class="text-center text-muted mt-5"><i class="bi bi-chat-dots display-4"></i><p class="mt-2">No messages yet. Start the conversation!</p></div>';
+                } else {
+                    json.messages.forEach(m => {
+                        appendMessage(m);
+                    });
+                    scrollToBottom();
+                }
 
                 // Update Online Status
                 const statusEl = document.getElementById('chat-header-status');
-                if (json.partner_status && json.partner_status.is_online) {
-                    statusEl.innerHTML =
-                        '<span class="text-success"><i class="bi bi-circle-fill me-1" style="font-size: 8px;"></i> Online</span>';
-                } else {
-                    let lastSeenText = 'Offline';
-                    if (json.partner_status && json.partner_status.last_seen) {
-                        const date = new Date(json.partner_status.last_seen);
-                        // Simple formatting, can be improved with a library like moment.js or date-fns
-                        const now = new Date();
-                        const diff = Math.floor((now - date) / 1000); // seconds
+                if (statusEl) {
+                    if (json.partner_status && json.partner_status.is_online) {
+                        statusEl.innerHTML = '<span class="text-success"><i class="bi bi-circle-fill me-1" style="font-size: 8px;"></i> Online</span>';
+                    } else {
+                        let lastSeenText = 'Offline';
+                        if (json.partner_status && json.partner_status.last_seen) {
+                            const date = new Date(json.partner_status.last_seen);
+                            const now = new Date();
+                            const diff = Math.floor((now - date) / 1000); // seconds
 
-                        if (diff < 60) lastSeenText = 'Last seen just now';
-                        else if (diff < 3600) lastSeenText = `Last seen ${Math.floor(diff / 60)}m ago`;
-                        else if (diff < 86400) lastSeenText = `Last seen ${Math.floor(diff / 3600)}h ago`;
-                        else lastSeenText = `Last seen ${date.toLocaleDateString()}`;
+                            if (diff < 60) lastSeenText = 'Last seen just now';
+                            else if (diff < 3600) lastSeenText = `Last seen ${Math.floor(diff / 60)}m ago`;
+                            else if (diff < 86400) lastSeenText = `Last seen ${Math.floor(diff / 3600)}h ago`;
+                            else lastSeenText = `Last seen ${date.toLocaleDateString()}`;
+                        }
+                        statusEl.innerHTML = `<span class="text-muted">${lastSeenText}</span>`;
                     }
-                    statusEl.innerHTML = `<span class="text-muted">${lastSeenText}</span>`;
                 }
-
-                // Group messages by date could be a nice enhancement here
-
-                json.messages.forEach(m => appendMessage(m));
-                scrollToBottom();
 
                 // Remove unread badge
                 const activeItem = document.querySelector(`.conversation-item[data-user-id="${withId}"]`);
@@ -371,13 +691,80 @@
                 }
 
             } catch (err) {
-                box.innerHTML = '<div class="text-center text-danger mt-5">Failed to load messages.</div>';
+                console.error('Error loading messages:', err);
+                box.innerHTML = `<div class="text-center text-danger mt-5">
+                    <i class="bi bi-exclamation-circle display-4"></i>
+                    <p class="mt-2">Failed to load messages.</p>
+                    <small class="text-muted">${err.message}</small>
+                </div>`;
+            } finally {
+                isLoadingHistory = false;
             }
+        }
+
+        // Sanitization helpers
+        function sanitizeMessage(text = '') {
+            const temp = document.createElement('div');
+            temp.textContent = text;
+            return temp.innerHTML.replace(/\n/g, '<br>');
+        }
+
+        function sanitizePlainText(text = '') {
+            const temp = document.createElement('div');
+            temp.textContent = text;
+            return temp.innerHTML;
+        }
+
+        // Update conversation preview
+        function updateConversationPreview(userId, message) {
+            if (!conversationList || !message) return;
+            const item = conversationList.querySelector(`.conversation-item[data-user-id="${userId}"]`);
+            if (!item) return;
+            const previewEl = item.querySelector('.conversation-preview');
+            if (previewEl && typeof message.content === 'string') {
+                const prefix = parseInt(message.sender_id) === parseInt(currentUserId) ? '<span class="text-primary">You:</span> ' : '';
+                previewEl.innerHTML = prefix + sanitizePlainText(message.content);
+            }
+            const timeEl = item.querySelector('.conversation-updated-at');
+            if (timeEl && message.created_at) {
+                const date = new Date(message.created_at);
+                timeEl.textContent = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+        }
+
+        // Update global unread badge
+        function updateGlobalUnreadCount(delta) {
+            const globalBadge = document.getElementById('total-unread-badge');
+            if (!globalBadge) return;
+            const current = parseInt(globalBadge.innerText) || 0;
+            const next = Math.max(0, current + delta);
+            globalBadge.innerText = next;
+            globalBadge.classList.toggle('d-none', next === 0);
+        }
+
+        // Increment unread badge on a conversation
+        function incrementUnreadBadge(userId) {
+            if (!conversationList) return;
+            const item = conversationList.querySelector(`.conversation-item[data-user-id="${userId}"]`);
+            if (!item) return;
+            let badge = item.querySelector('.badge');
+            if (!badge) {
+                const avatarWrapper = item.querySelector('.position-relative');
+                if (!avatarWrapper) return;
+                badge = document.createElement('span');
+                badge.className = 'position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light';
+                badge.innerText = '0';
+                avatarWrapper.appendChild(badge);
+            }
+            const current = parseInt(badge.innerText) || 0;
+            badge.innerText = current + 1;
+            updateGlobalUnreadCount(1);
         }
 
         function appendMessage(m) {
             const box = document.getElementById('chat-messages');
-            const isMe = m.sender_id === userId;
+            if (!box) return;
+            const isMe = parseInt(m.sender_id) === parseInt(currentUserId);
 
             const div = document.createElement('div');
 
@@ -390,9 +777,9 @@
             if (m.attachment_type === 'call_log') {
                 div.className = 'd-flex justify-content-center mb-3';
                 div.innerHTML = `
-                    <div class="badge bg-light text-dark border p-2 rounded-pill shadow-sm d-flex align-items-center">
+                    <div class="badge bg-light text-body border p-2 rounded-pill shadow-sm d-flex align-items-center">
                         <i class="bi bi-telephone-fill me-2 text-primary"></i> 
-                        <span>${m.content}</span>
+                        <span>${sanitizeMessage(m.content)}</span>
                         <span class="text-muted ms-2 small" style="font-size: 0.75em;">${time}</span>
                     </div>
                 `;
@@ -414,10 +801,13 @@
                 }
             }
 
+            const messageBody = sanitizeMessage(m.content || '');
+            const hasBody = messageBody.length > 0;
+
             div.innerHTML = `
             <div class="message-bubble ${isMe ? 'message-sent' : 'message-received'} shadow-sm">
                 ${attachmentHtml}
-                ${m.content || ''}
+                ${hasBody ? `<div>${messageBody}</div>` : ''}
                 <div class="message-time text-end">${time}</div>
             </div>
         `;
@@ -446,23 +836,37 @@
             document.getElementById('file-preview').classList.add('d-none');
         }
 
+        // Toggle send button state
+        function toggleSendState(isBusy) {
+            if (!chatSend) return;
+            chatSend.disabled = isBusy;
+            chatSend.innerHTML = isBusy ?
+                '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>' :
+                '<i class="bi bi-send-fill"></i>';
+        }
+
         async function sendMessage() {
             if (!currentWithUser) return;
+            if (isSendingMessage) return;
             const content = chatInput.value.trim();
             const file = fileInput.files[0];
 
             if (!content && !file) return;
 
+            isSendingMessage = true;
+            toggleSendState(true);
+
             // Optimistic UI update (text only for now, file needs upload)
             if (content && !file) {
                 const tempMsg = {
-                    sender_id: userId,
+                    sender_id: currentUserId,
                     content: content,
                     created_at: new Date().toISOString()
                 };
                 appendMessage(tempMsg);
                 scrollToBottom();
                 chatInput.value = '';
+                updateConversationPreview(currentWithUser, tempMsg);
             }
 
             const formData = new FormData();
@@ -494,9 +898,14 @@
                         appendMessage(data.message);
                         scrollToBottom();
                     }
+                    updateConversationPreview(currentWithUser, data.message);
                 }
             } catch (err) {
+                console.error(err);
                 alert('Failed to send message');
+            } finally {
+                isSendingMessage = false;
+                toggleSendState(false);
             }
         }
 
@@ -715,15 +1124,20 @@
         document.addEventListener('DOMContentLoaded', function() {
             if (window.Echo) {
                 // Listen for messages
-                window.Echo.private('user.' + userId).listen('MessageSent', function(e) {
-                    if (currentWithUser && e.sender_id === currentWithUser) {
+                window.Echo.private('user.' + currentUserId).listen('MessageSent', function(e) {
+                    if (currentWithUser && parseInt(e.sender_id) === parseInt(currentWithUser)) {
                         appendMessage(e);
                         scrollToBottom();
+                    } else {
+                        // Message from someone else - increment unread badge
+                        incrementUnreadBadge(e.sender_id);
                     }
+                    // Update conversation preview for the sender
+                    updateConversationPreview(e.sender_id, e);
                 });
 
                 // Listen for calls
-                window.Echo.private('user.' + userId).listen('AudioCallSignal', function(e) {
+                window.Echo.private('user.' + currentUserId).listen('AudioCallSignal', function(e) {
                     console.log('Signal received:', e);
                     handleSignal(e);
                 });

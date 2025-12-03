@@ -236,6 +236,42 @@
         left: 45%;
         transform: translate(-50%, -50%);
     }
+
+    /* Dark mode overrides for AI features */
+    html[data-theme="dark"] .ai-workspace {
+        background: linear-gradient(135deg, #0a1628 0%, #0d1b30 100%);
+        border-color: rgba(255,255,255,0.08);
+    }
+    html[data-theme="dark"] .feature-card {
+        background: rgba(11, 18, 32, 0.95);
+        border-color: rgba(255,255,255,0.08);
+    }
+    html[data-theme="dark"] .feature-card h6 {
+        color: #e6eef8;
+    }
+    html[data-theme="dark"] .result-box {
+        background: rgba(11, 18, 32, 0.95);
+        border-color: rgba(255,255,255,0.08);
+        color: #e6eef8;
+    }
+    html[data-theme="dark"] .quick-action {
+        background: rgba(255,255,255,0.05);
+        border-color: rgba(255,255,255,0.1);
+        color: #cbd5e1;
+    }
+    html[data-theme="dark"] .quick-action:hover {
+        background: rgba(255,255,255,0.1);
+    }
+    html[data-theme="dark"] .lang-toggle {
+        background: rgba(255,255,255,0.08);
+    }
+    html[data-theme="dark"] .lang-toggle button {
+        color: #cbd5e1;
+    }
+    html[data-theme="dark"] .lang-toggle button.active {
+        background: rgba(52, 211, 153, 0.2);
+        color: #34d399;
+    }
 </style>
 @endpush
 
@@ -248,20 +284,15 @@
                 <div class="d-flex align-items-center gap-3 mb-4">
                     <span class="ai-hero-badge">
                         <span class="bd-flag"></span>
-                        বাংলাদেশ আইন AI সহকারী
+                        {{ __('messages.ai_hero_badge') }}
                     </span>
                 </div>
                 <h1 class="display-4 fw-bold mb-4" style="letter-spacing: -0.03em;">
-                    AI-Powered <span style="color: #10b981;">Legal</span> Features
+                    {{ __('messages.ai_hero_title') }}
                 </h1>
                 <p class="lead opacity-75 mb-4" style="font-size: 1.25rem; line-height: 1.8; max-width: 600px;">
-                    বাংলাদেশের আইন সংক্রান্ত সকল তথ্য ও সহায়তা পান AI এর মাধ্যমে। ধারা, দণ্ডবিধি, আইনি পরিভাষা, 
-                    দলিল বিশ্লেষণ এবং আরও অনেক কিছু।
+                    {{ __('messages.ai_hero_desc') }}
                 </p>
-                <div class="lang-toggle">
-                    <button class="active" data-lang="bn" onclick="setLanguage('bn')">বাংলা</button>
-                    <button data-lang="en" onclick="setLanguage('en')">English</button>
-                </div>
             </div>
             <div class="col-lg-4 text-center d-none d-lg-block">
                 <div class="position-relative">
@@ -288,7 +319,7 @@
             <div class="col-lg-4 mb-4">
                 <h5 class="fw-bold mb-4">
                     <i class="bi bi-grid-3x3-gap me-2" style="color: #10b981;"></i>
-                    AI টুলস নির্বাচন করুন
+                    {{ __('messages.select_ai_tools') }}
                 </h5>
                 
                 <div class="row g-3">
@@ -298,8 +329,8 @@
                             <div class="feature-icon blue">
                                 <i class="bi bi-book"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">ধারা খুঁজুন</h6>
-                            <small class="text-muted">দণ্ডবিধি, ফৌজদারি আইন</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_dhara') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_dhara_desc') }}</small>
                         </div>
                     </div>
 
@@ -309,8 +340,8 @@
                             <div class="feature-icon green">
                                 <i class="bi bi-translate"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">আইনি পরিভাষা</h6>
-                            <small class="text-muted">শব্দার্থ ও ব্যাখ্যা</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_terms') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_terms_desc') }}</small>
                         </div>
                     </div>
 
@@ -320,8 +351,8 @@
                             <div class="feature-icon purple">
                                 <i class="bi bi-file-earmark-text"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">দলিল বিশ্লেষণ</h6>
-                            <small class="text-muted">আইনি দলিল পর্যালোচনা</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_document') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_document_desc') }}</small>
                         </div>
                     </div>
 
@@ -331,8 +362,8 @@
                             <div class="feature-icon orange">
                                 <i class="bi bi-graph-up-arrow"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">মামলা বিশ্লেষণ</h6>
-                            <small class="text-muted">ফলাফল পূর্বাভাস</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_case') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_case_desc') }}</small>
                         </div>
                     </div>
 
@@ -342,8 +373,8 @@
                             <div class="feature-icon teal">
                                 <i class="bi bi-list-check"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">আইনি প্রক্রিয়া</h6>
-                            <small class="text-muted">ধাপে ধাপে গাইড</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_procedure') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_procedure_desc') }}</small>
                         </div>
                     </div>
 
@@ -353,8 +384,8 @@
                             <div class="feature-icon red">
                                 <i class="bi bi-shield-check"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">অধিকার জানুন</h6>
-                            <small class="text-muted">নাগরিক অধিকার</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_rights') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_rights_desc') }}</small>
                         </div>
                     </div>
 
@@ -364,8 +395,8 @@
                             <div class="feature-icon indigo">
                                 <i class="bi bi-pencil-square"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">দলিল খসড়া</h6>
-                            <small class="text-muted">নোটিশ, আবেদন</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_draft') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_draft_desc') }}</small>
                         </div>
                     </div>
 
@@ -375,8 +406,8 @@
                             <div class="feature-icon blue">
                                 <i class="bi bi-chat-dots"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">প্রশ্ন করুন</h6>
-                            <small class="text-muted">যেকোনো আইনি প্রশ্ন</small>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_question') }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_question_desc') }}</small>
                         </div>
                     </div>
                 </div>
@@ -389,40 +420,40 @@
                     <div class="tool-panel active" id="tool-dhara">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-book text-primary me-2"></i>
-                            ধারা/দণ্ডবিধি খুঁজুন
+                            {{ __('messages.dhara_title') }}
                         </h5>
-                        <p class="text-muted mb-4">বাংলাদেশের যেকোনো আইনের ধারা সম্পর্কে বিস্তারিত জানুন</p>
+                        <p class="text-muted mb-4">{{ __('messages.dhara_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">আইনের নাম</label>
+                            <label class="form-label fw-semibold">{{ __('messages.law_name') }}</label>
                             <select class="form-select" id="dhara-law">
-                                <option value="দণ্ডবিধি ১৮৬০">দণ্ডবিধি ১৮৬০ (Penal Code)</option>
-                                <option value="ফৌজদারি কার্যবিধি ১৮৯৮">ফৌজদারি কার্যবিধি ১৮৯৮ (CrPC)</option>
-                                <option value="দেওয়ানি কার্যবিধি ১৯০৮">দেওয়ানি কার্যবিধি ১৯০৮ (CPC)</option>
-                                <option value="সাক্ষ্য আইন ১৮৭২">সাক্ষ্য আইন ১৮৭২ (Evidence Act)</option>
-                                <option value="সম্পত্তি হস্তান্তর আইন ১৮৮২">সম্পত্তি হস্তান্তর আইন ১৮৮২</option>
-                                <option value="চুক্তি আইন ১৮৭২">চুক্তি আইন ১৮৭২ (Contract Act)</option>
-                                <option value="নারী ও শিশু নির্যাতন দমন আইন ২০০০">নারী ও শিশু নির্যাতন দমন আইন ২০০০</option>
-                                <option value="পারিবারিক আদালত অধ্যাদেশ ১৯৮৫">পারিবারিক আদালত অধ্যাদেশ ১৯৮৫</option>
-                                <option value="শ্রম আইন ২০০৬">শ্রম আইন ২০০৬</option>
-                                <option value="ভোক্তা অধিকার সংরক্ষণ আইন ২০০৯">ভোক্তা অধিকার সংরক্ষণ আইন ২০০৯</option>
+                                <option value="{{ __('messages.penal_code_1860') }}">{{ __('messages.penal_code_1860') }}</option>
+                                <option value="{{ __('messages.crpc_1898') }}">{{ __('messages.crpc_1898') }}</option>
+                                <option value="{{ __('messages.cpc_1908') }}">{{ __('messages.cpc_1908') }}</option>
+                                <option value="{{ __('messages.evidence_act_1872') }}">{{ __('messages.evidence_act_1872') }}</option>
+                                <option value="{{ __('messages.property_transfer_act') }}">{{ __('messages.property_transfer_act') }}</option>
+                                <option value="{{ __('messages.contract_act_1872') }}">{{ __('messages.contract_act_1872') }}</option>
+                                <option value="{{ __('messages.women_children_act') }}">{{ __('messages.women_children_act') }}</option>
+                                <option value="{{ __('messages.family_court_ordinance') }}">{{ __('messages.family_court_ordinance') }}</option>
+                                <option value="{{ __('messages.labour_act_2006') }}">{{ __('messages.labour_act_2006') }}</option>
+                                <option value="{{ __('messages.consumer_rights_act') }}">{{ __('messages.consumer_rights_act') }}</option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">ধারা নম্বর</label>
-                            <input type="text" class="form-control" id="dhara-section" placeholder="যেমন: ৩০২, ৪২০, ৩৭৬">
+                            <label class="form-label fw-semibold">{{ __('messages.section_number') }}</label>
+                            <input type="text" class="form-control" id="dhara-section" placeholder="{{ __('messages.section_placeholder') }}">
                         </div>
 
                         <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setDhara('দণ্ডবিধি ১৮৬০', '৩০২')">ধারা ৩০২ (হত্যা)</span>
-                            <span class="quick-action" onclick="setDhara('দণ্ডবিধি ১৮৬০', '৪২০')">ধারা ৪২০ (প্রতারণা)</span>
-                            <span class="quick-action" onclick="setDhara('দণ্ডবিধি ১৮৬০', '৩৭৬')">ধারা ৩৭৬ (ধর্ষণ)</span>
-                            <span class="quick-action" onclick="setDhara('দণ্ডবিধি ১৮৬০', '৪৯৭')">ধারা ৪৯৭</span>
+                            <span class="quick-action" onclick="setDhara('302')">{{ __('messages.section_302') }}</span>
+                            <span class="quick-action" onclick="setDhara('420')">{{ __('messages.section_420') }}</span>
+                            <span class="quick-action" onclick="setDhara('376')">{{ __('messages.section_376') }}</span>
+                            <span class="quick-action" onclick="setDhara('497')">{{ __('messages.section_497') }}</span>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="searchDhara()">
-                            <i class="bi bi-search me-2"></i>খুঁজুন
+                            <i class="bi bi-search me-2"></i>{{ __('messages.btn_search') }}
                         </button>
 
                         <div id="dhara-result" class="result-box" style="display: none;"></div>
@@ -432,28 +463,28 @@
                     <div class="tool-panel" id="tool-terms">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-translate text-success me-2"></i>
-                            আইনি পরিভাষা অভিধান
+                            {{ __('messages.terms_title') }}
                         </h5>
-                        <p class="text-muted mb-4">আইনি শব্দ ও পরিভাষার অর্থ ও ব্যাখ্যা জানুন</p>
+                        <p class="text-muted mb-4">{{ __('messages.terms_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">আইনি শব্দ/পরিভাষা</label>
-                            <input type="text" class="form-control" id="term-input" placeholder="যেমন: হেবা, ওয়াকফ, জামিন, আমলনামা">
+                            <label class="form-label fw-semibold">{{ __('messages.legal_term') }}</label>
+                            <input type="text" class="form-control" id="term-input" placeholder="{{ __('messages.term_placeholder') }}">
                         </div>
 
                         <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setTerm('জামিন')">জামিন</span>
-                            <span class="quick-action" onclick="setTerm('হেবা')">হেবা</span>
-                            <span class="quick-action" onclick="setTerm('ওয়াকফ')">ওয়াকফ</span>
-                            <span class="quick-action" onclick="setTerm('ওয়ারিশ')">ওয়ারিশ</span>
-                            <span class="quick-action" onclick="setTerm('কবলা')">কবলা</span>
-                            <span class="quick-action" onclick="setTerm('এজমালি')">এজমালি</span>
-                            <span class="quick-action" onclick="setTerm('নালিশ')">নালিশ</span>
-                            <span class="quick-action" onclick="setTerm('আরজি')">আরজি</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_bail') }}')">{{ __('messages.term_bail') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_heba') }}')">{{ __('messages.term_heba') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_waqf') }}')">{{ __('messages.term_waqf') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_heir') }}')">{{ __('messages.term_heir') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_deed') }}')">{{ __('messages.term_deed') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_joint') }}')">{{ __('messages.term_joint') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_complaint') }}')">{{ __('messages.term_complaint') }}</span>
+                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_plaint') }}')">{{ __('messages.term_plaint') }}</span>
                         </div>
 
                         <button class="btn btn-success px-4" onclick="searchTerm()">
-                            <i class="bi bi-search me-2"></i>অর্থ জানুন
+                            <i class="bi bi-search me-2"></i>{{ __('messages.btn_meaning') }}
                         </button>
 
                         <div id="term-result" class="result-box" style="display: none;"></div>
@@ -463,27 +494,27 @@
                     <div class="tool-panel" id="tool-document">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-file-earmark-text text-purple me-2"></i>
-                            আইনি দলিল বিশ্লেষণ
+                            {{ __('messages.document_title') }}
                         </h5>
-                        <p class="text-muted mb-4">আপনার আইনি দলিল পেস্ট করুন এবং AI বিশ্লেষণ পান</p>
+                        <p class="text-muted mb-4">{{ __('messages.document_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">বিশ্লেষণের ধরন</label>
+                            <label class="form-label fw-semibold">{{ __('messages.analysis_type') }}</label>
                             <select class="form-select" id="analysis-type">
-                                <option value="summary">সারসংক্ষেপ তৈরি করুন</option>
-                                <option value="legal_issues">আইনি সমস্যা চিহ্নিত করুন</option>
-                                <option value="risks">ঝুঁকি বিশ্লেষণ</option>
-                                <option value="recommendations">উন্নতির সুপারিশ</option>
+                                <option value="summary">{{ __('messages.analysis_summary') }}</option>
+                                <option value="legal_issues">{{ __('messages.analysis_issues') }}</option>
+                                <option value="risks">{{ __('messages.analysis_risks') }}</option>
+                                <option value="recommendations">{{ __('messages.analysis_recommendations') }}</option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">দলিলের টেক্সট</label>
-                            <textarea class="form-control" id="document-text" rows="8" placeholder="আপনার আইনি দলিল এখানে পেস্ট করুন..."></textarea>
+                            <label class="form-label fw-semibold">{{ __('messages.document_text') }}</label>
+                            <textarea class="form-control" id="document-text" rows="8" placeholder="{{ __('messages.document_placeholder') }}"></textarea>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="analyzeDocument()">
-                            <i class="bi bi-cpu me-2"></i>বিশ্লেষণ করুন
+                            <i class="bi bi-cpu me-2"></i>{{ __('messages.btn_analyze') }}
                         </button>
 
                         <div id="document-result" class="result-box" style="display: none;"></div>
@@ -493,35 +524,30 @@
                     <div class="tool-panel" id="tool-case">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-graph-up-arrow text-warning me-2"></i>
-                            মামলা বিশ্লেষণ ও পূর্বাভাস
+                            {{ __('messages.case_title') }}
                         </h5>
-                        <p class="text-muted mb-4">আপনার মামলার তথ্য দিন এবং AI বিশ্লেষণ পান</p>
+                        <p class="text-muted mb-4">{{ __('messages.case_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">মামলার ধরন</label>
+                            <label class="form-label fw-semibold">{{ __('messages.case_type') }}</label>
                             <select class="form-select" id="case-type">
-                                <option value="ফৌজদারি মামলা">ফৌজদারি মামলা</option>
-                                <option value="দেওয়ানি মামলা">দেওয়ানি মামলা</option>
-                                <option value="পারিবারিক মামলা">পারিবারিক মামলা</option>
-                                <option value="শ্রম মামলা">শ্রম মামলা</option>
-                                <option value="সম্পত্তি বিরোধ">সম্পত্তি বিরোধ</option>
-                                <option value="ভোক্তা অভিযোগ">ভোক্তা অভিযোগ</option>
+                                <option value="{{ __('messages.case_criminal') }}">{{ __('messages.case_criminal') }}</option>
+                                <option value="{{ __('messages.case_civil') }}">{{ __('messages.case_civil') }}</option>
+                                <option value="{{ __('messages.case_family') }}">{{ __('messages.case_family') }}</option>
+                                <option value="{{ __('messages.case_labour') }}">{{ __('messages.case_labour') }}</option>
+                                <option value="{{ __('messages.case_property') }}">{{ __('messages.case_property') }}</option>
+                                <option value="{{ __('messages.case_consumer') }}">{{ __('messages.case_consumer') }}</option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">মামলার তথ্য/ঘটনা</label>
-                            <textarea class="form-control" id="case-facts" rows="6" placeholder="মামলার বিস্তারিত তথ্য এখানে লিখুন..."></textarea>
+                            <label class="form-label fw-semibold">{{ __('messages.case_facts') }}</label>
+                            <textarea class="form-control" id="case-facts" rows="6" placeholder="{{ __('messages.case_placeholder') }}"></textarea>
                         </div>
 
                         <button class="btn btn-warning text-dark px-4" onclick="analyzeCase()">
-                            <i class="bi bi-lightning me-2"></i>বিশ্লেষণ করুন
+                            <i class="bi bi-lightning me-2"></i>{{ __('messages.btn_predict') }}
                         </button>
-
-                        <div class="alert alert-info mt-3 small">
-                            <i class="bi bi-info-circle me-2"></i>
-                            দ্রষ্টব্য: এটি শুধুমাত্র শিক্ষামূলক বিশ্লেষণ। প্রকৃত আইনি পরামর্শের জন্য একজন আইনজীবীর সাথে যোগাযোগ করুন।
-                        </div>
 
                         <div id="case-result" class="result-box" style="display: none;"></div>
                     </div>
@@ -530,26 +556,26 @@
                     <div class="tool-panel" id="tool-procedure">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-list-check text-info me-2"></i>
-                            আইনি প্রক্রিয়া গাইড
+                            {{ __('messages.procedure_title') }}
                         </h5>
-                        <p class="text-muted mb-4">বিভিন্ন আইনি প্রক্রিয়ার ধাপে ধাপে গাইড পান</p>
+                        <p class="text-muted mb-4">{{ __('messages.procedure_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">প্রক্রিয়া নির্বাচন করুন বা লিখুন</label>
-                            <input type="text" class="form-control" id="procedure-input" placeholder="যেমন: জামিন আবেদন, তালাক, জমি রেজিস্ট্রেশন">
-                        </div>
-
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setProcedure('জামিন আবেদন প্রক্রিয়া')">জামিন আবেদন</span>
-                            <span class="quick-action" onclick="setProcedure('তালাক প্রক্রিয়া')">তালাক</span>
-                            <span class="quick-action" onclick="setProcedure('জমি রেজিস্ট্রেশন')">জমি রেজিস্ট্রেশন</span>
-                            <span class="quick-action" onclick="setProcedure('এফআইআর দায়ের')">এফআইআর দায়ের</span>
-                            <span class="quick-action" onclick="setProcedure('ওয়ারিশ সনদ')">ওয়ারিশ সনদ</span>
-                            <span class="quick-action" onclick="setProcedure('পাওয়ার অফ এটর্নি')">পাওয়ার অফ এটর্নি</span>
+                            <label class="form-label fw-semibold">{{ __('messages.procedure_type') }}</label>
+                            <select class="form-select" id="procedure-type">
+                                <option value="{{ __('messages.procedure_fir') }}">{{ __('messages.procedure_fir') }}</option>
+                                <option value="{{ __('messages.procedure_bail') }}">{{ __('messages.procedure_bail') }}</option>
+                                <option value="{{ __('messages.procedure_civil') }}">{{ __('messages.procedure_civil') }}</option>
+                                <option value="{{ __('messages.procedure_divorce') }}">{{ __('messages.procedure_divorce') }}</option>
+                                <option value="{{ __('messages.procedure_inheritance') }}">{{ __('messages.procedure_inheritance') }}</option>
+                                <option value="{{ __('messages.procedure_consumer') }}">{{ __('messages.procedure_consumer') }}</option>
+                                <option value="{{ __('messages.procedure_land') }}">{{ __('messages.procedure_land') }}</option>
+                                <option value="{{ __('messages.procedure_company') }}">{{ __('messages.procedure_company') }}</option>
+                            </select>
                         </div>
 
                         <button class="btn btn-info text-white px-4" onclick="getProcedure()">
-                            <i class="bi bi-arrow-right-circle me-2"></i>গাইড দেখুন
+                            <i class="bi bi-arrow-right-circle me-2"></i>{{ __('messages.btn_guide') }}
                         </button>
 
                         <div id="procedure-result" class="result-box" style="display: none;"></div>
@@ -559,29 +585,25 @@
                     <div class="tool-panel" id="tool-rights">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-shield-check text-danger me-2"></i>
-                            আপনার অধিকার জানুন
+                            {{ __('messages.rights_title') }}
                         </h5>
-                        <p class="text-muted mb-4">আপনার পরিস্থিতি বর্ণনা করুন এবং আইনি অধিকার জানুন</p>
+                        <p class="text-muted mb-4">{{ __('messages.rights_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">বিভাগ</label>
+                            <label class="form-label fw-semibold">{{ __('messages.rights_category') }}</label>
                             <select class="form-select" id="rights-category">
-                                <option value="consumer">ভোক্তা অধিকার</option>
-                                <option value="property">সম্পত্তি অধিকার</option>
-                                <option value="family">পারিবারিক আইন</option>
-                                <option value="criminal">ফৌজদারি আইন</option>
-                                <option value="labor">শ্রম আইন</option>
-                                <option value="civil">দেওয়ানি আইন</option>
+                                <option value="{{ __('messages.rights_arrest') }}">{{ __('messages.rights_arrest') }}</option>
+                                <option value="{{ __('messages.rights_women') }}">{{ __('messages.rights_women') }}</option>
+                                <option value="{{ __('messages.rights_children') }}">{{ __('messages.rights_children') }}</option>
+                                <option value="{{ __('messages.rights_consumer') }}">{{ __('messages.rights_consumer') }}</option>
+                                <option value="{{ __('messages.rights_property') }}">{{ __('messages.rights_property') }}</option>
+                                <option value="{{ __('messages.rights_labour') }}">{{ __('messages.rights_labour') }}</option>
+                                <option value="{{ __('messages.rights_cyber') }}">{{ __('messages.rights_cyber') }}</option>
                             </select>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold">আপনার পরিস্থিতি বর্ণনা করুন</label>
-                            <textarea class="form-control" id="rights-situation" rows="5" placeholder="আপনার সমস্যা বা পরিস্থিতি বিস্তারিত লিখুন..."></textarea>
                         </div>
 
                         <button class="btn btn-danger px-4" onclick="checkRights()">
-                            <i class="bi bi-shield-check me-2"></i>অধিকার জানুন
+                            <i class="bi bi-shield-check me-2"></i>{{ __('messages.btn_check_rights') }}
                         </button>
 
                         <div id="rights-result" class="result-box" style="display: none;"></div>
@@ -591,28 +613,29 @@
                     <div class="tool-panel" id="tool-draft">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-pencil-square text-indigo me-2"></i>
-                            আইনি দলিল খসড়া
+                            {{ __('messages.draft_title') }}
                         </h5>
-                        <p class="text-muted mb-4">আইনি নোটিশ, আবেদনপত্র বা চুক্তির খসড়া তৈরি করুন</p>
+                        <p class="text-muted mb-4">{{ __('messages.draft_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">দলিলের ধরন</label>
+                            <label class="form-label fw-semibold">{{ __('messages.draft_type') }}</label>
                             <select class="form-select" id="draft-type">
-                                <option value="legal_notice">আইনি নোটিশ</option>
-                                <option value="application">আবেদনপত্র</option>
-                                <option value="affidavit">হলফনামা</option>
-                                <option value="contract">চুক্তিপত্র</option>
-                                <option value="complaint">অভিযোগপত্র</option>
+                                <option value="{{ __('messages.draft_legal_notice') }}">{{ __('messages.draft_legal_notice') }}</option>
+                                <option value="{{ __('messages.draft_application') }}">{{ __('messages.draft_application') }}</option>
+                                <option value="{{ __('messages.draft_complaint') }}">{{ __('messages.draft_complaint') }}</option>
+                                <option value="{{ __('messages.draft_agreement') }}">{{ __('messages.draft_agreement') }}</option>
+                                <option value="{{ __('messages.draft_power_of_attorney') }}">{{ __('messages.draft_power_of_attorney') }}</option>
+                                <option value="{{ __('messages.draft_affidavit') }}">{{ __('messages.draft_affidavit') }}</option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">বিস্তারিত তথ্য</label>
-                            <textarea class="form-control" id="draft-details" rows="6" placeholder="দলিলের জন্য প্রয়োজনীয় তথ্য দিন। যেমন: পক্ষদের নাম, ঠিকানা, বিষয়বস্তু, দাবি ইত্যাদি..."></textarea>
+                            <label class="form-label fw-semibold">{{ __('messages.draft_details') }}</label>
+                            <textarea class="form-control" id="draft-details" rows="6" placeholder="{{ __('messages.draft_placeholder') }}"></textarea>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="draftDocument()">
-                            <i class="bi bi-file-earmark-plus me-2"></i>খসড়া তৈরি করুন
+                            <i class="bi bi-file-earmark-plus me-2"></i>{{ __('messages.btn_draft') }}
                         </button>
 
                         <div id="draft-result" class="result-box" style="display: none;"></div>
@@ -622,23 +645,26 @@
                     <div class="tool-panel" id="tool-question">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-chat-dots text-primary me-2"></i>
-                            আইনি প্রশ্ন করুন
+                            {{ __('messages.question_title') }}
                         </h5>
-                        <p class="text-muted mb-4">বাংলাদেশের আইন সম্পর্কে যেকোনো প্রশ্ন করুন</p>
+                        <p class="text-muted mb-4">{{ __('messages.question_desc') }}</p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">আপনার প্রশ্ন</label>
-                            <textarea class="form-control" id="question-input" rows="4" placeholder="আপনার আইনি প্রশ্ন এখানে লিখুন..."></textarea>
+                            <label class="form-label fw-semibold">{{ __('messages.your_question') }}</label>
+                            <textarea class="form-control" id="question-input" rows="4" placeholder="{{ __('messages.question_placeholder') }}"></textarea>
                         </div>
 
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setQuestion('তালাক দিতে কী কী কাগজপত্র লাগে?')">তালাকের কাগজপত্র</span>
-                            <span class="quick-action" onclick="setQuestion('জমি কেনার আগে কী যাচাই করতে হয়?')">জমি কেনার টিপস</span>
-                            <span class="quick-action" onclick="setQuestion('মামলা করতে কত খরচ হয়?')">মামলার খরচ</span>
+                        <div class="mb-3">
+                            <small class="text-muted">{{ __('messages.sample_questions') }}:</small>
+                            <div class="d-flex flex-wrap gap-2 mt-2">
+                                <span class="quick-action" onclick="setQuestion('{{ __('messages.sample_q1') }}')">{{ __('messages.sample_q1') }}</span>
+                                <span class="quick-action" onclick="setQuestion('{{ __('messages.sample_q2') }}')">{{ __('messages.sample_q2') }}</span>
+                                <span class="quick-action" onclick="setQuestion('{{ __('messages.sample_q3') }}')">{{ __('messages.sample_q3') }}</span>
+                            </div>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="askQuestion()">
-                            <i class="bi bi-send me-2"></i>প্রশ্ন করুন
+                            <i class="bi bi-send me-2"></i>{{ __('messages.btn_ask') }}
                         </button>
 
                         <div id="question-result" class="result-box" style="display: none;"></div>
@@ -648,59 +674,12 @@
         </div>
     </div>
 </section>
-
-<!-- Popular Laws Section -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <h4 class="fw-bold mb-4 text-center">
-            <i class="bi bi-bookmark-star me-2 text-primary"></i>
-            বাংলাদেশের গুরুত্বপূর্ণ আইনসমূহ
-        </h4>
-        <div class="row g-3">
-            <div class="col-md-3 col-6">
-                <div class="bg-white p-3 rounded-3 text-center h-100 border" style="cursor: pointer;" onclick="setDhara('দণ্ডবিধি ১৮৬০', ''); selectTool('dhara');">
-                    <i class="bi bi-journal-text text-primary fs-3 mb-2"></i>
-                    <h6 class="mb-1">দণ্ডবিধি ১৮৬০</h6>
-                    <small class="text-muted">Penal Code</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="bg-white p-3 rounded-3 text-center h-100 border" style="cursor: pointer;" onclick="setDhara('ফৌজদারি কার্যবিধি ১৮৯৮', ''); selectTool('dhara');">
-                    <i class="bi bi-file-earmark-ruled text-success fs-3 mb-2"></i>
-                    <h6 class="mb-1">ফৌজদারি কার্যবিধি</h6>
-                    <small class="text-muted">CrPC 1898</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="bg-white p-3 rounded-3 text-center h-100 border" style="cursor: pointer;" onclick="setDhara('সাক্ষ্য আইন ১৮৭২', ''); selectTool('dhara');">
-                    <i class="bi bi-person-badge text-warning fs-3 mb-2"></i>
-                    <h6 class="mb-1">সাক্ষ্য আইন</h6>
-                    <small class="text-muted">Evidence Act 1872</small>
-                </div>
-            </div>
-            <div class="col-md-3 col-6">
-                <div class="bg-white p-3 rounded-3 text-center h-100 border" style="cursor: pointer;" onclick="setDhara('নারী ও শিশু নির্যাতন দমন আইন ২০০০', ''); selectTool('dhara');">
-                    <i class="bi bi-shield-exclamation text-danger fs-3 mb-2"></i>
-                    <h6 class="mb-1">নারী ও শিশু নির্যাতন দমন</h6>
-                    <small class="text-muted">২০০০</small>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 @endsection
 
 @push('scripts')
 <script>
-let currentLanguage = 'bn';
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
-function setLanguage(lang) {
-    currentLanguage = lang;
-    document.querySelectorAll('.lang-toggle button').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.lang === lang);
-    });
-}
+const currentLang = '{{ app()->getLocale() }}';
 
 function selectTool(tool) {
     document.querySelectorAll('.feature-card').forEach(card => {
@@ -731,7 +710,6 @@ function showError(elementId, message) {
 }
 
 function formatResult(text) {
-    // Convert markdown-like formatting
     return text
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
@@ -751,14 +729,13 @@ async function makeRequest(url, data) {
             'X-CSRF-TOKEN': csrfToken,
             'Accept': 'application/json'
         },
-        body: JSON.stringify({...data, language: currentLanguage})
+        body: JSON.stringify({...data, language: currentLang})
     });
     return response.json();
 }
 
 // Dhara Functions
-function setDhara(law, section) {
-    document.getElementById('dhara-law').value = law;
+function setDhara(section) {
     document.getElementById('dhara-section').value = section;
 }
 
@@ -767,7 +744,7 @@ async function searchDhara() {
     const section = document.getElementById('dhara-section').value;
     
     if (!section) {
-        alert('অনুগ্রহ করে ধারা নম্বর লিখুন');
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে ধারা নম্বর লিখুন' : 'Please enter a section number');
         return;
     }
     
@@ -781,7 +758,7 @@ async function searchDhara() {
             showError('dhara-result', data.error);
         }
     } catch (e) {
-        showError('dhara-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('dhara-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
@@ -794,7 +771,7 @@ async function searchTerm() {
     const term = document.getElementById('term-input').value;
     
     if (!term) {
-        alert('অনুগ্রহ করে একটি শব্দ লিখুন');
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে একটি শব্দ লিখুন' : 'Please enter a term');
         return;
     }
     
@@ -808,7 +785,7 @@ async function searchTerm() {
             showError('term-result', data.error);
         }
     } catch (e) {
-        showError('term-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('term-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
@@ -818,7 +795,7 @@ async function analyzeDocument() {
     const type = document.getElementById('analysis-type').value;
     
     if (!text) {
-        alert('অনুগ্রহ করে দলিলের টেক্সট পেস্ট করুন');
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে দলিলের টেক্সট পেস্ট করুন' : 'Please paste document text');
         return;
     }
     
@@ -832,7 +809,7 @@ async function analyzeDocument() {
             showError('document-result', data.error);
         }
     } catch (e) {
-        showError('document-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('document-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
@@ -842,7 +819,7 @@ async function analyzeCase() {
     const facts = document.getElementById('case-facts').value;
     
     if (!facts) {
-        alert('অনুগ্রহ করে মামলার তথ্য লিখুন');
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে মামলার তথ্য লিখুন' : 'Please enter case details');
         return;
     }
     
@@ -856,22 +833,13 @@ async function analyzeCase() {
             showError('case-result', data.error);
         }
     } catch (e) {
-        showError('case-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('case-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
 // Procedure
-function setProcedure(procedure) {
-    document.getElementById('procedure-input').value = procedure;
-}
-
 async function getProcedure() {
-    const procedure = document.getElementById('procedure-input').value;
-    
-    if (!procedure) {
-        alert('অনুগ্রহ করে প্রক্রিয়া নির্বাচন করুন');
-        return;
-    }
+    const procedure = document.getElementById('procedure-type').value;
     
     showLoading('procedure-result');
     
@@ -883,31 +851,25 @@ async function getProcedure() {
             showError('procedure-result', data.error);
         }
     } catch (e) {
-        showError('procedure-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('procedure-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
 // Rights Checker
 async function checkRights() {
     const category = document.getElementById('rights-category').value;
-    const situation = document.getElementById('rights-situation').value;
-    
-    if (!situation) {
-        alert('অনুগ্রহ করে আপনার পরিস্থিতি বর্ণনা করুন');
-        return;
-    }
     
     showLoading('rights-result');
     
     try {
-        const data = await makeRequest('/ai/check-rights', { category: category, situation: situation });
+        const data = await makeRequest('/ai/check-rights', { category: category });
         if (data.ok) {
             showResult('rights-result', data.result);
         } else {
             showError('rights-result', data.error);
         }
     } catch (e) {
-        showError('rights-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('rights-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
@@ -917,7 +879,7 @@ async function draftDocument() {
     const details = document.getElementById('draft-details').value;
     
     if (!details) {
-        alert('অনুগ্রহ করে বিস্তারিত তথ্য দিন');
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে বিস্তারিত তথ্য দিন' : 'Please provide details');
         return;
     }
     
@@ -931,7 +893,7 @@ async function draftDocument() {
             showError('draft-result', data.error);
         }
     } catch (e) {
-        showError('draft-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('draft-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
@@ -944,7 +906,7 @@ async function askQuestion() {
     const question = document.getElementById('question-input').value;
     
     if (!question) {
-        alert('অনুগ্রহ করে আপনার প্রশ্ন লিখুন');
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে আপনার প্রশ্ন লিখুন' : 'Please enter your question');
         return;
     }
     
@@ -958,7 +920,7 @@ async function askQuestion() {
             showError('question-result', data.error);
         }
     } catch (e) {
-        showError('question-result', 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।');
+        showError('question-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 </script>

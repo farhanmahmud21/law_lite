@@ -143,14 +143,17 @@ class ChatController extends Controller
             return new JsonResponse(['ok' => false, 'message' => 'Unauthenticated'], 401);
         }
 
+        // Ensure withUserId is an integer
+        $withUserId = (int) $withUserId;
         $userId = $user->id;
+        
         $messages = Message::query()->where(function ($q) use ($userId, $withUserId) {
             /** @var \Illuminate\Database\Eloquent\Builder<\App\Models\Message> $q */
             $q->where('sender_id', $userId)->where('receiver_id', $withUserId);
         })->orWhere(function ($q) use ($userId, $withUserId) {
             /** @var \Illuminate\Database\Eloquent\Builder<\App\Models\Message> $q */
             $q->where('sender_id', $withUserId)->where('receiver_id', $userId);
-        })->orderBy('created_at')->get();
+        })->orderBy('created_at', 'asc')->get();
 
         // Mark messages from the partner to the current user as read so unread counts update.
         try {
@@ -167,14 +170,46 @@ class ChatController extends Controller
         $isOnline = $partner ? $partner->isOnline() : false;
         $lastSeen = $partner ? $partner->last_seen_at : null;
 
+        // Ensure messages are properly serialized
+        $messagesArray = $messages->map(function ($message) {
+            return [
+                'id' => $message->id,
+                'sender_id' => $message->sender_id,
+                'receiver_id' => $message->receiver_id,
+                'content' => $message->content,
+                'attachment_path' => $message->attachment_path,
+                'attachment_type' => $message->attachment_type,
+                'is_read' => $message->is_read,
+                'created_at' => $message->created_at?->toIso8601String() ?? $message->created_at,
+            ];
+        })->values()->all();
+
         return new JsonResponse([
             'ok' => true,
-            'messages' => $messages,
+            'messages' => $messagesArray,
             'partner_status' => [
                 'is_online' => $isOnline,
-                'last_seen' => $lastSeen
+                'last_seen' => $lastSeen?->toIso8601String() ?? $lastSeen
             ]
         ]);
+    }
+
+    /**
+     * Get list of users for new chat
+     */
+    public function users(Request $request): JsonResponse
+    {
+        $user = $request->user();
+        if (!$user) {
+            return response()->json(['ok' => false], 401);
+        }
+
+        $users = User::where('id', '!=', $user->id)
+            ->select('id', 'name', 'email', 'role')
+            ->limit(20)
+            ->get();
+
+        return response()->json(['ok' => true, 'users' => $users]);
     }
 
     /**

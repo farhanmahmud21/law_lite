@@ -21,6 +21,67 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Language switch route: set locale in session and redirect back
+Route::get('/lang/{lang}', function ($lang) {
+    $allowed = ['en', 'bn'];
+    if (! in_array($lang, $allowed)) {
+        $lang = config('app.locale');
+    }
+    session(['locale' => $lang]);
+    return redirect()->back();
+})->name('lang.switch');
+
+// Temporary route to seed messages for testing
+Route::get('/_dev/seed-messages', function () {
+    $users = \App\Models\User::take(3)->get();
+    if ($users->count() < 2) {
+        return 'Not enough users';
+    }
+    
+    $user1 = $users[0];
+    $user2 = $users[1];
+    
+    $messages = [
+        ['sender_id' => $user1->id, 'receiver_id' => $user2->id, 'content' => 'Hello! I need legal assistance regarding a property dispute.', 'is_read' => true, 'created_at' => now()->subHours(5)],
+        ['sender_id' => $user2->id, 'receiver_id' => $user1->id, 'content' => 'Hi there! I would be happy to help you. Can you provide more details?', 'is_read' => true, 'created_at' => now()->subHours(4)->subMinutes(30)],
+        ['sender_id' => $user1->id, 'receiver_id' => $user2->id, 'content' => 'Yes, it\'s about boundary issues with my neighbor.', 'is_read' => true, 'created_at' => now()->subHours(4)],
+        ['sender_id' => $user2->id, 'receiver_id' => $user1->id, 'content' => 'I understand. Do you have the property survey documents?', 'is_read' => true, 'created_at' => now()->subHours(3)->subMinutes(45)],
+        ['sender_id' => $user1->id, 'receiver_id' => $user2->id, 'content' => 'Yes, I have the original deed and a recent survey.', 'is_read' => false, 'created_at' => now()->subHours(2)],
+        ['sender_id' => $user2->id, 'receiver_id' => $user1->id, 'content' => 'Please bring all documents. What time works for you?', 'is_read' => false, 'created_at' => now()->subMinutes(30)],
+    ];
+    
+    foreach ($messages as $msg) {
+        \App\Models\Message::create($msg);
+    }
+    
+    if ($users->count() >= 3) {
+        $user3 = $users[2];
+        \App\Models\Message::create(['sender_id' => $user3->id, 'receiver_id' => $user1->id, 'content' => 'Hey, can you help with a contract review?', 'is_read' => false, 'created_at' => now()->subHour()]);
+        \App\Models\Message::create(['sender_id' => $user1->id, 'receiver_id' => $user3->id, 'content' => 'Of course! Send me the contract details.', 'is_read' => true, 'created_at' => now()->subMinutes(45)]);
+    }
+    
+    return 'Seeded ' . \App\Models\Message::count() . ' messages. <a href="/messages">Go to messages</a>';
+});
+
+// Debug route to check message data
+Route::get('/_dev/check-messages', function () {
+    $user = auth()->user();
+    if (!$user) return 'Not logged in';
+    
+    $messages = \App\Models\Message::where('sender_id', $user->id)
+        ->orWhere('receiver_id', $user->id)
+        ->orderBy('created_at', 'desc')
+        ->take(10)
+        ->get();
+    
+    return response()->json([
+        'user_id' => $user->id,
+        'user_name' => $user->name,
+        'message_count' => $messages->count(),
+        'messages' => $messages
+    ]);
+})->middleware('auth');
+
 Route::post('/ai/question', [AiController::class, 'ask'])->name('ai.ask');
 Route::post('/ai/summarize', [AiController::class, 'summarize'])->name('ai.summarize');
 
@@ -208,6 +269,7 @@ Route::middleware('auth')->get('/messages', [ChatController::class, 'inbox'])->n
 Route::middleware('auth')->post('/chat/send', [ChatController::class, 'send']);
 Route::middleware('auth')->post('/chat/signal', [ChatController::class, 'signal']);
 Route::middleware('auth')->get('/chat/history/{withUserId}', [ChatController::class, 'history']);
+Route::middleware('auth')->get('/chat/users', [ChatController::class, 'users'])->name('chat.users');
 
 // Appointment booking
 Route::middleware('auth')->post('/appointments/book', [AppointmentController::class, 'book']);

@@ -474,6 +474,49 @@
         .trust-badge i {
             color: var(--accent);
         }
+
+        /* Dark mode overrides for welcome */
+        html[data-theme="dark"] .hero-section {
+            background: linear-gradient(135deg, #07122a 0%, #0d1b30 50%, #07122a 100%);
+        }
+        html[data-theme="dark"] .hero-section::before {
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.08) 0%, transparent 70%);
+        }
+        html[data-theme="dark"] .hero-section::after {
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.04) 0%, transparent 60%);
+        }
+        html[data-theme="dark"] .hero-grid {
+            background-image: 
+                linear-gradient(rgba(52, 211, 153, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(52, 211, 153, 0.05) 1px, transparent 1px);
+        }
+        html[data-theme="dark"] .hero-orb-1 {
+            background: rgba(52, 211, 153, 0.1);
+        }
+        html[data-theme="dark"] .hero-orb-2 {
+            background: rgba(139, 92, 246, 0.07);
+        }
+        html[data-theme="dark"] .ai-card {
+            background: rgba(11, 18, 32, 0.95);
+            border-color: rgba(255,255,255,0.08);
+        }
+        html[data-theme="dark"] .ai-card textarea {
+            background: rgba(255,255,255,0.05) !important;
+            color: #e6eef8;
+        }
+        html[data-theme="dark"] .trust-badge,
+        html[data-theme="dark"] .floating-badge {
+            background: rgba(11, 18, 32, 0.9);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: #e6eef8;
+        }
+        html[data-theme="dark"] .feature-card {
+            background: rgba(11, 18, 32, 0.9);
+            border-color: rgba(255,255,255,0.08);
+        }
+        html[data-theme="dark"] .feature-card h4 {
+            color: #e6eef8;
+        }
     </style>
 <?php $__env->stopPush(); ?>
 
@@ -496,7 +539,8 @@
                         </span>
                         <span class="live-indicator">
                             <span class="live-dot"></span>
-                            AI Online
+                            <?php echo e(__('messages.ai_online')); ?>
+
                         </span>
                     </div>
                     <h1 class="hero-title mb-4">
@@ -547,15 +591,15 @@
                     <div class="d-flex align-items-center gap-4 mt-5 pt-3">
                         <div class="d-flex">
                             <div class="rounded-circle bg-success" style="width: 10px; height: 10px; margin-right: 8px; margin-top: 6px;"></div>
-                            <span class="text-muted fw-medium">AI Powered</span>
+                            <span class="text-muted fw-medium"><?php echo e(__('messages.ai_powered')); ?></span>
                         </div>
                         <div class="d-flex">
                             <div class="rounded-circle bg-primary" style="width: 10px; height: 10px; margin-right: 8px; margin-top: 6px;"></div>
-                            <span class="text-muted fw-medium">Secure & Private</span>
+                            <span class="text-muted fw-medium"><?php echo e(__('messages.secure_private')); ?></span>
                         </div>
                         <div class="d-flex">
                             <div class="rounded-circle bg-warning" style="width: 10px; height: 10px; margin-right: 8px; margin-top: 6px;"></div>
-                            <span class="text-muted fw-medium">BD Law Expert</span>
+                            <span class="text-muted fw-medium"><?php echo e(__('messages.bd_law_expert')); ?></span>
                         </div>
                     </div>
                 </div>
@@ -604,19 +648,19 @@
                     <div class="d-flex flex-wrap justify-content-center gap-3">
                         <div class="trust-badge">
                             <i class="bi bi-shield-lock"></i>
-                            <span>Bank-Level Security</span>
+                            <span><?php echo e(__('messages.bank_level_security')); ?></span>
                         </div>
                         <div class="trust-badge">
                             <i class="bi bi-patch-check"></i>
-                            <span>Verified Lawyers</span>
+                            <span><?php echo e(__('messages.verified_lawyers_short')); ?></span>
                         </div>
                         <div class="trust-badge">
                             <i class="bi bi-headset"></i>
-                            <span>24/7 AI Support</span>
+                            <span><?php echo e(__('messages.support_24_7')); ?></span>
                         </div>
                         <div class="trust-badge">
                             <i class="bi bi-translate"></i>
-                            <span>বাংলা & English</span>
+                            <span><?php echo e(__('messages.available_langs')); ?></span>
                         </div>
                     </div>
                 </div>
@@ -626,11 +670,11 @@
         <!-- Floating Badges -->
         <div class="floating-badge badge-1 d-none d-lg-flex">
             <i class="bi bi-shield-check text-success"></i>
-            <span>Verified Lawyers</span>
+            <span><?php echo e(__('messages.verified_lawyers_short')); ?></span>
         </div>
         <div class="floating-badge badge-2 d-none d-lg-flex">
             <i class="bi bi-translate text-primary"></i>
-            <span>বাংলা & English</span>
+            <span><?php echo e(__('messages.available_langs')); ?></span>
         </div>
     </section>
 
@@ -664,7 +708,7 @@
     <section class="py-6 bg-light-section">
         <div class="container py-5">
             <div class="text-center mb-5 reveal">
-                <span class="badge-modern mb-3">Why Choose Us</span>
+                <span class="badge-modern mb-3"><?php echo e(__('messages.why_choose_badge')); ?></span>
                 <h2 class="fw-bold mb-3 gradient-text-animate" style="font-size: 2.75rem; letter-spacing: -0.02em;"><?php echo e(__('messages.why_choose_title')); ?></h2>
                 <p class="lead text-muted mx-auto" style="max-width: 600px;">
                     <?php echo e(__('messages.why_choose_desc')); ?>
@@ -728,7 +772,7 @@
                     </div>
                 </div>
                 <div class="col-lg-5 offset-lg-1 reveal reveal-right">
-                    <span class="badge-modern mb-3">Simple Process</span>
+                    <span class="badge-modern mb-3"><?php echo e(__('messages.simple_process')); ?></span>
                     <h2 class="fw-bold mb-5" style="font-size: 2.75rem; letter-spacing: -0.02em;"><?php echo e(__('messages.how_it_works_title')); ?></h2>
 
                     <div class="d-flex mb-4 p-4 rounded-4 hover-lift glow-border" style="background: linear-gradient(135deg, #f8fafc 0%, #fff 100%); border-radius: 20px;">
@@ -775,7 +819,8 @@
         
         <div class="container text-center py-5 position-relative reveal">
             <span class="badge bg-white bg-opacity-15 text-white px-4 py-2 rounded-pill mb-4 fw-semibold" style="backdrop-filter: blur(10px);">
-                <i class="bi bi-rocket-takeoff me-2"></i>Get Started Today
+                <i class="bi bi-rocket-takeoff me-2"></i><?php echo e(__('messages.get_started_today')); ?>
+
             </span>
             <h2 class="fw-bold mb-4 gradient-text-animate" style="font-size: 3rem; -webkit-text-fill-color: white;"><?php echo e(__('messages.cta_title')); ?></h2>
             <p class="lead mb-5 text-white-50" style="max-width: 600px; margin: 0 auto; font-size: 1.25rem;"><?php echo e(__('messages.cta_desc')); ?></p>
@@ -789,7 +834,8 @@
                     </a>
                     <a href="<?php echo e(route('lawyers.index')); ?>"
                         class="btn btn-outline-light btn-lg px-5 py-3 fw-semibold" style="border-width: 2px;">
-                        <i class="bi bi-search me-2"></i>Browse Lawyers
+                        <i class="bi bi-search me-2"></i><?php echo e(__('messages.browse_lawyers')); ?>
+
                     </a>
                 <?php else: ?>
                     <a href="<?php echo e(route('lawyers.index')); ?>"
@@ -804,15 +850,15 @@
             <div class="d-flex justify-content-center gap-5 mt-5 pt-4 flex-wrap">
                 <div class="text-center">
                     <div class="h3 fw-bold mb-0" style="color: var(--gold);">500+</div>
-                    <small class="text-white-50">Verified Lawyers</small>
+                    <small class="text-white-50"><?php echo e(__('messages.stat_verified_lawyers')); ?></small>
                 </div>
                 <div class="text-center">
                     <div class="h3 fw-bold mb-0" style="color: var(--accent-light);">10K+</div>
-                    <small class="text-white-50">Cases Handled</small>
+                    <small class="text-white-50"><?php echo e(__('messages.cases_handled')); ?></small>
                 </div>
                 <div class="text-center">
                     <div class="h3 fw-bold mb-0" style="color: var(--gold);">98%</div>
-                    <small class="text-white-50">Satisfaction Rate</small>
+                    <small class="text-white-50"><?php echo e(__('messages.satisfaction_rate')); ?></small>
                 </div>
             </div>
         </div>

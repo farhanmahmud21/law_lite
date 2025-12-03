@@ -25,8 +25,8 @@
                     {{-- Lawyer Navigation --}}
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('lawyer.dashboard') }}">{{ __('messages.home') }}</a></li>
-                    <li class="nav-item"><a class="nav-link"
-                            href="{{ route('ai.features') }}"><i class="bi bi-robot me-1"></i>AI Features</a></li>
+                        <li class="nav-item"><a class="nav-link"
+                            href="{{ route('ai.features') }}"><i class="bi bi-robot me-1"></i>{{ __('messages.ai_features') }}</a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('lawyer.articles.index') }}">{{ __('messages.my_articles') }}</a></li>
                     <li class="nav-item"><a class="nav-link"
@@ -43,7 +43,7 @@
                             href="{{ Route::has('home') ? route('home') : url('/') }}">{{ __('messages.home') }}</a>
                     </li>
                     <li class="nav-item"><a class="nav-link"
-                            href="{{ route('ai.features') }}"><i class="bi bi-robot me-1"></i>AI Features</a></li>
+                            href="{{ route('ai.features') }}"><i class="bi bi-robot me-1"></i>{{ __('messages.ai_features') }}</a></li>
                     <li class="nav-item"><a class="nav-link"
                             href="{{ route('lawyers.index') }}">{{ __('messages.find_lawyers') }}</a></li>
                     <li class="nav-item"><a class="nav-link"
@@ -103,9 +103,16 @@
                         <i class="bi bi-globe"></i> {{ app()->getLocale() == 'bn' ? 'বাংলা' : 'EN' }}
                     </a>
                     <div class="dropdown-menu dropdown-menu-end border-0 shadow-lg mt-2 rounded-3">
-                        <a class="dropdown-item py-2" href="?lang=en">English</a>
-                        <a class="dropdown-item py-2" href="?lang=bn">বাংলা</a>
+                        <a class="dropdown-item py-2" href="{{ route('lang.switch', 'en') }}">English</a>
+                        <a class="dropdown-item py-2" href="{{ route('lang.switch', 'bn') }}">বাংলা</a>
                     </div>
+                </li>
+
+                <!-- Dark Mode Toggle -->
+                <li class="nav-item ms-2">
+                    <button id="themeToggle" class="btn btn-outline-primary px-3" title="Toggle dark mode">
+                        <i class="bi bi-moon-fill" id="themeIcon"></i>
+                    </button>
                 </li>
             </ul>
         </div>

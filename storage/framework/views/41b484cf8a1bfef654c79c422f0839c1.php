@@ -49,12 +49,13 @@
 
         body {
             font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background-color: #fff;
-            color: #0f172a;
+            background-color: var(--light-bg);
+            color: var(--primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+            transition: background-color 0.35s ease, color 0.35s ease;
         }
 
         /* Custom Cursor */
@@ -242,16 +243,39 @@
             font-weight: 500;
             padding: 0.5rem 1rem !important;
             border-radius: 8px;
-            transition: all 0.2s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-accent);
+            transition: all 0.25s ease;
+            transform: translateX(-50%);
+            border-radius: 1px;
+        }
+
+        .nav-link:hover::after {
+            width: 60%;
         }
 
         .nav-link:hover {
             color: var(--accent) !important;
             background: rgba(16, 185, 129, 0.08);
+            transform: translateY(-1px);
         }
 
         .nav-link.active {
             color: var(--accent) !important;
+        }
+
+        .nav-link.active::after {
+            width: 60%;
         }
 
         /* Buttons with Advanced Animations */
@@ -407,6 +431,19 @@
 
         .form-control:focus::placeholder {
             opacity: 0.5;
+        }
+
+        /* Focus States for Accessibility */
+        .btn:focus-visible,
+        .nav-link:focus-visible,
+        .social-icon:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        /* Elastic Button Press */
+        .btn:active {
+            transform: scale(0.97);
         }
 
         /* Text Colors */
@@ -869,6 +906,144 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* Dark theme overrides (toggle by setting html[data-theme="dark"]) */
+        html[data-theme="dark"] {
+            --primary: #e6eef8;
+            --primary-light: #0b1220;
+            --accent: #34d399;
+            --accent-light: #60f0b0;
+            --accent-dark: #059669;
+            --gold: #f59e0b;
+            --muted: #9fb0c8;
+            --light-bg: #07122a;
+            --gradient-primary: linear-gradient(135deg, #07122a 0%, #0b2440 50%, #07122a 100%);
+            --gradient-accent: linear-gradient(135deg, #34d399 0%, #059669 100%);
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+            --shadow-md: 0 6px 18px rgba(0,0,0,0.6);
+            --shadow-lg: 0 18px 30px rgba(0,0,0,0.6);
+            --shadow-2xl: 0 30px 60px rgba(0,0,0,0.7);
+            --shadow-glow: 0 0 40px rgba(52, 211, 153, 0.12);
+        }
+
+        /* Dark mode component overrides */
+        html[data-theme="dark"] body {
+            background: var(--light-bg);
+            color: var(--primary);
+        }
+
+        html[data-theme="dark"] .site-header {
+            background: rgba(7, 18, 42, 0.95);
+            border-bottom-color: rgba(255,255,255,0.05);
+        }
+
+        html[data-theme="dark"] .nav-link {
+            color: #cbd5e1 !important;
+        }
+        html[data-theme="dark"] .nav-link:hover,
+        html[data-theme="dark"] .nav-link.active {
+            color: var(--accent) !important;
+            background: rgba(52, 211, 153, 0.1);
+        }
+
+        html[data-theme="dark"] .card,
+        html[data-theme="dark"] .ai-card,
+        html[data-theme="dark"] .feature-card {
+            background: rgba(11, 18, 32, 0.9);
+            border-color: rgba(255,255,255,0.08);
+        }
+
+        html[data-theme="dark"] .form-control,
+        html[data-theme="dark"] .form-select {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.12);
+            color: #e6eef8;
+        }
+        html[data-theme="dark"] .form-control::placeholder {
+            color: #64748b;
+        }
+        html[data-theme="dark"] .form-control:focus,
+        html[data-theme="dark"] .form-select:focus {
+            background: rgba(255,255,255,0.08);
+            border-color: var(--accent);
+        }
+
+        html[data-theme="dark"] .dropdown-menu {
+            background: rgba(11, 18, 32, 0.98);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        html[data-theme="dark"] .dropdown-item {
+            color: #cbd5e1;
+        }
+        html[data-theme="dark"] .dropdown-item:hover {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent);
+        }
+
+        html[data-theme="dark"] .text-muted {
+            color: #94a3b8 !important;
+        }
+
+        html[data-theme="dark"] .bg-light-section {
+            background: linear-gradient(180deg, #0a1628 0%, #07122a 100%);
+        }
+
+        html[data-theme="dark"] .hero-section {
+            background: linear-gradient(135deg, #07122a 0%, #0d1b30 50%, #07122a 100%);
+        }
+
+        html[data-theme="dark"] .trust-badge,
+        html[data-theme="dark"] .floating-badge {
+            background: rgba(11, 18, 32, 0.9);
+            border-color: rgba(255,255,255,0.08);
+            color: #e6eef8;
+        }
+
+        /* Bootstrap Utility Overrides for Dark Mode */
+        html[data-theme="dark"] .bg-light {
+            background-color: rgba(255, 255, 255, 0.05) !important;
+        }
+        html[data-theme="dark"] .bg-white {
+            background-color: rgba(11, 18, 32, 0.95) !important;
+        }
+        html[data-theme="dark"] .text-dark {
+            color: #e6eef8 !important;
+        }
+        html[data-theme="dark"] .border {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        html[data-theme="dark"] .border-bottom {
+            border-bottom-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        html[data-theme="dark"] .border-top {
+            border-top-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        html[data-theme="dark"] .list-group-item {
+            background-color: transparent;
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e6eef8;
+        }
+        html[data-theme="dark"] .list-group-item-action:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+        }
+
+        html[data-theme="dark"] .btn-outline-primary {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        html[data-theme="dark"] .btn-outline-primary:hover {
+            background: var(--accent);
+            color: #07122a;
+        }
+
+        html[data-theme="dark"] .logo-text .law {
+            color: #e6eef8;
+        }
+
+        html[data-theme="dark"] ::-webkit-scrollbar-track {
+            background: #0a1628;
+        }
     </style>
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
@@ -935,7 +1110,7 @@
                 <div class="col-md-2 col-6 mb-4 mb-md-0 reveal stagger-1">
                     <h6 class="fw-bold mb-3 text-white"><?php echo e(__('messages.footer_platform')); ?></h6>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><a href="<?php echo e(route('ai.features')); ?>" class="footer-link">AI Features</a></li>
+                        <li class="mb-2"><a href="<?php echo e(route('ai.features')); ?>" class="footer-link"><?php echo e(__('messages.ai_features')); ?></a></li>
                         <li class="mb-2"><a href="<?php echo e(route('lawyers.index')); ?>" class="footer-link"><?php echo e(__('messages.find_lawyers')); ?></a></li>
                         <li class="mb-2"><a href="<?php echo e(route('articles.index')); ?>" class="footer-link"><?php echo e(__('messages.articles')); ?></a></li>
                         <li class="mb-2"><a href="<?php echo e(route('appointments.index')); ?>" class="footer-link"><?php echo e(__('messages.appointments')); ?></a></li>
@@ -951,7 +1126,7 @@
                 </div>
                 <div class="col-md-4 reveal reveal-right">
                     <h6 class="fw-bold mb-3 text-white"><?php echo e(__('messages.footer_subscribe')); ?></h6>
-                    <p class="text-white-50 small mb-3">Get the latest legal updates and AI features</p>
+                    <p class="text-white-50 small mb-3"><?php echo e(__('messages.footer_subscribe_desc')); ?></p>
                     <form class="d-flex gap-2">
                         <input type="email" class="form-control" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white;" placeholder="<?php echo e(__('messages.email_placeholder')); ?>">
                         <button class="btn btn-accent btn-glow" type="button"><?php echo e(__('messages.footer_subscribe_btn')); ?></button>
@@ -961,13 +1136,16 @@
             <div class="border-top border-secondary mt-4 pt-4 d-flex flex-wrap justify-content-between align-items-center reveal">
                 <small class="text-white-50">&copy; <?php echo e(date('Y')); ?> LawLite. <?php echo e(__('messages.footer_rights')); ?></small>
                 <small class="text-white-50">
-                    <span class="me-2">🇧🇩</span> Made with <span style="color: #ef4444;">❤</span> for Bangladesh
+                    <span class="me-2">🇧🇩</span> <?php echo e(__('messages.made_with_love')); ?>
+
                 </small>
             </div>
         </div>
     </footer>
 
-    <?php echo $__env->make('components.chat_ui', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php if(!request()->is('messages')): ?>
+        <?php echo $__env->make('components.chat_ui', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php endif; ?>
     <?php echo $__env->make('components.appointment_modal', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -1111,6 +1289,39 @@
                 }
             });
         });
+
+        // Theme: initialize and toggle dark/light mode
+        (function() {
+            const stored = localStorage.getItem('lawlite_theme');
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initial = stored || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', initial === 'dark' ? 'dark' : 'light');
+
+            function updateThemeIcon() {
+                const icon = document.getElementById('themeIcon');
+                if (!icon) return;
+                const theme = document.documentElement.getAttribute('data-theme');
+                if (theme === 'dark') {
+                    icon.className = 'bi bi-sun-fill';
+                } else {
+                    icon.className = 'bi bi-moon-fill';
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', updateThemeIcon);
+
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.addEventListener('click', function () {
+                    const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', next);
+                    localStorage.setItem('lawlite_theme', next);
+                    updateThemeIcon();
+                });
+            }
+            updateThemeIcon();
+        })();
     </script>
     <!-- Pusher & Echo (optional - requires Pusher keys in .env) -->
     <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
