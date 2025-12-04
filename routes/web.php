@@ -95,6 +95,13 @@ Route::post('/ai/procedure', [AiFeaturesController::class, 'getProcedure'])->nam
 Route::post('/ai/check-rights', [AiFeaturesController::class, 'checkRights'])->name('ai.check-rights');
 Route::post('/ai/draft-document', [AiFeaturesController::class, 'draftDocument'])->name('ai.draft-document');
 
+// Advanced AI Features - Pro Tools
+Route::post('/ai/case-law-search', [AiFeaturesController::class, 'searchCaseLaw'])->name('ai.case-law-search');
+Route::post('/ai/legal-strategy', [AiFeaturesController::class, 'getLegalStrategy'])->name('ai.legal-strategy');
+Route::post('/ai/court-fee', [AiFeaturesController::class, 'calculateCourtFee'])->name('ai.court-fee');
+Route::post('/ai/citation', [AiFeaturesController::class, 'generateCitation'])->name('ai.citation');
+Route::post('/ai/summarize-law-pdf', [AiFeaturesController::class, 'summarizeLawPdf'])->name('ai.summarize-law-pdf');
+
 // Static Pages
 Route::get('/about', [\App\Http\Controllers\PageController::class, 'about'])->name('about');
 Route::get('/contact', [\App\Http\Controllers\PageController::class, 'contact'])->name('contact');

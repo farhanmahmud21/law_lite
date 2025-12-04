@@ -457,6 +457,61 @@
                             <small class="text-muted">{{ __('messages.tool_question_desc') }}</small>
                         </div>
                     </div>
+
+                    <!-- Case Law Research - NEW -->
+                    <div class="col-6">
+                        <div class="feature-card" data-tool="caselaw" onclick="selectTool('caselaw')">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(202, 138, 4, 0.15) 100%); color: #eab308;">
+                                <i class="bi bi-journal-bookmark"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_caselaw') ?? 'Case Law Research' }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_caselaw_desc') ?? 'Supreme Court Precedents' }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Legal Strategy - NEW -->
+                    <div class="col-6">
+                        <div class="feature-card" data-tool="strategy" onclick="selectTool('strategy')">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(219, 39, 119, 0.15) 100%); color: #ec4899;">
+                                <i class="bi bi-lightbulb"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_strategy') ?? 'Legal Strategy' }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_strategy_desc') ?? 'Case Strategy Advisor' }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Court Fee Calculator - NEW -->
+                    <div class="col-6">
+                        <div class="feature-card" data-tool="courtfee" onclick="selectTool('courtfee')">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%); color: #22c55e;">
+                                <i class="bi bi-calculator"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_courtfee') ?? 'Court Fee' }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_courtfee_desc') ?? 'Fee Calculator' }}</small>
+                        </div>
+                    </div>
+
+                    <!-- Citation Generator - NEW -->
+                    <div class="col-6">
+                        <div class="feature-card" data-tool="citation" onclick="selectTool('citation')">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%); color: #a855f7;">
+                                <i class="bi bi-quote"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_citation') ?? 'Citation Generator' }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_citation_desc') ?? 'Legal Citations' }}</small>
+                        </div>
+                    </div>
+
+                    <!-- BD Law PDF Summarizer - NEW -->
+                    <div class="col-6">
+                        <div class="feature-card" data-tool="lawpdf" onclick="selectTool('lawpdf')">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%); color: #ef4444;">
+                                <i class="bi bi-file-earmark-pdf"></i>
+                            </div>
+                            <h6 class="fw-bold mb-1">{{ __('messages.tool_lawpdf') ?? 'BD Law Summarizer' }}</h6>
+                            <small class="text-muted">{{ __('messages.tool_lawpdf_desc') ?? 'Upload & Summarize PDFs' }}</small>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -716,12 +771,350 @@
 
                         <div id="question-result" class="result-box" style="display: none;"></div>
                     </div>
+
+                    <!-- Case Law Research Tool - NEW -->
+                    <div class="tool-panel" id="tool-caselaw">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-journal-bookmark me-2" style="color: #eab308;"></i>
+                            {{ __('messages.caselaw_title') ?? 'Case Law Research' }}
+                        </h5>
+                        <p class="text-muted mb-4">{{ __('messages.caselaw_desc') ?? 'Search Bangladesh Supreme Court & High Court precedents and case laws' }}</p>
+                        
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ __('messages.search_query') ?? 'Search Query' }}</label>
+                            <input type="text" class="form-control" id="caselaw-query" placeholder="{{ __('messages.caselaw_placeholder') ?? 'e.g., Bail in murder case, Property dispute between siblings...' }}">
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.select_court') ?? 'Select Court' }}</label>
+                                <select class="form-select" id="caselaw-court">
+                                    <option value="all">{{ __('messages.all_courts') ?? 'All Courts' }}</option>
+                                    <option value="appellate_division">{{ __('messages.appellate_division') ?? 'Appellate Division' }}</option>
+                                    <option value="high_court">{{ __('messages.high_court_division') ?? 'High Court Division' }}</option>
+                                    <option value="supreme_court">{{ __('messages.supreme_court') ?? 'Supreme Court' }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.case_type') ?? 'Case Type' }}</label>
+                                <select class="form-select" id="caselaw-type">
+                                    <option value="all">{{ __('messages.all_types') ?? 'All Types' }}</option>
+                                    <option value="civil">{{ __('messages.civil') ?? 'Civil' }}</option>
+                                    <option value="criminal">{{ __('messages.criminal') ?? 'Criminal' }}</option>
+                                    <option value="constitutional">{{ __('messages.constitutional') ?? 'Constitutional' }}</option>
+                                    <option value="writ">{{ __('messages.writ') ?? 'Writ' }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="quick-action" onclick="setCaseLawQuery('Bail conditions in non-bailable offence')">Bail Conditions</span>
+                            <span class="quick-action" onclick="setCaseLawQuery('Property succession Muslim law')">Inheritance Law</span>
+                            <span class="quick-action" onclick="setCaseLawQuery('Writ petition against government')">Writ Petition</span>
+                            <span class="quick-action" onclick="setCaseLawQuery('Fundamental rights violation')">Fundamental Rights</span>
+                        </div>
+
+                        <button class="btn px-4" style="background: linear-gradient(135deg, #eab308, #ca8a04); color: white;" onclick="searchCaseLaw()">
+                            <i class="bi bi-search me-2"></i>{{ __('messages.btn_search') ?? 'Search Precedents' }}
+                        </button>
+
+                        <div id="caselaw-result" class="result-box" style="display: none;"></div>
+                    </div>
+
+                    <!-- Legal Strategy Tool - NEW -->
+                    <div class="tool-panel" id="tool-strategy">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-lightbulb me-2" style="color: #ec4899;"></i>
+                            {{ __('messages.strategy_title') ?? 'Legal Strategy Advisor' }}
+                        </h5>
+                        <p class="text-muted mb-4">{{ __('messages.strategy_desc') ?? 'Get strategic recommendations for your legal case from AI' }}</p>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.case_type') ?? 'Case Type' }}</label>
+                                <select class="form-select" id="strategy-casetype">
+                                    <option value="civil">{{ __('messages.civil_case') ?? 'Civil Case' }}</option>
+                                    <option value="criminal">{{ __('messages.criminal_case') ?? 'Criminal Case' }}</option>
+                                    <option value="family">{{ __('messages.family_case') ?? 'Family Case' }}</option>
+                                    <option value="land">{{ __('messages.land_case') ?? 'Land/Property Case' }}</option>
+                                    <option value="labor">{{ __('messages.labor_case') ?? 'Labor Case' }}</option>
+                                    <option value="writ">{{ __('messages.writ_case') ?? 'Writ Petition' }}</option>
+                                    <option value="constitutional">{{ __('messages.constitutional_case') ?? 'Constitutional Case' }}</option>
+                                    <option value="company">{{ __('messages.company_case') ?? 'Company Case' }}</option>
+                                    <option value="tax">{{ __('messages.tax_case') ?? 'Tax Case' }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.your_position') ?? 'Your Position' }}</label>
+                                <select class="form-select" id="strategy-position">
+                                    <option value="plaintiff">{{ __('messages.plaintiff') ?? 'Plaintiff/বাদী' }}</option>
+                                    <option value="defendant">{{ __('messages.defendant') ?? 'Defendant/বিবাদী' }}</option>
+                                    <option value="petitioner">{{ __('messages.petitioner') ?? 'Petitioner/আবেদনকারী' }}</option>
+                                    <option value="respondent">{{ __('messages.respondent') ?? 'Respondent/প্রতিপক্ষ' }}</option>
+                                    <option value="appellant">{{ __('messages.appellant') ?? 'Appellant/আপিলকারী' }}</option>
+                                    <option value="accused">{{ __('messages.accused') ?? 'Accused/আসামী' }}</option>
+                                    <option value="complainant">{{ __('messages.complainant') ?? 'Complainant/অভিযোগকারী' }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.current_stage') ?? 'Current Stage' }}</label>
+                                <select class="form-select" id="strategy-stage">
+                                    <option value="pre_filing">{{ __('messages.pre_filing') ?? 'Pre-Filing' }}</option>
+                                    <option value="filed">{{ __('messages.case_filed') ?? 'Case Filed' }}</option>
+                                    <option value="hearing">{{ __('messages.hearing_stage') ?? 'Hearing Stage' }}</option>
+                                    <option value="evidence">{{ __('messages.evidence_stage') ?? 'Evidence Stage' }}</option>
+                                    <option value="argument">{{ __('messages.argument_stage') ?? 'Argument Stage' }}</option>
+                                    <option value="appeal">{{ __('messages.appeal_stage') ?? 'Appeal Stage' }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.urgency') ?? 'Urgency Level' }}</label>
+                                <select class="form-select" id="strategy-urgency">
+                                    <option value="low">{{ __('messages.low') ?? 'Low' }}</option>
+                                    <option value="medium" selected>{{ __('messages.medium') ?? 'Medium' }}</option>
+                                    <option value="high">{{ __('messages.high') ?? 'High' }}</option>
+                                    <option value="urgent">{{ __('messages.very_urgent') ?? 'Very Urgent' }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ __('messages.case_description') ?? 'Case Description' }}</label>
+                            <textarea class="form-control" id="strategy-description" rows="5" placeholder="{{ __('messages.strategy_placeholder') ?? 'Describe your case in detail - facts, parties involved, dispute details, what you want to achieve...' }}"></textarea>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="strategy-budget">
+                            <label class="form-check-label" for="strategy-budget">
+                                {{ __('messages.budget_constraint') ?? 'I have budget constraints' }}
+                            </label>
+                        </div>
+
+                        <button class="btn px-4" style="background: linear-gradient(135deg, #ec4899, #db2777); color: white;" onclick="getLegalStrategy()">
+                            <i class="bi bi-lightbulb me-2"></i>{{ __('messages.btn_strategy') ?? 'Get Strategy Advice' }}
+                        </button>
+
+                        <div id="strategy-result" class="result-box" style="display: none;"></div>
+                    </div>
+
+                    <!-- Court Fee Calculator Tool - NEW -->
+                    <div class="tool-panel" id="tool-courtfee">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-calculator me-2" style="color: #22c55e;"></i>
+                            {{ __('messages.courtfee_title') ?? 'Court Fee Calculator' }}
+                        </h5>
+                        <p class="text-muted mb-4">{{ __('messages.courtfee_desc') ?? 'Calculate court fees based on suit value according to Bangladesh law' }}</p>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.suit_value') ?? 'Suit Value (৳)' }}</label>
+                                <input type="number" class="form-control" id="courtfee-value" placeholder="e.g., 500000" min="1">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.case_type') ?? 'Case Type' }}</label>
+                                <select class="form-select" id="courtfee-casetype">
+                                    <option value="money_suit">{{ __('messages.money_suit') ?? 'Money Suit' }}</option>
+                                    <option value="property_suit">{{ __('messages.property_suit') ?? 'Property Suit' }}</option>
+                                    <option value="partition_suit">{{ __('messages.partition_suit') ?? 'Partition Suit' }}</option>
+                                    <option value="injunction">{{ __('messages.injunction') ?? 'Injunction' }}</option>
+                                    <option value="declaration">{{ __('messages.declaration') ?? 'Declaration' }}</option>
+                                    <option value="specific_performance">{{ __('messages.specific_performance') ?? 'Specific Performance' }}</option>
+                                    <option value="appeal">{{ __('messages.appeal') ?? 'Appeal' }}</option>
+                                    <option value="revision">{{ __('messages.revision') ?? 'Revision' }}</option>
+                                    <option value="writ">{{ __('messages.writ') ?? 'Writ Petition' }}</option>
+                                    <option value="execution">{{ __('messages.execution') ?? 'Execution' }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.court') ?? 'Court' }}</label>
+                                <select class="form-select" id="courtfee-court">
+                                    <option value="civil_court">{{ __('messages.civil_court') ?? 'Civil Court' }}</option>
+                                    <option value="district_court">{{ __('messages.district_court') ?? 'District Court' }}</option>
+                                    <option value="high_court">{{ __('messages.high_court') ?? 'High Court' }}</option>
+                                    <option value="appellate_division">{{ __('messages.appellate_div') ?? 'Appellate Division' }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 d-flex align-items-end gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="courtfee-govt">
+                                    <label class="form-check-label" for="courtfee-govt">
+                                        {{ __('messages.govt_party') ?? 'Government is a party' }}
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="courtfee-appeal">
+                                    <label class="form-check-label" for="courtfee-appeal">
+                                        {{ __('messages.is_appeal') ?? 'Is Appeal' }}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="quick-action" onclick="setCourtFee(100000)">৳1 Lakh</span>
+                            <span class="quick-action" onclick="setCourtFee(500000)">৳5 Lakh</span>
+                            <span class="quick-action" onclick="setCourtFee(1000000)">৳10 Lakh</span>
+                            <span class="quick-action" onclick="setCourtFee(5000000)">৳50 Lakh</span>
+                        </div>
+
+                        <button class="btn px-4" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;" onclick="calculateCourtFee()">
+                            <i class="bi bi-calculator me-2"></i>{{ __('messages.btn_calculate') ?? 'Calculate Fee' }}
+                        </button>
+
+                        <div id="courtfee-result" class="result-box" style="display: none;"></div>
+                    </div>
+
+                    <!-- Citation Generator Tool - NEW -->
+                    <div class="tool-panel" id="tool-citation">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-quote me-2" style="color: #a855f7;"></i>
+                            {{ __('messages.citation_title') ?? 'Legal Citation Generator' }}
+                        </h5>
+                        <p class="text-muted mb-4">{{ __('messages.citation_desc') ?? 'Generate proper legal citations for Bangladesh case laws, statutes, and legal documents' }}</p>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.citation_type') ?? 'Citation Type' }}</label>
+                                <select class="form-select" id="citation-type">
+                                    <option value="case_law">{{ __('messages.citation_caselaw') ?? 'Case Law' }}</option>
+                                    <option value="statute">{{ __('messages.citation_statute') ?? 'Statute/Act' }}</option>
+                                    <option value="constitution">{{ __('messages.citation_constitution') ?? 'Constitution' }}</option>
+                                    <option value="ordinance">{{ __('messages.citation_ordinance') ?? 'Ordinance' }}</option>
+                                    <option value="gazette">{{ __('messages.citation_gazette') ?? 'Gazette' }}</option>
+                                    <option value="book">{{ __('messages.citation_book') ?? 'Legal Book' }}</option>
+                                    <option value="article">{{ __('messages.citation_article') ?? 'Journal Article' }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.citation_format') ?? 'Citation Format' }}</label>
+                                <select class="form-select" id="citation-format">
+                                    <option value="bangladesh">{{ __('messages.format_bd') ?? 'Bangladesh Standard' }}</option>
+                                    <option value="oscola">OSCOLA (UK)</option>
+                                    <option value="blueBook">Bluebook (US)</option>
+                                    <option value="aglc">AGLC (Australian)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">{{ __('messages.citation_details') ?? 'Source Details' }}</label>
+                            <textarea class="form-control" id="citation-details" rows="4" placeholder="{{ __('messages.citation_placeholder') ?? 'Enter case name, year, court, parties, volume, page number, law name, section, etc.' }}"></textarea>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="quick-action" onclick="setCitationExample('case')">Case: BLAST v Bangladesh</span>
+                            <span class="quick-action" onclick="setCitationExample('statute')">Penal Code Section 302</span>
+                            <span class="quick-action" onclick="setCitationExample('constitution')">Article 102 Constitution</span>
+                        </div>
+
+                        <button class="btn px-4" style="background: linear-gradient(135deg, #a855f7, #9333ea); color: white;" onclick="generateCitation()">
+                            <i class="bi bi-quote me-2"></i>{{ __('messages.btn_generate') ?? 'Generate Citation' }}
+                        </button>
+
+                        <div id="citation-result" class="result-box" style="display: none;"></div>
+                    </div>
+
+                    <!-- BD Law PDF Summarizer Tool - NEW -->
+                    <div class="tool-panel" id="tool-lawpdf">
+                        <h5 class="fw-bold mb-3">
+                            <i class="bi bi-file-earmark-pdf me-2" style="color: #ef4444;"></i>
+                            {{ __('messages.lawpdf_title') ?? 'BD Law PDF Summarizer' }}
+                        </h5>
+                        <p class="text-muted mb-4">{{ __('messages.lawpdf_desc') ?? 'Upload any Bangladesh law PDF and get AI-powered comprehensive summary and analysis' }}</p>
+                        
+                        <!-- Upload Area -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">{{ __('messages.upload_pdf') ?? 'Upload Law PDF' }}</label>
+                            <div class="upload-zone" id="pdf-upload-zone" onclick="document.getElementById('pdf-file-input').click()">
+                                <input type="file" id="pdf-file-input" accept=".pdf" style="display: none;" onchange="handlePdfSelect(this)">
+                                <div class="upload-content" id="upload-content">
+                                    <i class="bi bi-cloud-arrow-up" style="font-size: 3rem; color: #ef4444;"></i>
+                                    <p class="mt-2 mb-1 fw-semibold">{{ __('messages.drag_drop') ?? 'Click to upload or drag & drop' }}</p>
+                                    <small class="text-muted">{{ __('messages.pdf_only') ?? 'PDF files only, max 10MB' }}</small>
+                                </div>
+                                <div class="upload-success" id="upload-success" style="display: none;">
+                                    <i class="bi bi-file-earmark-pdf-fill" style="font-size: 2.5rem; color: #ef4444;"></i>
+                                    <p class="mt-2 mb-0 fw-semibold" id="uploaded-filename">document.pdf</p>
+                                    <small class="text-success"><i class="bi bi-check-circle me-1"></i>{{ __('messages.ready_analyze') ?? 'Ready to analyze' }}</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.summary_type') ?? 'Summary Type' }}</label>
+                                <select class="form-select" id="lawpdf-type">
+                                    <option value="full">{{ __('messages.summary_full') ?? 'Full Comprehensive Summary' }}</option>
+                                    <option value="sections">{{ __('messages.summary_sections') ?? 'Section-by-Section Analysis' }}</option>
+                                    <option value="key_points">{{ __('messages.summary_keypoints') ?? 'Key Points Only' }}</option>
+                                    <option value="comparison">{{ __('messages.summary_comparison') ?? 'Compare with Related Laws' }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">{{ __('messages.focus_area') ?? 'Focus Area (Optional)' }}</label>
+                                <input type="text" class="form-control" id="lawpdf-focus" placeholder="{{ __('messages.focus_placeholder') ?? 'e.g., Penalty provisions, Rights of accused...' }}">
+                            </div>
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-2 mb-3">
+                            <span class="quick-action" onclick="setLawPdfFocus('শাস্তির বিধান')">শাস্তির বিধান</span>
+                            <span class="quick-action" onclick="setLawPdfFocus('নাগরিক অধিকার')">নাগরিক অধিকার</span>
+                            <span class="quick-action" onclick="setLawPdfFocus('আপিলের বিধান')">আপিলের বিধান</span>
+                            <span class="quick-action" onclick="setLawPdfFocus('Definitions')">Definitions</span>
+                        </div>
+
+                        <button class="btn px-4" id="analyze-pdf-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;" onclick="analyzeLawPdf()" disabled>
+                            <i class="bi bi-cpu me-2"></i>{{ __('messages.btn_analyze_pdf') ?? 'Analyze & Summarize' }}
+                        </button>
+
+                        <div id="lawpdf-result" class="result-box" style="display: none;"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 @endsection
+
+@push('styles')
+<style>
+    .upload-zone {
+        border: 2px dashed #e2e8f0;
+        border-radius: 16px;
+        padding: 2rem;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.02) 0%, rgba(220, 38, 38, 0.02) 100%);
+    }
+    .upload-zone:hover {
+        border-color: #ef4444;
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(220, 38, 38, 0.05) 100%);
+    }
+    .upload-zone.dragover {
+        border-color: #ef4444;
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+        transform: scale(1.02);
+    }
+    .upload-zone.has-file {
+        border-color: #22c55e;
+        border-style: solid;
+    }
+    html[data-theme="dark"] .upload-zone {
+        border-color: rgba(255, 255, 255, 0.1);
+        background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(220, 38, 38, 0.05) 100%);
+    }
+    html[data-theme="dark"] .upload-zone:hover {
+        border-color: #ef4444;
+    }
+</style>
+@endpush
 
 @push('scripts')
 <script>
@@ -1017,6 +1410,261 @@ async function askQuestion() {
         }
     } catch (e) {
         showError('question-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
+    }
+}
+
+// =====================================================
+// NEW AI FEATURES - Case Law, Strategy, Court Fee, Citation
+// =====================================================
+
+// Case Law Research
+function setCaseLawQuery(query) {
+    document.getElementById('caselaw-query').value = query;
+}
+
+async function searchCaseLaw() {
+    const query = document.getElementById('caselaw-query').value;
+    const court = document.getElementById('caselaw-court').value;
+    const caseType = document.getElementById('caselaw-type').value;
+    
+    if (!query) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে অনুসন্ধান লিখুন' : 'Please enter search query');
+        return;
+    }
+    
+    showLoading('caselaw-result');
+    
+    try {
+        const data = await makeRequest('/ai/case-law-search', { 
+            query: query, 
+            court: court,
+            case_type: caseType
+        });
+        if (data.ok) {
+            showResult('caselaw-result', data.result);
+        } else {
+            showError('caselaw-result', data.error);
+        }
+    } catch (e) {
+        showError('caselaw-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
+    }
+}
+
+// Legal Strategy Advisor
+async function getLegalStrategy() {
+    const caseType = document.getElementById('strategy-casetype').value;
+    const position = document.getElementById('strategy-position').value;
+    const stage = document.getElementById('strategy-stage').value;
+    const urgency = document.getElementById('strategy-urgency').value;
+    const description = document.getElementById('strategy-description').value;
+    const budgetConcern = document.getElementById('strategy-budget').checked;
+    
+    if (!description) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে মামলার বিবরণ দিন' : 'Please provide case description');
+        return;
+    }
+    
+    showLoading('strategy-result');
+    
+    try {
+        const data = await makeRequest('/ai/legal-strategy', { 
+            case_type: caseType,
+            client_position: position,
+            current_stage: stage,
+            urgency: urgency,
+            case_description: description,
+            budget_concern: budgetConcern
+        });
+        if (data.ok) {
+            showResult('strategy-result', data.result);
+        } else {
+            showError('strategy-result', data.error);
+        }
+    } catch (e) {
+        showError('strategy-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
+    }
+}
+
+// Court Fee Calculator
+function setCourtFee(value) {
+    document.getElementById('courtfee-value').value = value;
+}
+
+async function calculateCourtFee() {
+    const suitValue = document.getElementById('courtfee-value').value;
+    const caseType = document.getElementById('courtfee-casetype').value;
+    const court = document.getElementById('courtfee-court').value;
+    const isGovt = document.getElementById('courtfee-govt').checked;
+    const isAppeal = document.getElementById('courtfee-appeal').checked;
+    
+    if (!suitValue || suitValue <= 0) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে মামলার মূল্য দিন' : 'Please enter suit value');
+        return;
+    }
+    
+    showLoading('courtfee-result');
+    
+    try {
+        const data = await makeRequest('/ai/court-fee', { 
+            suit_value: parseFloat(suitValue),
+            case_type: caseType,
+            court: court,
+            is_government_party: isGovt,
+            is_appeal: isAppeal
+        });
+        if (data.ok) {
+            showResult('courtfee-result', data.result);
+        } else {
+            showError('courtfee-result', data.error);
+        }
+    } catch (e) {
+        showError('courtfee-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
+    }
+}
+
+// Citation Generator
+function setCitationExample(type) {
+    const examples = {
+        'case': 'BLAST vs Bangladesh, 2010, Appellate Division, ADC Vol 7 Page 95, Writ Petition regarding section 54',
+        'statute': 'Penal Code 1860, Section 302, Murder, Bangladesh',
+        'constitution': 'Constitution of Bangladesh, Article 102, Writ Jurisdiction of High Court Division'
+    };
+    document.getElementById('citation-details').value = examples[type] || '';
+}
+
+async function generateCitation() {
+    const citationType = document.getElementById('citation-type').value;
+    const format = document.getElementById('citation-format').value;
+    const details = document.getElementById('citation-details').value;
+    
+    if (!details) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে সোর্সের বিস্তারিত দিন' : 'Please provide source details');
+        return;
+    }
+    
+    showLoading('citation-result');
+    
+    try {
+        const data = await makeRequest('/ai/citation', { 
+            citation_type: citationType,
+            format: format,
+            details: details
+        });
+        if (data.ok) {
+            showResult('citation-result', data.result);
+        } else {
+            showError('citation-result', data.error);
+        }
+    } catch (e) {
+        showError('citation-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
+    }
+}
+
+// =====================================================
+// BD Law PDF Summarizer
+// =====================================================
+
+let selectedPdfFile = null;
+
+// Setup drag and drop
+document.addEventListener('DOMContentLoaded', function() {
+    const uploadZone = document.getElementById('pdf-upload-zone');
+    if (uploadZone) {
+        uploadZone.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.classList.add('dragover');
+        });
+        
+        uploadZone.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+        });
+        
+        uploadZone.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type === 'application/pdf') {
+                handlePdfFile(files[0]);
+            } else {
+                alert(currentLang === 'bn' ? 'শুধুমাত্র PDF ফাইল আপলোড করুন' : 'Please upload PDF files only');
+            }
+        });
+    }
+});
+
+function handlePdfSelect(input) {
+    if (input.files && input.files[0]) {
+        handlePdfFile(input.files[0]);
+    }
+}
+
+function handlePdfFile(file) {
+    if (file.size > 10 * 1024 * 1024) {
+        alert(currentLang === 'bn' ? 'ফাইল সাইজ 10MB এর বেশি হতে পারবে না' : 'File size cannot exceed 10MB');
+        return;
+    }
+    
+    selectedPdfFile = file;
+    
+    // Update UI
+    document.getElementById('upload-content').style.display = 'none';
+    document.getElementById('upload-success').style.display = 'block';
+    document.getElementById('uploaded-filename').textContent = file.name;
+    document.getElementById('pdf-upload-zone').classList.add('has-file');
+    document.getElementById('analyze-pdf-btn').disabled = false;
+}
+
+function setLawPdfFocus(focus) {
+    document.getElementById('lawpdf-focus').value = focus;
+}
+
+async function analyzeLawPdf() {
+    if (!selectedPdfFile) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে একটি PDF ফাইল আপলোড করুন' : 'Please upload a PDF file');
+        return;
+    }
+    
+    const summaryType = document.getElementById('lawpdf-type').value;
+    const focusArea = document.getElementById('lawpdf-focus').value;
+    
+    showLoading('lawpdf-result');
+    
+    // Disable button during processing
+    const btn = document.getElementById('analyze-pdf-btn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>' + 
+        (currentLang === 'bn' ? 'বিশ্লেষণ হচ্ছে...' : 'Analyzing...');
+    
+    try {
+        const formData = new FormData();
+        formData.append('pdf_file', selectedPdfFile);
+        formData.append('summary_type', summaryType);
+        formData.append('focus_area', focusArea);
+        formData.append('language', currentLang);
+        
+        const response = await fetch('/ai/summarize-law-pdf', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+            body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (data.ok) {
+            showResult('lawpdf-result', data.result);
+        } else {
+            showError('lawpdf-result', data.error);
+        }
+    } catch (e) {
+        showError('lawpdf-result', currentLang === 'bn' ? 'পিডিএফ বিশ্লেষণে সমস্যা হয়েছে। আবার চেষ্টা করুন।' : 'Error analyzing PDF. Please try again.');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="bi bi-cpu me-2"></i>' + 
+            (currentLang === 'bn' ? 'বিশ্লেষণ ও সারসংক্ষেপ' : 'Analyze & Summarize');
     }
 }
 </script>

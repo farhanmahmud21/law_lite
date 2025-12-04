@@ -204,4 +204,58 @@ class GeminiService
         Metrics::increment('gemini.retry.final_failures');
         throw new GeminiException($msg, 0, $lastEx, $attempts, $retryAfter);
     }
+
+    /**
+     * Analyze a document (PDF) with Gemini AI
+     *
+     * @param string $base64Content Base64 encoded document content
+     * @param string $prompt The analysis prompt
+     * @param string|null $language Language preference
+     * @param string $mimeType MIME type of the document
+     * @return array<string,mixed>|null
+     * @throws GeminiException
+     */
+    public function analyzeDocument(string $base64Content, string $prompt, ?string $language = null, string $mimeType = 'application/pdf'): ?array
+    {
+        $language = $language ?? config('gemini.default_language', 'bn');
+
+        // Build payload with inline document data for Gemini
+        $payload = [
+            'contents' => [
+                [
+                    'parts' => [
+                        [
+                            'inline_data' => [
+                                'mime_type' => $mimeType,
+                                'data' => $base64Content
+                            ]
+                        ],
+                        [
+                            'text' => $prompt
+                        ]
+                    ]
+                ]
+            ],
+            'generationConfig' => [
+                'temperature' => 0.4,
+                'topK' => 32,
+                'topP' => 1,
+                'maxOutputTokens' => 8192,
+            ]
+        ];
+
+        // Use gemini-2.0-flash model which supports document analysis
+        $fullUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$this->apiKey}";
+        
+        $response = $this->request('POST', $fullUrl, [
+            'json' => $payload,
+        ]);
+
+        // Extract text from Google's response format
+        if (isset($response['candidates'][0]['content']['parts'][0]['text'])) {
+            return ['answer' => $response['candidates'][0]['content']['parts'][0]['text']];
+        }
+
+        return $response;
+    }
 }
