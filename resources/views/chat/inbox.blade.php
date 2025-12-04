@@ -5,25 +5,28 @@
         <div class="row g-0 rounded-3 shadow overflow-hidden border" style="height: calc(100vh - 100px); min-height: 500px;">
             <!-- Sidebar: Conversation List -->
             <div class="col-md-4 col-lg-3 border-end d-flex flex-column bg-light h-100" id="conversation-sidebar">
-                <div class="p-3 border-bottom bg-white d-flex justify-content-between align-items-center flex-shrink-0">
+                <div class="p-3 border-bottom bg-white d-flex justify-content-between align-items-center flex-shrink-0 shadow-sm">
                     <h5 class="mb-0 fw-bold text-primary"><i
                             class="bi bi-chat-dots-fill me-2"></i>{{ __('messages.messages') }}</h5>
-                    <div>
-                        <button class="btn btn-sm btn-primary rounded-circle" onclick="showNewChatModal()" title="New Chat">
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-sm btn-primary rounded-circle shadow-sm" onclick="showNewChatModal()" title="New Chat" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
                             <i class="bi bi-plus-lg"></i>
                         </button>
                         @php
                             $totalUnread = $conversations->sum('unread_count');
                         @endphp
-                        <span id="total-unread-badge" class="badge bg-danger rounded-pill {{ $totalUnread > 0 ? '' : 'd-none' }}">
+                        <span id="total-unread-badge" class="badge bg-danger rounded-pill {{ $totalUnread > 0 ? '' : 'd-none' }}" style="min-width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
                             {{ $totalUnread }}
                         </span>
                     </div>
                 </div>
                 <!-- Search -->
-                <div class="p-2 bg-light flex-shrink-0">
-                    <input type="text" class="form-control form-control-sm" placeholder="{{ __('messages.search') }}..."
-                        id="conversation-search">
+                <div class="p-3 bg-light flex-shrink-0">
+                    <div class="position-relative">
+                        <i class="bi bi-search position-absolute" style="left: 12px; top: 50%; transform: translateY(-50%); color: #6b7280; z-index: 1;"></i>
+                        <input type="text" class="form-control form-control-sm ps-5" placeholder="{{ __('messages.search') }}..."
+                            id="conversation-search" style="border-radius: 20px; border: 1px solid #e5e7eb;">
+                    </div>
                 </div>
 
                 <div id="conversation-search-empty" class="text-center text-muted small py-2 d-none">
@@ -94,53 +97,60 @@
                 <div id="chat-interface" class="d-none flex-column h-100">
                     <!-- Header -->
                     <div class="p-3 border-bottom bg-white d-flex align-items-center shadow-sm flex-shrink-0" style="z-index: 1;">
-                        <button class="btn btn-link d-md-none me-2" onclick="toggleSidebar()">
+                        <button class="btn btn-link d-md-none me-2" onclick="toggleSidebar()" style="color: inherit;">
                             <i class="bi bi-arrow-left"></i>
                         </button>
-                        <img id="chat-header-avatar" src="" class="rounded-circle me-3" width="40"
-                            height="40">
-                        <div>
+                        <img id="chat-header-avatar" src="" class="rounded-circle me-3 shadow-sm" width="44"
+                            height="44" style="border: 2px solid #e5e7eb; object-fit: cover;">
+                        <div class="flex-grow-1">
                             <h6 class="mb-0 fw-bold" id="chat-header-name">User Name</h6>
                             <small id="chat-header-status" class="text-muted d-flex align-items-center">
                                 <!-- Status will be injected here -->
                             </small>
                         </div>
-                        <div class="ms-auto">
-                            <button class="btn btn-light btn-sm rounded-circle" title="{{ __('messages.audio_call') }}"
-                                onclick="startCall()">
+                        <div class="ms-auto d-flex gap-2">
+                            <button class="btn btn-light btn-sm rounded-circle shadow-sm" title="{{ __('messages.audio_call') }}"
+                                onclick="startCall()" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
                                 <i class="bi bi-telephone"></i>
                             </button>
-                            <button class="btn btn-light btn-sm rounded-circle"><i
-                                    class="bi bi-three-dots-vertical"></i></button>
+                            <button class="btn btn-light btn-sm rounded-circle shadow-sm" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
+                                <i class="bi bi-three-dots-vertical"></i>
+                            </button>
                         </div>
                     </div>
 
                     <!-- Messages Area -->
-                    <div id="chat-messages" class="flex-grow-1 p-4 overflow-auto bg-light" style="scroll-behavior: smooth;">
+                    <div id="chat-messages" class="flex-grow-1 p-4 overflow-auto bg-light" style="scroll-behavior: smooth; background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.02\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
                         <!-- Messages will be injected here -->
                     </div>
 
                     <!-- Input Area -->
-                    <div class="p-3 bg-white border-top flex-shrink-0">
-                        <div class="input-group bg-light rounded-pill border p-1">
-                            <button class="btn btn-link text-muted rounded-circle"><i
-                                    class="bi bi-emoji-smile"></i></button>
-                            <button class="btn btn-link text-muted rounded-circle"
-                                onclick="document.getElementById('file-input').click()">
-                                <i class="bi bi-paperclip"></i>
-                            </button>
-                            <input type="file" id="file-input" class="d-none" onchange="handleFileSelect(this)">
-                            <input type="text" id="chat-input" class="form-control border-0 bg-transparent shadow-none text-body"
-                                placeholder="{{ __('messages.type_message') }}...">
-                            <button id="chat-send" class="btn btn-primary rounded-circle ms-2"
-                                style="width: 40px; height: 40px;">
-                                <i class="bi bi-send-fill"></i>
-                            </button>
+                    <div class="p-3 bg-white border-top flex-shrink-0 shadow-lg">
+                        <div class="input-group" style="background: transparent; border: none; padding: 0;">
+                            <div class="d-flex align-items-center w-100" style="gap: 8px;">
+                                <button class="btn btn-link text-muted rounded-circle p-2" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-emoji-smile fs-5"></i>
+                                </button>
+                                <button class="btn btn-link text-muted rounded-circle p-2"
+                                    onclick="document.getElementById('file-input').click()" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-paperclip fs-5"></i>
+                                </button>
+                                <input type="file" id="file-input" class="d-none" onchange="handleFileSelect(this)">
+                                <div class="flex-grow-1" style="position: relative;">
+                                    <input type="text" id="chat-input" class="form-control border-0 shadow-none text-body chat-input-modern"
+                                        placeholder="{{ __('messages.type_message') }}..." style="border-radius: 24px; padding: 12px 20px; background: #f8f9fa; border: 2px solid #e5e7eb !important; transition: all 0.3s ease;">
+                                </div>
+                                <button id="chat-send" class="btn btn-primary rounded-circle"
+                                    style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                    <i class="bi bi-send-fill"></i>
+                                </button>
+                            </div>
                         </div>
                         <div id="file-preview" class="mt-2 d-none">
-                            <div class="d-inline-block position-relative border rounded p-2">
-                                <span id="file-name" class="small text-muted"></span>
-                                <button type="button" class="btn-close position-absolute top-0 start-100 translate-middle"
+                            <div class="d-inline-flex align-items-center position-relative border rounded-pill px-3 py-2 shadow-sm" style="background: #f8f9fa;">
+                                <i class="bi bi-file-earmark me-2 text-primary"></i>
+                                <span id="file-name" class="small"></span>
+                                <button type="button" class="btn-close btn-close-sm ms-2" style="font-size: 0.7rem;"
                                     aria-label="Close" onclick="clearFile()"></button>
                             </div>
                         </div>
@@ -221,133 +231,374 @@
     <audio id="remote-audio" autoplay></audio>
 
     <style>
-        /* Custom Scrollbar */
+        /* ============================================
+           MODERN MESSAGING UI - INDUSTRY LEVEL DESIGN
+           ============================================ */
+        
+        /* Custom Scrollbar - Modern Design */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
+            height: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #f5f5f5;
+            border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            transition: all 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #aaa;
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
         }
 
         [data-theme="dark"] ::-webkit-scrollbar-track {
-            background: #2b3035;
+            background: #1a1a1a;
         }
 
         [data-theme="dark"] ::-webkit-scrollbar-thumb {
-            background: #495057;
+            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
         }
 
-        .conversation-item:hover,
+        [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+        }
+
+        /* Main Container - Glass Morphism Effect */
+        #conversation-sidebar,
+        #chat-area {
+            backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Conversation List - Modern Card Design */
+        .conversation-item {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px !important;
+            margin: 4px 8px;
+            padding: 12px 16px !important;
+            border: none !important;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .conversation-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .conversation-item:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%) !important;
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
         .conversation-item.active {
-            background-color: #f0f2f5;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%) !important;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
         }
 
-        [data-theme="dark"] .conversation-item:hover,
+        .conversation-item.active::before {
+            width: 4px;
+        }
+
+        [data-theme="dark"] .conversation-item:hover {
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.12) 0%, rgba(5, 150, 105, 0.12) 100%) !important;
+        }
+
         [data-theme="dark"] .conversation-item.active {
-            background-color: #2b3035;
+            background: linear-gradient(135deg, rgba(52, 211, 153, 0.18) 0%, rgba(5, 150, 105, 0.18) 100%) !important;
+            box-shadow: 0 4px 16px rgba(52, 211, 153, 0.25);
         }
 
-        .conversation-item.active {
-            border-left: 4px solid #0d6efd !important;
-        }
-
+        /* Modern Message Bubbles */
         .message-bubble {
-            max-width: 75%;
-            padding: 12px 16px;
-            border-radius: 18px;
+            max-width: 70%;
+            padding: 14px 18px;
+            border-radius: 20px;
             position: relative;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
             word-break: break-word;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            animation: messageSlideIn 0.3s ease-out;
+            transition: transform 0.2s ease;
+        }
+
+        .message-bubble:hover {
+            transform: scale(1.02);
+        }
+
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .message-sent {
-            background: linear-gradient(135deg, #0084ff 0%, #0066cc 100%);
-            color: white;
-            border-bottom-right-radius: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff !important;
+            border-bottom-right-radius: 6px;
+            margin-left: auto;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
         }
 
         .message-received {
-            background-color: #e4e6eb;
-            color: #050505;
-            border-bottom-left-radius: 4px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #1a1a1a !important;
+            border-bottom-left-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         [data-theme="dark"] .message-received {
-            background-color: #383838;
-            color: #e4e6eb;
+            background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+            color: #e2e8f0 !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .message-time {
             font-size: 0.7rem;
-            margin-top: 4px;
-            opacity: 0.7;
+            margin-top: 6px;
+            opacity: 0.75;
+            font-weight: 500;
         }
 
-        /* Dark mode enhancements */
+        .message-sent .message-time {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .message-received .message-time {
+            color: #6b7280 !important;
+        }
+
+        [data-theme="dark"] .message-received .message-time {
+            color: #94a3b8 !important;
+        }
+
+        /* Modern Input Area */
+        #chat-interface .input-group {
+            background: #ffffff !important;
+            border: 2px solid #e5e7eb !important;
+            border-radius: 24px !important;
+            padding: 4px !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        #chat-interface .input-group:focus-within {
+            border-color: #667eea !important;
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+        }
+
+        #chat-input {
+            font-size: 0.95rem;
+            padding: 10px 16px !important;
+        }
+
+        #chat-send {
+            width: 44px !important;
+            height: 44px !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            border: none !important;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #chat-send:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        #chat-send:active {
+            transform: scale(0.95);
+        }
+
+        [data-theme="dark"] #chat-interface .input-group {
+            background: #1a202c !important;
+            border-color: #374151 !important;
+        }
+
+        [data-theme="dark"] #chat-interface .input-group:focus-within {
+            border-color: #34d399 !important;
+            box-shadow: 0 4px 16px rgba(52, 211, 153, 0.2);
+        }
+
+        [data-theme="dark"] #chat-send {
+            background: linear-gradient(135deg, #34d399 0%, #059669 100%) !important;
+            box-shadow: 0 4px 12px rgba(52, 211, 153, 0.3);
+        }
+
+        /* Dark Mode - Complete Color Override (chat specific enhancements) */
         [data-theme="dark"] .bg-white {
-            background-color: #1e1e1e !important;
+            background-color: #0f172a !important;
         }
+
         [data-theme="dark"] .bg-light {
-            background-color: #2b2b2b !important;
+            background-color: #0b1220 !important;
         }
-        [data-theme="dark"] .border {
-            border-color: #3d3d3d !important;
-        }
-        [data-theme="dark"] .border-end {
-            border-color: #3d3d3d !important;
-        }
-        [data-theme="dark"] .border-bottom {
-            border-color: #3d3d3d !important;
-        }
+
+        [data-theme="dark"] .border,
+        [data-theme="dark"] .border-end,
+        [data-theme="dark"] .border-bottom,
         [data-theme="dark"] .border-top {
-            border-color: #3d3d3d !important;
+            border-color: #22303f !important;
         }
-        [data-theme="dark"] .text-body {
-            color: #e4e6eb !important;
+
+        /* global text colors for dark theme inside chat */
+        [data-theme="dark"] .text-body,
+        [data-theme="dark"] .text-muted,
+        [data-theme="dark"] h5,
+        [data-theme="dark"] h6,
+        [data-theme="dark"] p,
+        [data-theme="dark"] small,
+        [data-theme="dark"] span,
+        [data-theme="dark"] a {
+            color: #e6eef8 !important;
         }
+
+        /* conversation list specifics */
+        [data-theme="dark"] .list-group-item,
+        [data-theme="dark"] .conversation-item,
+        [data-theme="dark"] .conversation-preview,
+        [data-theme="dark"] .conversation-updated-at {
+            color: #cbd5e1 !important;
+        }
+
+        [data-theme="dark"] .conversation-item h6 {
+            color: #f1f5f9 !important;
+        }
+
+        [data-theme="dark"] .badge {
+            background-color: #ef4444 !important;
+            color: #fff !important;
+            border: 1px solid rgba(255,255,255,0.06) !important;
+        }
+
+        /* buttons & links */
+        [data-theme="dark"] .btn-link,
+        [data-theme="dark"] .btn-link.text-muted,
+        [data-theme="dark"] .text-primary {
+            color: #7ee7b8 !important;
+        }
+
+        /* icons */
+        [data-theme="dark"] .bi {
+            color: #bcd2e6 !important;
+        }
+
+        /* form controls */
         [data-theme="dark"] .form-control {
-            background-color: #2b2b2b !important;
-            color: #e4e6eb !important;
-            border-color: #3d3d3d !important;
+            background-color: #0e1724 !important;
+            color: #e6eef8 !important;
+            border-color: #22303f !important;
         }
+
         [data-theme="dark"] .form-control::placeholder {
-            color: #888 !important;
+            color: #94a3b8 !important;
         }
+
+        [data-theme="dark"] .form-control:focus {
+            background-color: #0e1724 !important;
+            color: #e6eef8 !important;
+            border-color: #34d399 !important;
+            box-shadow: 0 0 0 0.2rem rgba(52, 211, 153, 0.08);
+        }
+
+        /* ensure message bubbles are readable */
+        [data-theme="dark"] .message-bubble {
+            color: #e6eef8 !important;
+        }
+
         [data-theme="dark"] .list-group-item {
             background-color: transparent !important;
-            border-color: #3d3d3d !important;
-            color: #e4e6eb !important;
-        }
-        [data-theme="dark"] .list-group-item h6 {
-            color: #e4e6eb !important;
-        }
-        [data-theme="dark"] #chat-messages {
-            background-color: #1a1a1a !important;
-        }
-        [data-theme="dark"] .shadow-sm {
-            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.4) !important;
-        }
-        [data-theme="dark"] .modal-content {
-            background-color: #1e1e1e !important;
-            color: #e4e6eb !important;
-        }
-        [data-theme="dark"] .btn-light {
-            background-color: #3d3d3d !important;
-            border-color: #4d4d4d !important;
-            color: #e4e6eb !important;
+            border-color: #334155 !important;
+            color: #e2e8f0 !important;
         }
 
+        [data-theme="dark"] .list-group-item h6 {
+            color: #e2e8f0 !important;
+        }
+
+        [data-theme="dark"] #chat-messages {
+            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%) !important;
+            background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%2334d399\" fill-opacity=\"0.02\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') !important;
+        }
+
+        [data-theme="dark"] .shadow-sm {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        [data-theme="dark"] .modal-content {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+            border-color: #334155 !important;
+        }
+
+        [data-theme="dark"] .modal-content h5,
+        [data-theme="dark"] .modal-content p {
+            color: #e2e8f0 !important;
+        }
+
+        [data-theme="dark"] .btn-light {
+            background-color: #334155 !important;
+            border-color: #475569 !important;
+            color: #e2e8f0 !important;
+        }
+
+        [data-theme="dark"] .btn-light:hover {
+            background-color: #475569 !important;
+            color: #ffffff !important;
+        }
+
+        [data-theme="dark"] .btn-link {
+            color: #94a3b8 !important;
+        }
+
+        [data-theme="dark"] .btn-link:hover {
+            color: #34d399 !important;
+        }
+
+        /* Empty State */
+        [data-theme="dark"] #chat-empty-state {
+            color: #94a3b8 !important;
+        }
+
+        [data-theme="dark"] #chat-empty-state h4,
+        [data-theme="dark"] #chat-empty-state p {
+            color: #cbd5e1 !important;
+        }
+
+        /* Conversation Preview Text */
+        [data-theme="dark"] .conversation-preview {
+            color: #94a3b8 !important;
+        }
+
+        [data-theme="dark"] .conversation-updated-at {
+            color: #64748b !important;
+        }
+
+        /* Call Log Badge */
+        [data-theme="dark"] .badge.bg-light {
+            background-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Avatar Pulse Animation */
         .avatar-pulse {
             position: relative;
         }
@@ -360,8 +611,12 @@
             right: 0;
             bottom: 0;
             border-radius: 50%;
-            border: 2px solid #0d6efd;
+            border: 3px solid #667eea;
             animation: pulse 1.5s infinite;
+        }
+
+        [data-theme="dark"] .avatar-pulse::after {
+            border-color: #34d399;
         }
 
         @keyframes pulse {
@@ -369,11 +624,90 @@
                 transform: scale(1);
                 opacity: 1;
             }
-
             100% {
-                transform: scale(1.5);
+                transform: scale(1.3);
                 opacity: 0;
             }
+        }
+
+        /* Header Styling */
+        [data-theme="dark"] #chat-interface .border-bottom {
+            border-color: #334155 !important;
+            background: #0f172a !important;
+        }
+
+        /* File Preview */
+        [data-theme="dark"] #file-preview {
+            color: #e2e8f0 !important;
+        }
+
+        [data-theme="dark"] #file-preview .border {
+            border-color: #334155 !important;
+            background: #1e293b !important;
+        }
+
+        /* Search Input */
+        [data-theme="dark"] #conversation-search {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+            border-color: #334155 !important;
+        }
+
+        [data-theme="dark"] #conversation-search::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        /* Modern Input Styling */
+        .chat-input-modern:focus {
+            background: #ffffff !important;
+            border-color: #667eea !important;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1) !important;
+            outline: none !important;
+        }
+
+        [data-theme="dark"] .chat-input-modern {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+            color: #e2e8f0 !important;
+        }
+
+        [data-theme="dark"] .chat-input-modern:focus {
+            background: #1e293b !important;
+            border-color: #34d399 !important;
+            box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.1) !important;
+        }
+
+        [data-theme="dark"] .chat-input-modern::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        /* File Preview Dark Mode */
+        [data-theme="dark"] #file-preview .border {
+            background: #1e293b !important;
+            border-color: #334155 !important;
+        }
+
+        [data-theme="dark"] #file-preview span {
+            color: #e2e8f0 !important;
+        }
+
+        /* Smooth Transitions */
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        /* Empty State Improvements */
+        #chat-empty-state {
+            opacity: 0.7;
+        }
+
+        #chat-empty-state i {
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        [data-theme="dark"] #chat-empty-state i {
+            opacity: 0.2;
         }
     </style>
 

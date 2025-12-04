@@ -54,7 +54,7 @@
                         @endif
 
                         <!-- Suggestions Dropdown -->
-                        <div id="suggestions-dropdown" class="position-absolute bg-white border rounded shadow-sm w-100"
+                        <div id="suggestions-dropdown" class="position-absolute border rounded shadow-sm w-100 suggestions-dropdown"
                             style="top: 100%; left: 0; z-index: 1000; display: none; max-height: 300px; overflow-y: auto;">
                         </div>
                     </div>
@@ -173,7 +173,7 @@
                             const profileLink = card.querySelector('a')?.getAttribute('href') || '#';
 
                             suggestionsHTML += `
-                            <a href="${profileLink}" class="d-block p-3 text-decoration-none text-dark border-bottom suggestion-item" 
+                            <a href="${profileLink}" class="d-block p-3 text-decoration-none border-bottom suggestion-item" 
                                style="cursor: pointer;">
                                 <div class="fw-bold">${name}</div>
                                 <div class="small text-muted">${expertise}</div>
@@ -185,13 +185,14 @@
                         suggestionsDropdown.innerHTML = suggestionsHTML;
                         suggestionsDropdown.style.display = 'block';
 
-                        // Add hover effect
+                        // Add hover effect - respect dark mode
+                        const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
                         document.querySelectorAll('.suggestion-item').forEach(item => {
                             item.addEventListener('mouseenter', function() {
-                                this.style.backgroundColor = '#f8f9fa';
+                                this.style.backgroundColor = isDarkMode ? '#1e293b' : '#f8f9fa';
                             });
                             item.addEventListener('mouseleave', function() {
-                                this.style.backgroundColor = 'white';
+                                this.style.backgroundColor = isDarkMode ? '#0f172a' : 'white';
                             });
                         });
                     })

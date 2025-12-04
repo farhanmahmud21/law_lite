@@ -129,7 +129,7 @@
 
 <body class="d-flex flex-column min-vh-100">
     @include('components.navbar')
-    <main class="container py-4">
+    <main class="container py-4" style="padding-top: 100px !important;">
         @yield('content')
     </main>
 

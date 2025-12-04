@@ -1,5 +1,7 @@
 @extends('layouts.landing')
 
+@section('no-padding', true)
+
 @push('styles')
     <style>
         /* Hero Section with Advanced Effects */

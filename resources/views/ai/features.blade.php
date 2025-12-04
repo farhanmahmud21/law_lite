@@ -1,5 +1,7 @@
 @extends('layouts.landing')
 
+@section('no-padding', true)
+
 @push('styles')
 <style>
     .ai-hero {
@@ -249,6 +251,9 @@
     html[data-theme="dark"] .feature-card h6 {
         color: #e6eef8;
     }
+    html[data-theme="dark"] .feature-card p {
+        color: #94a3b8;
+    }
     html[data-theme="dark"] .result-box {
         background: rgba(11, 18, 32, 0.95);
         border-color: rgba(255,255,255,0.08);
@@ -271,6 +276,31 @@
     html[data-theme="dark"] .lang-toggle button.active {
         background: rgba(52, 211, 153, 0.2);
         color: #34d399;
+    }
+
+    /* Dark mode select and option styling */
+    html[data-theme="dark"] .form-select,
+    html[data-theme="dark"] select {
+        background-color: #0f172a !important;
+        color: #e2e8f0 !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    html[data-theme="dark"] .form-select option,
+    html[data-theme="dark"] select option {
+        background-color: #0f172a !important;
+        color: #e2e8f0 !important;
+    }
+
+    html[data-theme="dark"] .form-label,
+    html[data-theme="dark"] label {
+        color: #cbd5e1 !important;
+    }
+
+    html[data-theme="dark"] .tool-section h5,
+    html[data-theme="dark"] .tool-section p,
+    html[data-theme="dark"] .tool-section span {
+        color: #e2e8f0 !important;
     }
 </style>
 @endpush

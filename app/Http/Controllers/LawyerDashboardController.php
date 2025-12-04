@@ -31,6 +31,8 @@ class LawyerDashboardController extends Controller
         $pendingInvoices = 0;
         $totalCases = 0;
         $activeCases = 0;
+        $casesWon = 0;
+        $casesLost = 0;
 
         if ($lawyer) {
             $upcomingCases = LawyerCase::where('lawyer_id', $lawyer->id)

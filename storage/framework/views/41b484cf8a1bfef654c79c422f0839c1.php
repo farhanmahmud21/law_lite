@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo e(config('app.name', 'LawLite')); ?> - Bangladesh Legal AI Platform</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Premium Font Stack: Inter for UI, Outfit for headings, JetBrains Mono for code, Noto Sans Bengali for Bangla -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
@@ -35,6 +38,12 @@
             --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
             --shadow-glow: 0 0 40px rgba(16, 185, 129, 0.3);
             --shadow-glow-purple: 0 0 40px rgba(139, 92, 246, 0.3);
+            
+            /* Premium Font Variables */
+            --font-display: 'Outfit', 'Space Grotesk', system-ui, sans-serif;
+            --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+            --font-bengali: 'Noto Sans Bengali', 'Hind Siliguri', sans-serif;
         }
 
         * {
@@ -47,15 +56,237 @@
             scroll-behavior: smooth;
         }
 
+        /* Bengali language support */
+        html[lang="bn"] body,
+        html[lang="bn"] p,
+        html[lang="bn"] span,
+        html[lang="bn"] label,
+        html[lang="bn"] .form-control,
+        html[lang="bn"] .form-select,
+        html[lang="bn"] .btn,
+        html[lang="bn"] .nav-link,
+        html[lang="bn"] .dropdown-item,
+        html[lang="bn"] .list-group-item {
+            font-family: var(--font-bengali), var(--font-body);
+        }
+
+        html[lang="bn"] h1, html[lang="bn"] h2, html[lang="bn"] h3,
+        html[lang="bn"] h4, html[lang="bn"] h5, html[lang="bn"] h6,
+        html[lang="bn"] .card-title, html[lang="bn"] .modal-title {
+            font-family: var(--font-bengali), var(--font-display);
+        }
+
         body {
-            font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            font-family: var(--font-body);
             background-color: var(--light-bg);
             color: var(--primary);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 15px;
+            letter-spacing: -0.01em;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
             transition: background-color 0.35s ease, color 0.35s ease;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+        }
+
+        /* Premium Typography System */
+        h1, h2, h3, h4, h5, h6,
+        .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+        }
+
+        h1, .display-1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
+        h2, .display-2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; }
+        h3, .display-3 { font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; }
+        h4, .display-4 { font-size: clamp(1.25rem, 2.5vw, 1.75rem); font-weight: 600; }
+        h5, .display-5 { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 600; }
+        h6, .display-6 { font-size: clamp(1rem, 1.5vw, 1.15rem); font-weight: 600; }
+
+        /* Body text optimization */
+        p {
+            font-family: var(--font-body);
+            line-height: 1.75;
+            letter-spacing: -0.01em;
+        }
+
+        .lead {
+            font-size: 1.15rem;
+            font-weight: 400;
+            line-height: 1.8;
+            letter-spacing: -0.01em;
+        }
+
+        /* Small text refinement */
+        small, .small, .text-sm {
+            font-size: 0.875rem;
+            letter-spacing: 0;
+        }
+
+        .text-xs {
+            font-size: 0.75rem;
+            letter-spacing: 0.01em;
+        }
+
+        /* Labels and captions */
+        label, .form-label {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.875rem;
+            letter-spacing: 0;
+        }
+
+        /* Buttons typography */
+        .btn {
+            font-family: var(--font-body);
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            font-size: 0.9375rem;
+        }
+
+        .btn-sm {
+            font-size: 0.8125rem;
+        }
+
+        .btn-lg {
+            font-size: 1.0625rem;
+        }
+
+        /* Navigation */
+        .nav-link, .navbar-nav .nav-link {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.9375rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Card titles */
+        .card-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Code and monospace */
+        code, pre, .font-mono {
+            font-family: var(--font-mono);
+            font-size: 0.875em;
+        }
+
+        /* Badge typography */
+        .badge {
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.75rem;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        /* Form inputs */
+        .form-control, .form-select {
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Table text */
+        .table {
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+        }
+
+        .table th {
+            font-weight: 600;
+            letter-spacing: 0;
+        }
+
+        /* Alert text */
+        .alert {
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+        }
+
+        /* Modal titles */
+        .modal-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+        }
+
+        /* Dropdown */
+        .dropdown-item {
+            font-family: var(--font-body);
+            font-size: 0.9375rem;
+        }
+
+        /* List group */
+        .list-group-item {
+            font-family: var(--font-body);
+        }
+
+        /* Tooltip & Popover */
+        .tooltip, .popover {
+            font-family: var(--font-body);
+            font-size: 0.8125rem;
+        }
+
+        /* Special accent text */
+        .text-accent, .text-gradient {
+            font-family: var(--font-display);
+            font-weight: 700;
+        }
+
+        /* Logo text */
+        .logo-text, .brand-text {
+            font-family: var(--font-display);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        /* Section titles */
+        .section-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        /* Feature titles */
+        .feature-title {
+            font-family: var(--font-display);
+            font-weight: 600;
+        }
+
+        /* Stats and numbers */
+        .stat-number, .display-number {
+            font-family: var(--font-display);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        /* Blockquote */
+        blockquote {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-size: 1.125rem;
+            line-height: 1.8;
+        }
+
+        /* Footer text */
+        footer {
+            font-family: var(--font-body);
+        }
+
+        footer h5, footer h6 {
+            font-family: var(--font-display);
         }
 
         /* Custom Cursor */
@@ -168,6 +399,52 @@
             transform: scale(1.02);
         }
 
+        .logo-icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .logo-icon-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+            border-radius: 14px;
+        }
+
+        .logo-icon-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon-inner svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon-wrapper {
+            box-shadow: 0 6px 24px rgba(16, 185, 129, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .logo:hover .logo-icon-inner svg {
+            transform: scale(1.1);
+        }
+
         .logo-icon {
             width: 48px;
             height: 48px;
@@ -179,31 +456,24 @@
             position: relative;
             box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
             transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .logo-icon .logo-img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-icon .logo-img {
+            transform: scale(1.1) rotate(-5deg);
         }
 
         .logo:hover .logo-icon {
             box-shadow: var(--shadow-glow);
             transform: rotate(-5deg);
-        }
-
-        .logo-icon::before {
-            content: '';
-            position: absolute;
-            inset: 2px;
-            background: white;
-            border-radius: 12px;
-        }
-
-        .logo-icon svg {
-            position: relative;
-            z-index: 1;
-            width: 26px;
-            height: 26px;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover .logo-icon svg {
-            transform: scale(1.1);
         }
 
         .logo-text {
@@ -278,6 +548,92 @@
             width: 60%;
         }
 
+        .nav-utility-btn {
+            font-size: 0.85rem;
+            color: var(--muted);
+            gap: 0.4rem;
+        }
+
+        .nav-utility-btn i {
+            font-size: 1rem;
+        }
+
+        .btn-icon-compact {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon.small {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+        }
+
+        .premium-sidebar {
+            background: radial-gradient(circle at top, #111827 0%, #05080f 60%);
+            color: #f8fafc;
+            width: min(320px, 90vw);
+            padding-bottom: 2rem;
+        }
+
+        .premium-sidebar .offcanvas-header {
+            border-bottom: 1px solid rgba(248, 250, 252, 0.08);
+            padding: 1.5rem 1.5rem 1rem;
+        }
+
+        .premium-sidebar .offcanvas-body {
+            padding: 2rem 1.5rem;
+        }
+
+        .sidebar-label {
+            letter-spacing: 0.25em;
+        }
+
+        .sidebar-menu li + li {
+            margin-top: 0.35rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid rgba(248, 250, 252, 0.08);
+            font-family: var(--font-display);
+            letter-spacing: 0.08em;
+            font-size: 1.05rem;
+            text-transform: uppercase;
+            transition: color 0.2s ease, padding-left 0.2s ease;
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            color: var(--accent);
+            padding-left: 0.35rem;
+        }
+
+        .sidebar-user {
+            border: 1px solid rgba(248, 250, 252, 0.12);
+            background: rgba(15, 23, 42, 0.4);
+        }
+
+        .sidebar-link-minor {
+            color: rgba(248, 250, 252, 0.6);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .sidebar-link-minor:hover {
+            color: var(--accent);
+        }
+
         /* Buttons with Advanced Animations */
         .btn {
             font-weight: 600;
@@ -288,6 +644,10 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.35rem;
         }
 
         .btn::before {
@@ -969,15 +1329,91 @@
         }
 
         html[data-theme="dark"] .dropdown-menu {
-            background: rgba(11, 18, 32, 0.98);
-            border: 1px solid rgba(255,255,255,0.08);
+            background: #0f172a !important;
+            border: 1px solid rgba(255,255,255,0.1) !important;
         }
         html[data-theme="dark"] .dropdown-item {
-            color: #cbd5e1;
+            color: #e2e8f0 !important;
         }
         html[data-theme="dark"] .dropdown-item:hover {
-            background: rgba(52, 211, 153, 0.15);
-            color: var(--accent);
+            background: rgba(52, 211, 153, 0.15) !important;
+            color: #34d399 !important;
+        }
+
+        /* Select dropdowns and options */
+        html[data-theme="dark"] .form-select {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        html[data-theme="dark"] .form-select option {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] select option {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Suggestion dropdowns and autocomplete */
+        html[data-theme="dark"] #suggestions-dropdown,
+        html[data-theme="dark"] .suggestions-dropdown,
+        html[data-theme="dark"] .autocomplete-dropdown,
+        html[data-theme="dark"] [id*="suggestion"],
+        html[data-theme="dark"] [class*="suggestion"] {
+            background-color: #0f172a !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        html[data-theme="dark"] .suggestion-item,
+        html[data-theme="dark"] #suggestions-dropdown a,
+        html[data-theme="dark"] #suggestions-dropdown div,
+        html[data-theme="dark"] .suggestions-dropdown a {
+            color: #e2e8f0 !important;
+            background-color: #0f172a !important;
+            border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        html[data-theme="dark"] .suggestion-item:hover,
+        html[data-theme="dark"] #suggestions-dropdown a:hover {
+            background-color: #1e293b !important;
+            color: #34d399 !important;
+        }
+
+        html[data-theme="dark"] .suggestion-item .fw-bold,
+        html[data-theme="dark"] #suggestions-dropdown .fw-bold {
+            color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] .suggestion-item .text-muted,
+        html[data-theme="dark"] #suggestions-dropdown .text-muted {
+            color: #94a3b8 !important;
+        }
+
+        /* Any element with bg-white in dark mode */
+        html[data-theme="dark"] .position-absolute.bg-white,
+        html[data-theme="dark"] div.bg-white {
+            background-color: #0f172a !important;
+        }
+
+        /* Datalist styling */
+        html[data-theme="dark"] datalist,
+        html[data-theme="dark"] datalist option {
+            background-color: #0f172a !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* List items in dropdowns */
+        html[data-theme="dark"] .list-group-item-action {
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .list-group-item-action:hover,
+        html[data-theme="dark"] .list-group-item-action:focus {
+            background-color: #1e293b !important;
+            color: #34d399 !important;
         }
 
         html[data-theme="dark"] .text-muted {
@@ -1044,6 +1480,210 @@
         html[data-theme="dark"] ::-webkit-scrollbar-track {
             background: #0a1628;
         }
+
+        /* ===== COMPREHENSIVE DARK MODE TEXT FIXES ===== */
+        
+        /* Global text colors */
+        html[data-theme="dark"] h1,
+        html[data-theme="dark"] h2,
+        html[data-theme="dark"] h3,
+        html[data-theme="dark"] h4,
+        html[data-theme="dark"] h5,
+        html[data-theme="dark"] h6 {
+            color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] p,
+        html[data-theme="dark"] span,
+        html[data-theme="dark"] label,
+        html[data-theme="dark"] small,
+        html[data-theme="dark"] div {
+            color: #e2e8f0;
+        }
+
+        html[data-theme="dark"] a:not(.btn) {
+            color: #7dd3fc;
+        }
+
+        html[data-theme="dark"] a:not(.btn):hover {
+            color: #38bdf8;
+        }
+
+        /* Card content - Lawyer cards, Article cards, etc. */
+        html[data-theme="dark"] .card-title,
+        html[data-theme="dark"] .card-text,
+        html[data-theme="dark"] .card-body h5,
+        html[data-theme="dark"] .card-body h6,
+        html[data-theme="dark"] .card-body p,
+        html[data-theme="dark"] .card-body span,
+        html[data-theme="dark"] .card-body small {
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .card-header,
+        html[data-theme="dark"] .card-footer {
+            background-color: rgba(15, 23, 42, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Form labels and text */
+        html[data-theme="dark"] .form-label,
+        html[data-theme="dark"] label,
+        html[data-theme="dark"] .form-text {
+            color: #cbd5e1 !important;
+        }
+
+        /* Links styled as text */
+        html[data-theme="dark"] .text-decoration-none,
+        html[data-theme="dark"] .card a {
+            color: #94a3b8 !important;
+        }
+
+        html[data-theme="dark"] .card a:hover {
+            color: #34d399 !important;
+        }
+
+        /* Page titles and subtitles */
+        html[data-theme="dark"] .page-title,
+        html[data-theme="dark"] .section-title,
+        html[data-theme="dark"] .lead {
+            color: #f1f5f9 !important;
+        }
+
+        /* Quick sign-in links and similar */
+        html[data-theme="dark"] .btn-link {
+            color: #7dd3fc !important;
+        }
+
+        html[data-theme="dark"] .btn-link:hover {
+            color: #38bdf8 !important;
+        }
+
+        /* Location, specialization text in cards */
+        html[data-theme="dark"] .text-secondary {
+            color: #94a3b8 !important;
+        }
+
+        /* Article/content descriptions */
+        html[data-theme="dark"] .article-excerpt,
+        html[data-theme="dark"] .description,
+        html[data-theme="dark"] .excerpt {
+            color: #cbd5e1 !important;
+        }
+
+        /* Modal content */
+        html[data-theme="dark"] .modal-content {
+            background-color: #0f172a !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        html[data-theme="dark"] .modal-header,
+        html[data-theme="dark"] .modal-footer {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        html[data-theme="dark"] .modal-title {
+            color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] .modal-body {
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .modal-body p,
+        html[data-theme="dark"] .modal-body span,
+        html[data-theme="dark"] .modal-body label {
+            color: #e2e8f0 !important;
+        }
+
+        /* Close button */
+        html[data-theme="dark"] .btn-close {
+            filter: invert(1) grayscale(100%) brightness(200%);
+        }
+
+        /* Tables */
+        html[data-theme="dark"] .table {
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .table th,
+        html[data-theme="dark"] .table td {
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Badges */
+        html[data-theme="dark"] .badge.bg-light {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Icons */
+        html[data-theme="dark"] .bi,
+        html[data-theme="dark"] i {
+            color: #94a3b8;
+        }
+
+        /* Specific fix for lawyer cards */
+        html[data-theme="dark"] .lawyer-name,
+        html[data-theme="dark"] .lawyer-specialization,
+        html[data-theme="dark"] .lawyer-location {
+            color: #e2e8f0 !important;
+        }
+
+        /* Alert boxes */
+        html[data-theme="dark"] .alert {
+            background-color: rgba(15, 23, 42, 0.9) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+
+        /* Breadcrumbs */
+        html[data-theme="dark"] .breadcrumb-item,
+        html[data-theme="dark"] .breadcrumb-item a {
+            color: #94a3b8 !important;
+        }
+
+        html[data-theme="dark"] .breadcrumb-item.active {
+            color: #e2e8f0 !important;
+        }
+
+        /* Pagination */
+        html[data-theme="dark"] .page-link {
+            background-color: rgba(15, 23, 42, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .page-link:hover {
+            background-color: rgba(52, 211, 153, 0.2) !important;
+            color: #34d399 !important;
+        }
+
+        /* Input group text */
+        html[data-theme="dark"] .input-group-text {
+            background-color: rgba(15, 23, 42, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #94a3b8 !important;
+        }
+
+        /* Ensure all text in dark mode is readable */
+        html[data-theme="dark"] .text-body {
+            color: #e2e8f0 !important;
+        }
+
+        html[data-theme="dark"] .text-dark {
+            color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] .text-black {
+            color: #f1f5f9 !important;
+        }
+        /* Navbar Padding Helper */
+        .pt-navbar {
+            padding-top: 100px;
+        }
     </style>
     <?php echo $__env->yieldPushContent('styles'); ?>
 </head>
@@ -1071,7 +1711,7 @@
 
     <?php echo $__env->make('components.navbar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-    <main>
+    <main class="<?php if (! empty(trim($__env->yieldContent('no-padding')))): ?> <?php else: ?> pt-navbar <?php endif; ?>">
         <?php echo $__env->yieldContent('content'); ?>
     </main>
 
@@ -1151,11 +1791,25 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // Page Loader
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.getElementById('pageLoader').classList.add('hidden');
-            }, 800);
-        });
+        (function() {
+            const loader = document.getElementById('pageLoader');
+            if (!loader) return;
+            const hasSeenLoader = sessionStorage.getItem('lawlite_loader_seen');
+            if (hasSeenLoader) {
+                loader.classList.add('hidden');
+            }
+
+            window.addEventListener('load', function() {
+                if (sessionStorage.getItem('lawlite_loader_seen')) {
+                    loader.classList.add('hidden');
+                    return;
+                }
+                setTimeout(function() {
+                    loader.classList.add('hidden');
+                    sessionStorage.setItem('lawlite_loader_seen', '1');
+                }, 800);
+            });
+        })();
 
         // Header scroll effect
         window.addEventListener('scroll', function() {
