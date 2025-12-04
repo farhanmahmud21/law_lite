@@ -1,8 +1,8 @@
-@extends('layouts.landing')
 
-@section('no-padding', true)
 
-@push('styles')
+<?php $__env->startSection('no-padding', true); ?>
+
+<?php $__env->startPush('styles'); ?>
 <style>
     .ai-hero {
         background: var(--gradient-primary);
@@ -303,9 +303,9 @@
         color: #e2e8f0 !important;
     }
 </style>
-@endpush
+<?php $__env->stopPush(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Hero Section -->
 <section class="ai-hero">
     <div class="container position-relative" style="z-index: 1;">
@@ -314,14 +314,17 @@
                 <div class="d-flex align-items-center gap-3 mb-4">
                     <span class="ai-hero-badge">
                         <span class="bd-flag"></span>
-                        {{ __('messages.ai_hero_badge') }}
+                        <?php echo e(__('messages.ai_hero_badge')); ?>
+
                     </span>
                 </div>
                 <h1 class="display-4 fw-bold mb-4" style="letter-spacing: -0.03em;">
-                    {{ __('messages.ai_hero_title') }}
+                    <?php echo e(__('messages.ai_hero_title')); ?>
+
                 </h1>
                 <p class="lead opacity-75 mb-4" style="font-size: 1.25rem; line-height: 1.8; max-width: 600px;">
-                    {{ __('messages.ai_hero_desc') }}
+                    <?php echo e(__('messages.ai_hero_desc')); ?>
+
                 </p>
             </div>
             <div class="col-lg-4 text-center d-none d-lg-block">
@@ -349,7 +352,8 @@
             <div class="col-lg-4 mb-4">
                 <h5 class="fw-bold mb-4">
                     <i class="bi bi-grid-3x3-gap me-2" style="color: #10b981;"></i>
-                    {{ __('messages.select_ai_tools') }}
+                    <?php echo e(__('messages.select_ai_tools')); ?>
+
                 </h5>
                 
                 <div class="row g-3">
@@ -359,8 +363,8 @@
                             <div class="feature-icon blue">
                                 <i class="bi bi-book"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_dhara') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_dhara_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_dhara')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_dhara_desc')); ?></small>
                         </div>
                     </div>
 
@@ -370,8 +374,8 @@
                             <div class="feature-icon green">
                                 <i class="bi bi-translate"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_terms') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_terms_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_terms')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_terms_desc')); ?></small>
                         </div>
                     </div>
 
@@ -381,8 +385,8 @@
                             <div class="feature-icon purple">
                                 <i class="bi bi-file-earmark-text"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_document') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_document_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_document')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_document_desc')); ?></small>
                         </div>
                     </div>
 
@@ -392,8 +396,8 @@
                             <div class="feature-icon orange">
                                 <i class="bi bi-graph-up-arrow"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_case') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_case_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_case')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_case_desc')); ?></small>
                         </div>
                     </div>
 
@@ -403,8 +407,8 @@
                             <div class="feature-icon teal">
                                 <i class="bi bi-list-check"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_procedure') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_procedure_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_procedure')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_procedure_desc')); ?></small>
                         </div>
                     </div>
 
@@ -414,8 +418,8 @@
                             <div class="feature-icon red">
                                 <i class="bi bi-shield-check"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_rights') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_rights_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_rights')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_rights_desc')); ?></small>
                         </div>
                     </div>
 
@@ -425,8 +429,8 @@
                             <div class="feature-icon indigo">
                                 <i class="bi bi-pencil-square"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_draft') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_draft_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_draft')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_draft_desc')); ?></small>
                         </div>
                     </div>
 
@@ -436,8 +440,8 @@
                             <div class="feature-icon blue">
                                 <i class="bi bi-chat-dots"></i>
                             </div>
-                            <h6 class="fw-bold mb-1">{{ __('messages.tool_question') }}</h6>
-                            <small class="text-muted">{{ __('messages.tool_question_desc') }}</small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_question')); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_question_desc')); ?></small>
                         </div>
                     </div>
                 </div>
@@ -450,40 +454,42 @@
                     <div class="tool-panel active" id="tool-dhara">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-book text-primary me-2"></i>
-                            {{ __('messages.dhara_title') }}
+                            <?php echo e(__('messages.dhara_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.dhara_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.dhara_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.law_name') }}</label>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.law_name')); ?></label>
                             <select class="form-select" id="dhara-law">
-                                <option value="{{ __('messages.penal_code_1860') }}">{{ __('messages.penal_code_1860') }}</option>
-                                <option value="{{ __('messages.crpc_1898') }}">{{ __('messages.crpc_1898') }}</option>
-                                <option value="{{ __('messages.cpc_1908') }}">{{ __('messages.cpc_1908') }}</option>
-                                <option value="{{ __('messages.evidence_act_1872') }}">{{ __('messages.evidence_act_1872') }}</option>
-                                <option value="{{ __('messages.property_transfer_act') }}">{{ __('messages.property_transfer_act') }}</option>
-                                <option value="{{ __('messages.contract_act_1872') }}">{{ __('messages.contract_act_1872') }}</option>
-                                <option value="{{ __('messages.women_children_act') }}">{{ __('messages.women_children_act') }}</option>
-                                <option value="{{ __('messages.family_court_ordinance') }}">{{ __('messages.family_court_ordinance') }}</option>
-                                <option value="{{ __('messages.labour_act_2006') }}">{{ __('messages.labour_act_2006') }}</option>
-                                <option value="{{ __('messages.consumer_rights_act') }}">{{ __('messages.consumer_rights_act') }}</option>
+                                <option value="<?php echo e(__('messages.penal_code_1860')); ?>"><?php echo e(__('messages.penal_code_1860')); ?></option>
+                                <option value="<?php echo e(__('messages.crpc_1898')); ?>"><?php echo e(__('messages.crpc_1898')); ?></option>
+                                <option value="<?php echo e(__('messages.cpc_1908')); ?>"><?php echo e(__('messages.cpc_1908')); ?></option>
+                                <option value="<?php echo e(__('messages.evidence_act_1872')); ?>"><?php echo e(__('messages.evidence_act_1872')); ?></option>
+                                <option value="<?php echo e(__('messages.property_transfer_act')); ?>"><?php echo e(__('messages.property_transfer_act')); ?></option>
+                                <option value="<?php echo e(__('messages.contract_act_1872')); ?>"><?php echo e(__('messages.contract_act_1872')); ?></option>
+                                <option value="<?php echo e(__('messages.women_children_act')); ?>"><?php echo e(__('messages.women_children_act')); ?></option>
+                                <option value="<?php echo e(__('messages.family_court_ordinance')); ?>"><?php echo e(__('messages.family_court_ordinance')); ?></option>
+                                <option value="<?php echo e(__('messages.labour_act_2006')); ?>"><?php echo e(__('messages.labour_act_2006')); ?></option>
+                                <option value="<?php echo e(__('messages.consumer_rights_act')); ?>"><?php echo e(__('messages.consumer_rights_act')); ?></option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.section_number') }}</label>
-                            <input type="text" class="form-control" id="dhara-section" placeholder="{{ __('messages.section_placeholder') }}">
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.section_number')); ?></label>
+                            <input type="text" class="form-control" id="dhara-section" placeholder="<?php echo e(__('messages.section_placeholder')); ?>">
                         </div>
 
                         <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setDhara('302')">{{ __('messages.section_302') }}</span>
-                            <span class="quick-action" onclick="setDhara('420')">{{ __('messages.section_420') }}</span>
-                            <span class="quick-action" onclick="setDhara('376')">{{ __('messages.section_376') }}</span>
-                            <span class="quick-action" onclick="setDhara('497')">{{ __('messages.section_497') }}</span>
+                            <span class="quick-action" onclick="setDhara('302')"><?php echo e(__('messages.section_302')); ?></span>
+                            <span class="quick-action" onclick="setDhara('420')"><?php echo e(__('messages.section_420')); ?></span>
+                            <span class="quick-action" onclick="setDhara('376')"><?php echo e(__('messages.section_376')); ?></span>
+                            <span class="quick-action" onclick="setDhara('497')"><?php echo e(__('messages.section_497')); ?></span>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="searchDhara()">
-                            <i class="bi bi-search me-2"></i>{{ __('messages.btn_search') }}
+                            <i class="bi bi-search me-2"></i><?php echo e(__('messages.btn_search')); ?>
+
                         </button>
 
                         <div id="dhara-result" class="result-box" style="display: none;"></div>
@@ -493,28 +499,30 @@
                     <div class="tool-panel" id="tool-terms">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-translate text-success me-2"></i>
-                            {{ __('messages.terms_title') }}
+                            <?php echo e(__('messages.terms_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.terms_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.terms_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.legal_term') }}</label>
-                            <input type="text" class="form-control" id="term-input" placeholder="{{ __('messages.term_placeholder') }}">
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.legal_term')); ?></label>
+                            <input type="text" class="form-control" id="term-input" placeholder="<?php echo e(__('messages.term_placeholder')); ?>">
                         </div>
 
                         <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_bail') }}')">{{ __('messages.term_bail') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_heba') }}')">{{ __('messages.term_heba') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_waqf') }}')">{{ __('messages.term_waqf') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_heir') }}')">{{ __('messages.term_heir') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_deed') }}')">{{ __('messages.term_deed') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_joint') }}')">{{ __('messages.term_joint') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_complaint') }}')">{{ __('messages.term_complaint') }}</span>
-                            <span class="quick-action" onclick="setTerm('{{ __('messages.term_plaint') }}')">{{ __('messages.term_plaint') }}</span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_bail')); ?>')"><?php echo e(__('messages.term_bail')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_heba')); ?>')"><?php echo e(__('messages.term_heba')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_waqf')); ?>')"><?php echo e(__('messages.term_waqf')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_heir')); ?>')"><?php echo e(__('messages.term_heir')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_deed')); ?>')"><?php echo e(__('messages.term_deed')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_joint')); ?>')"><?php echo e(__('messages.term_joint')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_complaint')); ?>')"><?php echo e(__('messages.term_complaint')); ?></span>
+                            <span class="quick-action" onclick="setTerm('<?php echo e(__('messages.term_plaint')); ?>')"><?php echo e(__('messages.term_plaint')); ?></span>
                         </div>
 
                         <button class="btn btn-success px-4" onclick="searchTerm()">
-                            <i class="bi bi-search me-2"></i>{{ __('messages.btn_meaning') }}
+                            <i class="bi bi-search me-2"></i><?php echo e(__('messages.btn_meaning')); ?>
+
                         </button>
 
                         <div id="term-result" class="result-box" style="display: none;"></div>
@@ -524,27 +532,29 @@
                     <div class="tool-panel" id="tool-document">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-file-earmark-text text-purple me-2"></i>
-                            {{ __('messages.document_title') }}
+                            <?php echo e(__('messages.document_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.document_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.document_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.analysis_type') }}</label>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.analysis_type')); ?></label>
                             <select class="form-select" id="analysis-type">
-                                <option value="summary">{{ __('messages.analysis_summary') }}</option>
-                                <option value="legal_issues">{{ __('messages.analysis_issues') }}</option>
-                                <option value="risks">{{ __('messages.analysis_risks') }}</option>
-                                <option value="recommendations">{{ __('messages.analysis_recommendations') }}</option>
+                                <option value="summary"><?php echo e(__('messages.analysis_summary')); ?></option>
+                                <option value="legal_issues"><?php echo e(__('messages.analysis_issues')); ?></option>
+                                <option value="risks"><?php echo e(__('messages.analysis_risks')); ?></option>
+                                <option value="recommendations"><?php echo e(__('messages.analysis_recommendations')); ?></option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.document_text') }}</label>
-                            <textarea class="form-control" id="document-text" rows="8" placeholder="{{ __('messages.document_placeholder') }}"></textarea>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.document_text')); ?></label>
+                            <textarea class="form-control" id="document-text" rows="8" placeholder="<?php echo e(__('messages.document_placeholder')); ?>"></textarea>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="analyzeDocument()">
-                            <i class="bi bi-cpu me-2"></i>{{ __('messages.btn_analyze') }}
+                            <i class="bi bi-cpu me-2"></i><?php echo e(__('messages.btn_analyze')); ?>
+
                         </button>
 
                         <div id="document-result" class="result-box" style="display: none;"></div>
@@ -554,29 +564,31 @@
                     <div class="tool-panel" id="tool-case">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-graph-up-arrow text-warning me-2"></i>
-                            {{ __('messages.case_title') }}
+                            <?php echo e(__('messages.case_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.case_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.case_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.case_type') }}</label>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.case_type')); ?></label>
                             <select class="form-select" id="case-type">
-                                <option value="{{ __('messages.case_criminal') }}">{{ __('messages.case_criminal') }}</option>
-                                <option value="{{ __('messages.case_civil') }}">{{ __('messages.case_civil') }}</option>
-                                <option value="{{ __('messages.case_family') }}">{{ __('messages.case_family') }}</option>
-                                <option value="{{ __('messages.case_labour') }}">{{ __('messages.case_labour') }}</option>
-                                <option value="{{ __('messages.case_property') }}">{{ __('messages.case_property') }}</option>
-                                <option value="{{ __('messages.case_consumer') }}">{{ __('messages.case_consumer') }}</option>
+                                <option value="<?php echo e(__('messages.case_criminal')); ?>"><?php echo e(__('messages.case_criminal')); ?></option>
+                                <option value="<?php echo e(__('messages.case_civil')); ?>"><?php echo e(__('messages.case_civil')); ?></option>
+                                <option value="<?php echo e(__('messages.case_family')); ?>"><?php echo e(__('messages.case_family')); ?></option>
+                                <option value="<?php echo e(__('messages.case_labour')); ?>"><?php echo e(__('messages.case_labour')); ?></option>
+                                <option value="<?php echo e(__('messages.case_property')); ?>"><?php echo e(__('messages.case_property')); ?></option>
+                                <option value="<?php echo e(__('messages.case_consumer')); ?>"><?php echo e(__('messages.case_consumer')); ?></option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.case_facts') }}</label>
-                            <textarea class="form-control" id="case-facts" rows="6" placeholder="{{ __('messages.case_placeholder') }}"></textarea>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.case_facts')); ?></label>
+                            <textarea class="form-control" id="case-facts" rows="6" placeholder="<?php echo e(__('messages.case_placeholder')); ?>"></textarea>
                         </div>
 
                         <button class="btn btn-warning text-dark px-4" onclick="analyzeCase()">
-                            <i class="bi bi-lightning me-2"></i>{{ __('messages.btn_predict') }}
+                            <i class="bi bi-lightning me-2"></i><?php echo e(__('messages.btn_predict')); ?>
+
                         </button>
 
                         <div id="case-result" class="result-box" style="display: none;"></div>
@@ -586,26 +598,28 @@
                     <div class="tool-panel" id="tool-procedure">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-list-check text-info me-2"></i>
-                            {{ __('messages.procedure_title') }}
+                            <?php echo e(__('messages.procedure_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.procedure_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.procedure_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.procedure_type') }}</label>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.procedure_type')); ?></label>
                             <select class="form-select" id="procedure-type">
-                                <option value="{{ __('messages.procedure_fir') }}">{{ __('messages.procedure_fir') }}</option>
-                                <option value="{{ __('messages.procedure_bail') }}">{{ __('messages.procedure_bail') }}</option>
-                                <option value="{{ __('messages.procedure_civil') }}">{{ __('messages.procedure_civil') }}</option>
-                                <option value="{{ __('messages.procedure_divorce') }}">{{ __('messages.procedure_divorce') }}</option>
-                                <option value="{{ __('messages.procedure_inheritance') }}">{{ __('messages.procedure_inheritance') }}</option>
-                                <option value="{{ __('messages.procedure_consumer') }}">{{ __('messages.procedure_consumer') }}</option>
-                                <option value="{{ __('messages.procedure_land') }}">{{ __('messages.procedure_land') }}</option>
-                                <option value="{{ __('messages.procedure_company') }}">{{ __('messages.procedure_company') }}</option>
+                                <option value="<?php echo e(__('messages.procedure_fir')); ?>"><?php echo e(__('messages.procedure_fir')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_bail')); ?>"><?php echo e(__('messages.procedure_bail')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_civil')); ?>"><?php echo e(__('messages.procedure_civil')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_divorce')); ?>"><?php echo e(__('messages.procedure_divorce')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_inheritance')); ?>"><?php echo e(__('messages.procedure_inheritance')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_consumer')); ?>"><?php echo e(__('messages.procedure_consumer')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_land')); ?>"><?php echo e(__('messages.procedure_land')); ?></option>
+                                <option value="<?php echo e(__('messages.procedure_company')); ?>"><?php echo e(__('messages.procedure_company')); ?></option>
                             </select>
                         </div>
 
                         <button class="btn btn-info text-white px-4" onclick="getProcedure()">
-                            <i class="bi bi-arrow-right-circle me-2"></i>{{ __('messages.btn_guide') }}
+                            <i class="bi bi-arrow-right-circle me-2"></i><?php echo e(__('messages.btn_guide')); ?>
+
                         </button>
 
                         <div id="procedure-result" class="result-box" style="display: none;"></div>
@@ -615,25 +629,27 @@
                     <div class="tool-panel" id="tool-rights">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-shield-check text-danger me-2"></i>
-                            {{ __('messages.rights_title') }}
+                            <?php echo e(__('messages.rights_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.rights_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.rights_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.rights_category') }}</label>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.rights_category')); ?></label>
                             <select class="form-select" id="rights-category">
-                                <option value="{{ __('messages.rights_arrest') }}">{{ __('messages.rights_arrest') }}</option>
-                                <option value="{{ __('messages.rights_women') }}">{{ __('messages.rights_women') }}</option>
-                                <option value="{{ __('messages.rights_children') }}">{{ __('messages.rights_children') }}</option>
-                                <option value="{{ __('messages.rights_consumer') }}">{{ __('messages.rights_consumer') }}</option>
-                                <option value="{{ __('messages.rights_property') }}">{{ __('messages.rights_property') }}</option>
-                                <option value="{{ __('messages.rights_labour') }}">{{ __('messages.rights_labour') }}</option>
-                                <option value="{{ __('messages.rights_cyber') }}">{{ __('messages.rights_cyber') }}</option>
+                                <option value="<?php echo e(__('messages.rights_arrest')); ?>"><?php echo e(__('messages.rights_arrest')); ?></option>
+                                <option value="<?php echo e(__('messages.rights_women')); ?>"><?php echo e(__('messages.rights_women')); ?></option>
+                                <option value="<?php echo e(__('messages.rights_children')); ?>"><?php echo e(__('messages.rights_children')); ?></option>
+                                <option value="<?php echo e(__('messages.rights_consumer')); ?>"><?php echo e(__('messages.rights_consumer')); ?></option>
+                                <option value="<?php echo e(__('messages.rights_property')); ?>"><?php echo e(__('messages.rights_property')); ?></option>
+                                <option value="<?php echo e(__('messages.rights_labour')); ?>"><?php echo e(__('messages.rights_labour')); ?></option>
+                                <option value="<?php echo e(__('messages.rights_cyber')); ?>"><?php echo e(__('messages.rights_cyber')); ?></option>
                             </select>
                         </div>
 
                         <button class="btn btn-danger px-4" onclick="checkRights()">
-                            <i class="bi bi-shield-check me-2"></i>{{ __('messages.btn_check_rights') }}
+                            <i class="bi bi-shield-check me-2"></i><?php echo e(__('messages.btn_check_rights')); ?>
+
                         </button>
 
                         <div id="rights-result" class="result-box" style="display: none;"></div>
@@ -643,29 +659,31 @@
                     <div class="tool-panel" id="tool-draft">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-pencil-square text-indigo me-2"></i>
-                            {{ __('messages.draft_title') }}
+                            <?php echo e(__('messages.draft_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.draft_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.draft_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.draft_type') }}</label>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.draft_type')); ?></label>
                             <select class="form-select" id="draft-type">
-                                <option value="{{ __('messages.draft_legal_notice') }}">{{ __('messages.draft_legal_notice') }}</option>
-                                <option value="{{ __('messages.draft_application') }}">{{ __('messages.draft_application') }}</option>
-                                <option value="{{ __('messages.draft_complaint') }}">{{ __('messages.draft_complaint') }}</option>
-                                <option value="{{ __('messages.draft_agreement') }}">{{ __('messages.draft_agreement') }}</option>
-                                <option value="{{ __('messages.draft_power_of_attorney') }}">{{ __('messages.draft_power_of_attorney') }}</option>
-                                <option value="{{ __('messages.draft_affidavit') }}">{{ __('messages.draft_affidavit') }}</option>
+                                <option value="<?php echo e(__('messages.draft_legal_notice')); ?>"><?php echo e(__('messages.draft_legal_notice')); ?></option>
+                                <option value="<?php echo e(__('messages.draft_application')); ?>"><?php echo e(__('messages.draft_application')); ?></option>
+                                <option value="<?php echo e(__('messages.draft_complaint')); ?>"><?php echo e(__('messages.draft_complaint')); ?></option>
+                                <option value="<?php echo e(__('messages.draft_agreement')); ?>"><?php echo e(__('messages.draft_agreement')); ?></option>
+                                <option value="<?php echo e(__('messages.draft_power_of_attorney')); ?>"><?php echo e(__('messages.draft_power_of_attorney')); ?></option>
+                                <option value="<?php echo e(__('messages.draft_affidavit')); ?>"><?php echo e(__('messages.draft_affidavit')); ?></option>
                             </select>
                         </div>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.draft_details') }}</label>
-                            <textarea class="form-control" id="draft-details" rows="6" placeholder="{{ __('messages.draft_placeholder') }}"></textarea>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.draft_details')); ?></label>
+                            <textarea class="form-control" id="draft-details" rows="6" placeholder="<?php echo e(__('messages.draft_placeholder')); ?>"></textarea>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="draftDocument()">
-                            <i class="bi bi-file-earmark-plus me-2"></i>{{ __('messages.btn_draft') }}
+                            <i class="bi bi-file-earmark-plus me-2"></i><?php echo e(__('messages.btn_draft')); ?>
+
                         </button>
 
                         <div id="draft-result" class="result-box" style="display: none;"></div>
@@ -675,26 +693,28 @@
                     <div class="tool-panel" id="tool-question">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-chat-dots text-primary me-2"></i>
-                            {{ __('messages.question_title') }}
+                            <?php echo e(__('messages.question_title')); ?>
+
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.question_desc') }}</p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.question_desc')); ?></p>
                         
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.your_question') }}</label>
-                            <textarea class="form-control" id="question-input" rows="4" placeholder="{{ __('messages.question_placeholder') }}"></textarea>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.your_question')); ?></label>
+                            <textarea class="form-control" id="question-input" rows="4" placeholder="<?php echo e(__('messages.question_placeholder')); ?>"></textarea>
                         </div>
 
                         <div class="mb-3">
-                            <small class="text-muted">{{ __('messages.sample_questions') }}:</small>
+                            <small class="text-muted"><?php echo e(__('messages.sample_questions')); ?>:</small>
                             <div class="d-flex flex-wrap gap-2 mt-2">
-                                <span class="quick-action" onclick="setQuestion('{{ __('messages.sample_q1') }}')">{{ __('messages.sample_q1') }}</span>
-                                <span class="quick-action" onclick="setQuestion('{{ __('messages.sample_q2') }}')">{{ __('messages.sample_q2') }}</span>
-                                <span class="quick-action" onclick="setQuestion('{{ __('messages.sample_q3') }}')">{{ __('messages.sample_q3') }}</span>
+                                <span class="quick-action" onclick="setQuestion('<?php echo e(__('messages.sample_q1')); ?>')"><?php echo e(__('messages.sample_q1')); ?></span>
+                                <span class="quick-action" onclick="setQuestion('<?php echo e(__('messages.sample_q2')); ?>')"><?php echo e(__('messages.sample_q2')); ?></span>
+                                <span class="quick-action" onclick="setQuestion('<?php echo e(__('messages.sample_q3')); ?>')"><?php echo e(__('messages.sample_q3')); ?></span>
                             </div>
                         </div>
 
                         <button class="btn btn-primary px-4" onclick="askQuestion()">
-                            <i class="bi bi-send me-2"></i>{{ __('messages.btn_ask') }}
+                            <i class="bi bi-send me-2"></i><?php echo e(__('messages.btn_ask')); ?>
+
                         </button>
 
                         <div id="question-result" class="result-box" style="display: none;"></div>
@@ -704,12 +724,12 @@
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push('scripts')
+<?php $__env->startPush('scripts'); ?>
 <script>
 const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-const currentLang = '{{ app()->getLocale() }}';
+const currentLang = '<?php echo e(app()->getLocale()); ?>';
 
 function selectTool(tool) {
     document.querySelectorAll('.feature-card').forEach(card => {
@@ -954,4 +974,6 @@ async function askQuestion() {
     }
 }
 </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('layouts.landing', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH G:\CG\LawLite\resources\views/ai/features.blade.php ENDPATH**/ ?>

@@ -343,18 +343,19 @@
         .loader-logo {
             width: 80px;
             height: 80px;
-            background: var(--gradient-accent);
-            border-radius: 20px;
+            background: linear-gradient(135deg, #10b981 0%, #0d9488 50%, #0891b2 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
             animation: pulse-loader 1.5s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.3);
         }
 
         @keyframes pulse-loader {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(16, 185, 129, 0.5), 0 0 60px rgba(16, 185, 129, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 0 40px rgba(16, 185, 129, 0.6), 0 0 80px rgba(16, 185, 129, 0.4); }
         }
 
         .loader-text {
@@ -402,13 +403,13 @@
         .logo-icon-wrapper {
             width: 48px;
             height: 48px;
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            border-radius: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #0d9488 50%, #0891b2 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             overflow: hidden;
         }
@@ -417,8 +418,8 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
-            border-radius: 14px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2) 0%, transparent 60%);
+            border-radius: 50%;
         }
 
         .logo-icon-inner {
@@ -448,15 +449,22 @@
         .logo-icon {
             width: 48px;
             height: 48px;
-            background: var(--gradient-accent);
-            border-radius: 14px;
+            background: linear-gradient(135deg, #10b981 0%, #0d9488 50%, #0891b2 100%);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
             overflow: hidden;
+        }
+
+        .logo-icon svg {
+            width: 28px;
+            height: 28px;
+            color: white;
+            transition: transform 0.3s ease;
         }
 
         .logo-icon .logo-img {
@@ -468,12 +476,15 @@
         }
 
         .logo:hover .logo-icon .logo-img {
-            transform: scale(1.1) rotate(-5deg);
+            transform: scale(1.1);
         }
 
         .logo:hover .logo-icon {
-            box-shadow: var(--shadow-glow);
-            transform: rotate(-5deg);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.6), 0 0 60px rgba(16, 185, 129, 0.4);
+        }
+
+        .logo:hover .logo-icon svg {
+            transform: scale(1.1);
         }
 
         .logo-text {
@@ -483,14 +494,11 @@
         }
 
         .logo-text .law {
-            color: var(--primary);
+            color: #0f172a;
         }
 
         .logo-text .lite {
-            background: var(--gradient-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #10b981;
         }
 
         /* Header */
@@ -861,16 +869,16 @@
         }
 
         .footer-logo .logo-icon {
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: none;
+            background: linear-gradient(135deg, #10b981 0%, #0d9488 50%, #0891b2 100%);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.4), 0 0 30px rgba(16, 185, 129, 0.2);
         }
 
         .footer-logo .logo-icon::before {
-            background: transparent;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.15) 0%, transparent 60%);
         }
 
         .footer-logo .logo-icon svg {
-            color: var(--accent);
+            color: white;
         }
 
         .footer-logo .logo-text .law {
@@ -1474,7 +1482,11 @@
         }
 
         html[data-theme="dark"] .logo-text .law {
-            color: #e6eef8;
+            color: #ffffff;
+        }
+
+        html[data-theme="dark"] .logo-text .lite {
+            color: #10b981 !important;
         }
 
         html[data-theme="dark"] ::-webkit-scrollbar-track {
@@ -1693,10 +1705,25 @@
     <div class="page-loader" id="pageLoader">
         <div class="loader-content">
             <div class="loader-logo">
-                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
-                    <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                    <path d="M2 17l10 5 10-5"/>
-                    <path d="M2 12l10 5 10-5"/>
+                <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="40" height="40">
+                    <!-- Balance beam -->
+                    <line x1="12" y1="3" x2="12" y2="6"/>
+                    <line x1="4" y1="8" x2="20" y2="8"/>
+                    <!-- Left scale -->
+                    <line x1="6" y1="8" x2="4" y2="14"/>
+                    <line x1="6" y1="8" x2="8" y2="14"/>
+                    <path d="M3 14 Q4 17 5 14"/>
+                    <path d="M7 14 Q8 17 9 14"/>
+                    <line x1="3" y1="14" x2="9" y2="14"/>
+                    <!-- Right scale -->
+                    <line x1="18" y1="8" x2="16" y2="14"/>
+                    <line x1="18" y1="8" x2="20" y2="14"/>
+                    <path d="M15 14 Q16 17 17 14"/>
+                    <path d="M19 14 Q20 17 21 14"/>
+                    <line x1="15" y1="14" x2="21" y2="14"/>
+                    <!-- Center pillar -->
+                    <line x1="12" y1="8" x2="12" y2="20"/>
+                    <line x1="8" y1="20" x2="16" y2="20"/>
                 </svg>
             </div>
             <div class="loader-text">LawLite</div>
@@ -1721,10 +1748,25 @@
                 <div class="col-md-4 mb-4 mb-md-0 reveal reveal-left">
                     <a href="{{ url('/') }}" class="logo footer-logo text-decoration-none mb-3 d-inline-flex">
                         <div class="logo-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                                <path d="M2 17l10 5 10-5"/>
-                                <path d="M2 12l10 5 10-5"/>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Balance beam -->
+                                <line x1="12" y1="3" x2="12" y2="6"/>
+                                <line x1="4" y1="8" x2="20" y2="8"/>
+                                <!-- Left scale -->
+                                <line x1="6" y1="8" x2="4" y2="14"/>
+                                <line x1="6" y1="8" x2="8" y2="14"/>
+                                <path d="M3 14 Q4 17 5 14"/>
+                                <path d="M7 14 Q8 17 9 14"/>
+                                <line x1="3" y1="14" x2="9" y2="14"/>
+                                <!-- Right scale -->
+                                <line x1="18" y1="8" x2="16" y2="14"/>
+                                <line x1="18" y1="8" x2="20" y2="14"/>
+                                <path d="M15 14 Q16 17 17 14"/>
+                                <path d="M19 14 Q20 17 21 14"/>
+                                <line x1="15" y1="14" x2="21" y2="14"/>
+                                <!-- Center pillar -->
+                                <line x1="12" y1="8" x2="12" y2="20"/>
+                                <line x1="8" y1="20" x2="16" y2="20"/>
                             </svg>
                         </div>
                         <span class="logo-text">

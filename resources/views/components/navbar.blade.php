@@ -37,19 +37,29 @@
         <a class="logo text-decoration-none d-flex align-items-center gap-3 me-5" href="{{ url('/') }}">
             <div class="logo-icon-wrapper">
                 <div class="logo-icon-inner">
-                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Scales of Justice -->
-                        <path d="M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M5 7L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        <path d="M3 13L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        <path d="M17 13L21 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                        <circle cx="5" cy="13" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                        <circle cx="19" cy="13" r="3" stroke="currentColor" stroke-width="1.5" fill="none"/>
-                        <path d="M9 21H15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <!-- Balance beam -->
+                        <line x1="12" y1="3" x2="12" y2="6"/>
+                        <line x1="4" y1="8" x2="20" y2="8"/>
+                        <!-- Left scale -->
+                        <line x1="6" y1="8" x2="4" y2="14"/>
+                        <line x1="6" y1="8" x2="8" y2="14"/>
+                        <path d="M3 14 Q4 17 5 14"/>
+                        <path d="M7 14 Q8 17 9 14"/>
+                        <line x1="3" y1="14" x2="9" y2="14"/>
+                        <!-- Right scale -->
+                        <line x1="18" y1="8" x2="16" y2="14"/>
+                        <line x1="18" y1="8" x2="20" y2="14"/>
+                        <path d="M15" y1="14" d="M15 14 Q16 17 17 14"/>
+                        <path d="M19 14 Q20 17 21 14"/>
+                        <line x1="15" y1="14" x2="21" y2="14"/>
+                        <!-- Center pillar -->
+                        <line x1="12" y1="8" x2="12" y2="20"/>
+                        <line x1="8" y1="20" x2="16" y2="20"/>
                     </svg>
                 </div>
             </div>
-            <span class="logo-text font-display">
+            <span class="logo-text">
                 <span class="law">Law</span><span class="lite">Lite</span>
             </span>
         </a>
