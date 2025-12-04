@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Bengali:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- Advanced UI Styles -->
+    <link rel="stylesheet" href="{{ asset('css/advanced-ui.css') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
         /* ========== LIGHT MODE (Default) - Clean White/Teal ========== */
@@ -66,12 +68,16 @@
 
         body {
             font-family: var(--font-body);
-            background-color: var(--bg-body);
+            background:
+                radial-gradient(circle at top left, rgba(56, 189, 248, 0.16), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.16), transparent 55%),
+                var(--bg-body);
             color: var(--text-secondary);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             line-height: 1.7;
-            transition: background-color 0.35s ease, color 0.35s ease;
+            transition: background-color 0.35s ease, color 0.35s ease, background 0.6s ease;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -89,6 +95,13 @@
             border-bottom: 1px solid var(--border-color);
             box-shadow: var(--shadow-sm);
             transition: all 0.3s ease;
+        }
+
+        .site-header.scrolled {
+            box-shadow: var(--shadow-md);
+            border-bottom-color: rgba(15, 23, 42, 0.06);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
         }
 
         .nav-link {
@@ -112,16 +125,34 @@
 
         /* Cards - Light Mode */
         .card {
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
+            border-radius: 18px;
             box-shadow: var(--shadow-sm);
-            transition: all 0.3s ease;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            transform-origin: center;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.06) 0%, transparent 55%);
+            opacity: 0;
+            transition: opacity 0.35s ease;
+            pointer-events: none;
         }
 
         .card:hover {
-            box-shadow: var(--shadow-md);
-            border-color: rgba(16, 185, 129, 0.2);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(16, 185, 129, 0.25);
+            transform: translateY(-6px);
+        }
+
+        .card:hover::before {
+            opacity: 1;
         }
 
         .card-header {
@@ -133,7 +164,7 @@
         }
 
         .card-body {
-            padding: 1.25rem;
+            padding: 1.5rem;
         }
 
         /* Buttons - Emerald Accent */
@@ -194,7 +225,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 0.75rem 1rem;
-            background: var(--bg-card);
+            background: rgba(255, 255, 255, 0.95);
             color: var(--text-primary);
             transition: all 0.3s ease;
         }
@@ -207,7 +238,8 @@
         .form-select:focus {
             border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--accent-glow);
-            background: var(--bg-card);
+            background: #ffffff;
+            transform: translateY(-1px);
         }
 
         /* List Groups */
@@ -450,6 +482,98 @@
             color: #ffffff;
         }
 
+        /* ===== Advanced Background Ornaments (App) ===== */
+        .app-orbit {
+            position: fixed;
+            inset: -120px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .app-orbit__blob {
+            position: absolute;
+            width: 440px;
+            height: 440px;
+            border-radius: 60% 40% 30% 70% / 55% 35% 65% 45%;
+            background: radial-gradient(circle at 10% 0%, rgba(59, 130, 246, 0.14), transparent 55%),
+                        radial-gradient(circle at 80% 100%, rgba(16, 185, 129, 0.18), transparent 55%);
+            filter: blur(32px);
+            opacity: 0.6;
+            animation: app-orbit-morph 18s ease-in-out infinite alternate;
+        }
+
+        .app-orbit__blob--top {
+            top: -120px;
+            left: -80px;
+        }
+
+        .app-orbit__blob--bottom {
+            bottom: -120px;
+            right: -80px;
+            animation-delay: 4s;
+        }
+
+        @keyframes app-orbit-morph {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+                border-radius: 60% 40% 30% 70% / 55% 35% 65% 45%;
+            }
+            50% {
+                transform: translate3d(20px, -10px, 0) scale(1.04);
+                border-radius: 40% 60% 65% 35% / 50% 60% 30% 60%;
+            }
+            100% {
+                transform: translate3d(-10px, 20px, 0) scale(1.02);
+                border-radius: 55% 45% 35% 65% / 65% 30% 60% 40%;
+            }
+        }
+
+        /* ===== Reusable Motion Utilities (dashboards, tables, etc.) ===== */
+        .reveal,
+        .reveal-left,
+        .reveal-right,
+        .reveal-scale {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal-left {
+            transform: translateX(-32px);
+        }
+
+        .reveal-right {
+            transform: translateX(32px);
+        }
+
+        .reveal-scale {
+            transform: scale(0.94);
+        }
+
+        .reveal.active,
+        .reveal-left.active,
+        .reveal-right.active,
+        .reveal-scale.active {
+            opacity: 1;
+            transform: translateX(0) translateY(0) scale(1);
+        }
+
+        .stagger-1 { transition-delay: 0.08s; }
+        .stagger-2 { transition-delay: 0.16s; }
+        .stagger-3 { transition-delay: 0.24s; }
+        .stagger-4 { transition-delay: 0.32s; }
+        .stagger-5 { transition-delay: 0.4s; }
+
+        .page-section-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .page-subtitle {
+            color: var(--text-muted);
+        }
+
         /* ========== PREMIUM DARK TEAL THEME ========== */
         html[data-theme="dark"] {
             --primary: #f0fdfa;
@@ -467,7 +591,7 @@
         }
 
         html[data-theme="dark"] body {
-            background: linear-gradient(180deg, #0a1628 0%, #0d1f35 50%, #0a1628 100%);
+            background: linear-gradient(180deg, #020617 0%, #020617 12%, #020617 100%);
             background-attachment: fixed;
             color: var(--text-secondary);
         }
@@ -505,15 +629,15 @@
 
         /* Cards with glassmorphism */
         html[data-theme="dark"] .card {
-            background: var(--bg-card);
+            background: rgba(15, 33, 50, 0.96);
             border: 1px solid var(--border-color);
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            border-radius: 18px;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.7);
         }
 
         html[data-theme="dark"] .card:hover {
             background: var(--bg-card-hover);
-            border-color: rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.45);
         }
 
         html[data-theme="dark"] .card-header {
@@ -713,12 +837,12 @@
         /* Avatar */
         html[data-theme="dark"] .avatar-circle {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
-            box-shadow: 0 2px 8px var(--accent-glow);
+            box-shadow: 0 2px 12px var(--accent-glow);
         }
 
         /* Footer */
         html[data-theme="dark"] footer.bg-dark {
-            background: linear-gradient(180deg, #0a1628 0%, #050d18 100%) !important;
+            background: radial-gradient(circle at top, #022c22 0%, #020617 50%, #020617 100%) !important;
             border-top: 1px solid var(--border-color);
         }
 
@@ -842,9 +966,14 @@
             color: #0a1628;
         }
     </style>
+    @stack('styles')
 </head>
 
 <body class="d-flex flex-column min-vh-100">
+    <div class="app-orbit">
+        <div class="app-orbit__blob app-orbit__blob--top"></div>
+        <div class="app-orbit__blob app-orbit__blob--bottom"></div>
+    </div>
     @include('components.navbar')
     <main class="container py-4" style="padding-top: 100px !important;">
         @yield('content')
@@ -926,7 +1055,7 @@
             console.warn('Echo/Pusher not configured', e);
         }
     </script>
-    <!-- Theme toggle: persist in localStorage and update icon - SYNCED WITH LANDING -->
+    <!-- Theme + motion utilities for dashboards (synced with landing) -->
     <script>
         (function() {
             const storageKey = 'lawlite_theme'; // Same key as landing.blade.php
@@ -958,6 +1087,116 @@
                     updateThemeIcon();
                 });
             }
+
+            // Navbar scroll state
+            function handleHeaderScroll() {
+                const header = document.querySelector('.site-header');
+                if (!header) return;
+                if (window.scrollY > 48) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', handleHeaderScroll, { passive: true });
+            handleHeaderScroll();
+
+            // Scroll reveal for dashboard sections
+            function revealOnScroll() {
+                const nodes = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                const threshold = 120;
+
+                nodes.forEach(function (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top < windowHeight - threshold) {
+                        el.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', revealOnScroll, { passive: true });
+            document.addEventListener('DOMContentLoaded', revealOnScroll);
+
+            // Tilt Effect on Cards
+            function initTiltEffect() {
+                const cards = document.querySelectorAll('.tilt-effect, .glass-card');
+                
+                cards.forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = (y - centerY) / 30;
+                        const rotateY = (centerX - x) / 30;
+                        
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
+                    });
+                    
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+                    });
+                });
+            }
+
+            // Scroll Progress Indicator
+            function initScrollProgress() {
+                const indicator = document.createElement('div');
+                indicator.className = 'scroll-indicator';
+                document.body.appendChild(indicator);
+                
+                window.addEventListener('scroll', () => {
+                    const scrollTop = window.scrollY;
+                    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+                    const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                    indicator.style.transform = `scaleX(${progress})`;
+                });
+            }
+
+            // Counter Animation
+            function initCounters() {
+                const counters = document.querySelectorAll('[data-counter]');
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const target = parseInt(entry.target.dataset.counter);
+                            const duration = 2000;
+                            const start = 0;
+                            const startTime = performance.now();
+                            
+                            function updateCounter(currentTime) {
+                                const elapsed = currentTime - startTime;
+                                const progress = Math.min(elapsed / duration, 1);
+                                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                                const current = Math.floor(easeProgress * (target - start) + start);
+                                
+                                entry.target.textContent = current.toLocaleString() + (entry.target.dataset.suffix || '');
+                                
+                                if (progress < 1) {
+                                    requestAnimationFrame(updateCounter);
+                                }
+                            }
+                            
+                            requestAnimationFrame(updateCounter);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                counters.forEach(counter => observer.observe(counter));
+            }
+
+            // Initialize advanced effects
+            document.addEventListener('DOMContentLoaded', () => {
+                initTiltEffect();
+                initScrollProgress();
+                initCounters();
+            });
+
             updateThemeIcon();
         })();
     </script>

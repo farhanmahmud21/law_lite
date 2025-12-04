@@ -217,6 +217,9 @@ return [
     'ai_response_label' => 'AI Response:',
     'error_occurred' => 'An error occurred. Please try again.',
     'network_error' => 'Network error. Please check your connection and try again.',
+    'ai_unavailable' => 'AI service unavailable. Please try again in a moment.',
+    'ai_rate_limit' => 'Too many requests. Please wait a few seconds and try again.',
+    'ai_error' => 'An unexpected error occurred. Please try again.',
 
     // Lawyer Dashboard
     'welcome_back' => 'Welcome back',

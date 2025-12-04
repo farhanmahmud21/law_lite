@@ -57,9 +57,15 @@ class AiController extends Controller
             Log::error('Gemini API error: ' . $e->getMessage());
 
             $retryAfter = $e->getRetryAfter() ?? 30;
+            
+            // Check for rate limit error
+            $errorMessage = str_contains($e->getMessage(), '429') || str_contains($e->getMessage(), 'Resource exhausted')
+                ? __('messages.ai_rate_limit', [], $language)
+                : __('messages.ai_unavailable', [], $language);
+            
             $payload = [
                 'ok' => false,
-                'error' => 'AI service unavailable. Please try again later.',
+                'error' => $errorMessage,
                 'code' => 'AI_SERVICE_UNAVAILABLE',
                 'retry_after' => $retryAfter
             ];
@@ -71,7 +77,7 @@ class AiController extends Controller
             return new JsonResponse($payload, 502, ['Retry-After' => (string)$retryAfter]);
         } catch (\Exception $e) {
             Log::error('Unexpected error in AI controller: ' . $e->getMessage());
-            return new JsonResponse(['ok' => false, 'error' => 'An unexpected error occurred.'], 500);
+            return new JsonResponse(['ok' => false, 'error' => __('messages.ai_error', [], $language)], 500);
         }
     }
 

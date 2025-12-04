@@ -31,88 +31,316 @@
         .marquee-container:hover .marquee-content {
             animation-play-state: paused;
         }
+
+        /* Premium Page Header */
+        .page-header-premium {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(245, 158, 11, 0.08) 100%);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            margin-bottom: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header-premium::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+            animation: floatOrb 8s ease-in-out infinite;
+        }
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 20px) scale(1.1); }
+        }
+
+        /* Glass Search Bar */
+        .glass-search-container {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .glass-search-container:focus-within {
+            box-shadow: 0 12px 40px rgba(79, 70, 229, 0.15);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+        .search-input-premium {
+            border: 2px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 0.875rem 1.25rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        .search-input-premium:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+        .search-btn-premium {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .search-btn-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+        }
+
+        /* Premium Lawyer Cards */
+        .lawyer-card-premium {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .lawyer-card-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5, #10b981, #f59e0b);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lawyer-card-premium:hover::before {
+            opacity: 1;
+        }
+        .lawyer-card-premium:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+            border-color: rgba(79, 70, 229, 0.2);
+        }
+        .lawyer-avatar {
+            position: relative;
+            display: inline-block;
+        }
+        .lawyer-avatar img,
+        .lawyer-avatar .avatar-placeholder {
+            border: 3px solid rgba(79, 70, 229, 0.2);
+            transition: all 0.3s ease;
+        }
+        .lawyer-card-premium:hover .lawyer-avatar img,
+        .lawyer-card-premium:hover .lawyer-avatar .avatar-placeholder {
+            border-color: #4f46e5;
+            transform: scale(1.05);
+        }
+        .expertise-badge {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            color: #4f46e5;
+            padding: 0.35rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .view-profile-btn {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            border: none;
+            border-radius: 50px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .view-profile-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        .view-profile-btn:hover::before {
+            left: 100%;
+        }
+        .view-profile-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+            color: white;
+        }
+
+        /* Suggestions Dropdown Premium */
+        .suggestions-dropdown {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(79, 70, 229, 0.1) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+            overflow: hidden;
+        }
+        .suggestion-item {
+            transition: all 0.2s ease !important;
+        }
+        .suggestion-item:hover {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%) !important;
+        }
+
+        /* Dark Mode Enhancements */
+        html[data-theme="dark"] .page-header-premium {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(245, 158, 11, 0.08) 100%);
+        }
+        html[data-theme="dark"] .glass-search-container {
+            background: rgba(30, 41, 59, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        html[data-theme="dark"] .search-input-premium {
+            background: rgba(15, 23, 42, 0.8);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .lawyer-card-premium {
+            background: rgba(30, 41, 59, 0.85);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        html[data-theme="dark"] .expertise-badge {
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(124, 58, 237, 0.2) 100%);
+        }
+        html[data-theme="dark"] .suggestions-dropdown {
+            background: rgba(15, 23, 42, 0.95) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+
+        /* Empty State */
+        .empty-state {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .empty-state-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
     </style>
-    <div class="container py-6">
-        <div class="row mb-4">
-            <div class="col-md-8 mx-auto text-center">
-                <h1 class="display-6">{{ __('messages.find_lawyers') }}</h1>
-                <p class="text-muted">{{ __('messages.find_lawyers_description') }}</p>
-            </div>
+
+    <div class="container py-5">
+        <!-- Premium Header -->
+        <div class="page-header-premium reveal text-center">
+            <h1 class="display-5 fw-bold mb-3" style="background: linear-gradient(135deg, #1e293b 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                {{ __('messages.find_lawyers') }}
+            </h1>
+            <p class="text-muted lead mb-0">{{ __('messages.find_lawyers_description') }}</p>
         </div>
 
-        <!-- Search Bar -->
-        <div class="row mb-4">
-            <div class="col-md-8 mx-auto">
-                <form method="GET" action="{{ route('lawyers.index') }}" id="lawyer-search-form">
-                    <div class="input-group position-relative">
-                        <input type="text" name="search" id="lawyer-search-input" class="form-control"
-                            placeholder="{{ __('messages.search_lawyers_placeholder') }}" value="{{ request('search') }}"
-                            autocomplete="off">
-                        <button type="submit" class="btn btn-primary">{{ __('messages.search') }}</button>
-                        @if (request('search'))
-                            <a href="{{ route('lawyers.index') }}" class="btn btn-secondary">{{ __('messages.clear') }}</a>
-                        @endif
+        <!-- Glass Search Bar -->
+        <div class="row mb-5 reveal">
+            <div class="col-lg-8 mx-auto">
+                <div class="glass-search-container">
+                    <form method="GET" action="{{ route('lawyers.index') }}" id="lawyer-search-form">
+                        <div class="input-group position-relative">
+                            <input type="text" name="search" id="lawyer-search-input" 
+                                class="form-control search-input-premium"
+                                placeholder="{{ __('messages.search_lawyers_placeholder') }}" 
+                                value="{{ request('search') }}"
+                                autocomplete="off">
+                            <button type="submit" class="btn btn-primary search-btn-premium ms-2">
+                                <i class="bi bi-search me-2"></i>{{ __('messages.search') }}
+                            </button>
+                            @if (request('search'))
+                                <a href="{{ route('lawyers.index') }}" class="btn btn-outline-secondary ms-2" style="border-radius: 12px;">
+                                    <i class="bi bi-x-lg"></i>
+                                </a>
+                            @endif
 
-                        <!-- Suggestions Dropdown -->
-                        <div id="suggestions-dropdown" class="position-absolute border rounded shadow-sm w-100 suggestions-dropdown"
-                            style="top: 100%; left: 0; z-index: 1000; display: none; max-height: 300px; overflow-y: auto;">
+                            <!-- Suggestions Dropdown -->
+                            <div id="suggestions-dropdown" class="position-absolute border rounded shadow-sm w-100 suggestions-dropdown"
+                                style="top: 100%; left: 0; z-index: 1000; display: none; max-height: 300px; overflow-y: auto; margin-top: 8px;">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 
         <div class="row">
             @forelse($lawyers as $lawyer)
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100 shadow-sm border-0 hover-lift">
+                <div class="col-lg-4 col-md-6 mb-4 reveal" style="animation-delay: {{ $loop->index * 0.1 }}s;">
+                    <div class="card h-100 lawyer-card-premium border-0">
                         <div class="card-body text-center p-4">
-                            @if ($lawyer->user && $lawyer->user->profile_photo_path)
-                                <img src="{{ asset('storage/' . $lawyer->user->profile_photo_path) }}"
-                                    alt="{{ $lawyer->user->name }}" class="rounded-circle mb-3 object-fit-cover shadow-sm"
-                                    style="width: 100px; height: 100px;">
-                            @else
-                                <div class="rounded-circle bg-light d-inline-flex align-items-center justify-content-center text-secondary mb-3 shadow-sm"
-                                    style="width: 100px; height: 100px; font-size: 2.5rem;">
-                                    {{ substr($lawyer->user->name ?? 'L', 0, 1) }}
-                                </div>
-                            @endif
+                            <div class="lawyer-avatar mb-3">
+                                @if ($lawyer->user && $lawyer->user->profile_photo_path)
+                                    <img src="{{ asset('storage/' . $lawyer->user->profile_photo_path) }}"
+                                        alt="{{ $lawyer->user->name }}" class="rounded-circle object-fit-cover shadow"
+                                        style="width: 100px; height: 100px;">
+                                @else
+                                    <div class="rounded-circle bg-gradient-primary d-inline-flex align-items-center justify-content-center text-white avatar-placeholder shadow"
+                                        style="width: 100px; height: 100px; font-size: 2.5rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+                                        {{ substr($lawyer->user->name ?? 'L', 0, 1) }}
+                                    </div>
+                                @endif
+                            </div>
 
-                            <h5 class="card-title fw-bold mb-1">{{ $lawyer->user->name ?? __('messages.unnamed_lawyer') }}
-                            </h5>
-                            <p class="text-primary small mb-2 fw-semibold">
-                                {{ $lawyer->expertise ?? __('messages.general_practice') }}</p>
+                            <h5 class="card-title fw-bold mb-2">{{ $lawyer->user->name ?? __('messages.unnamed_lawyer') }}</h5>
+                            <div class="expertise-badge mb-3">
+                                {{ $lawyer->expertise ?? __('messages.general_practice') }}
+                            </div>
 
                             @if (is_array($lawyer->education) && count($lawyer->education) > 0)
                                 @php $eduText = $lawyer->education[0]; @endphp
                                 @if (strlen($eduText) > 25)
                                     <div class="marquee-container mb-2" title="{{ $eduText }}">
                                         <div class="marquee-content small text-muted">
-                                            <i class="bi bi-mortarboard-fill me-1"></i> {{ $eduText }}
+                                            <i class="bi bi-mortarboard-fill me-1 text-primary"></i> {{ $eduText }}
                                         </div>
                                         <div class="marquee-content small text-muted">
-                                            <i class="bi bi-mortarboard-fill me-1"></i> {{ $eduText }}
+                                            <i class="bi bi-mortarboard-fill me-1 text-primary"></i> {{ $eduText }}
                                         </div>
                                     </div>
                                 @else
                                     <p class="small text-muted mb-2 text-truncate" title="{{ $eduText }}">
-                                        <i class="bi bi-mortarboard-fill me-1"></i> {{ $eduText }}
+                                        <i class="bi bi-mortarboard-fill me-1 text-primary"></i> {{ $eduText }}
                                     </p>
                                 @endif
                             @endif
 
-                            <p class="small text-muted mb-3">
-                                <i class="bi bi-geo-alt-fill me-1"></i> {{ $lawyer->city ?? __('messages.unknown') }}
+                            <p class="small text-muted mb-4">
+                                <i class="bi bi-geo-alt-fill me-1 text-danger"></i> {{ $lawyer->city ?? __('messages.unknown') }}
                             </p>
 
-                            <a href="{{ route('lawyers.show', $lawyer->id) }}"
-                                class="btn btn-outline-primary w-100 rounded-pill">{{ __('messages.view_profile') }}</a>
+                            <a href="{{ route('lawyers.show', $lawyer->id) }}" class="view-profile-btn w-100 d-inline-block text-center text-decoration-none">
+                                <i class="bi bi-person-lines-fill me-2"></i>{{ __('messages.view_profile') }}
+                            </a>
                         </div>
                     </div>
                 </div>
             @empty
-                <div class="col-12 text-center py-6">
-                    <p class="lead text-muted">{{ __('messages.no_lawyers_found') }}</p>
+                <div class="col-12">
+                    <div class="empty-state reveal">
+                        <div class="empty-state-icon">
+                            <i class="bi bi-person-x" style="font-size: 2.5rem; color: #4f46e5;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-2">{{ __('messages.no_lawyers_found') }}</h4>
+                        <p class="text-muted">Try adjusting your search criteria</p>
+                    </div>
                 </div>
             @endforelse
         </div>

@@ -161,6 +161,23 @@
         box-shadow: var(--shadow-sm);
     }
 
+    .result-box .typewriter-content {
+        display: inline;
+    }
+
+    .result-box .typing-cursor {
+        display: inline-block;
+        color: #10b981;
+        font-weight: bold;
+        animation: blink 0.7s infinite;
+        margin-left: 2px;
+    }
+
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+
     .result-box.loading {
         display: flex;
         align-items: center;
@@ -750,7 +767,40 @@ function showLoading(elementId) {
 function showResult(elementId, content) {
     const el = document.getElementById(elementId);
     el.classList.remove('loading');
-    el.innerHTML = formatResult(content);
+    
+    // Format the content first
+    const formattedContent = formatResult(content);
+    
+    // Create a wrapper for the typewriter effect
+    el.innerHTML = '<div class="typewriter-content"></div><span class="typing-cursor">|</span>';
+    const contentEl = el.querySelector('.typewriter-content');
+    const cursorEl = el.querySelector('.typing-cursor');
+    
+    // Typewriter effect - character by character
+    let i = 0;
+    const plainText = content;
+    const speed = 15; // milliseconds per character (faster = lower number)
+    
+    function typeWriter() {
+        if (i < plainText.length) {
+            // Add character and format progressively
+            const currentText = plainText.substring(0, i + 1);
+            contentEl.innerHTML = formatResult(currentText);
+            i++;
+            
+            // Scroll to bottom as text appears
+            el.scrollTop = el.scrollHeight;
+            
+            // Vary speed slightly for natural feel
+            const variance = Math.random() * 10;
+            setTimeout(typeWriter, speed + variance);
+        } else {
+            // Remove cursor when done
+            cursorEl.style.display = 'none';
+        }
+    }
+    
+    typeWriter();
 }
 
 function showError(elementId, message) {
@@ -772,16 +822,32 @@ function formatResult(text) {
 }
 
 async function makeRequest(url, data) {
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': csrfToken,
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify({...data, language: currentLang})
-    });
-    return response.json();
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({...data, language: currentLang})
+        });
+        
+        const result = await response.json();
+        
+        // If server returned an error, throw it so it can be caught
+        if (!response.ok && !result.ok) {
+            throw new Error(result.error || 'Server error');
+        }
+        
+        return result;
+    } catch (error) {
+        // Check if it's a network error or a server error
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+            throw new Error(currentLang === 'bn' ? 'নেটওয়ার্ক ত্রুটি। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন।' : 'Network error. Please check your connection.');
+        }
+        throw error;
+    }
 }
 
 // Dhara Functions
