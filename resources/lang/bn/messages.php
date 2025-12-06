@@ -34,6 +34,8 @@ return [
     'ai_assistant' => 'এআই আইনি সহায়ক',
     'ai_placeholder' => 'একটি আইনি প্রশ্ন জিজ্ঞাসা করুন...',
     'ai_submit' => 'জিজ্ঞাসা করুন',
+    'ai_unavailable' => 'এআই সেবা অনুপলব্ধ। অনুগ্রহ করে কিছুক্ষণ পরে আবার চেষ্টা করুন।',
+    'ai_rate_limit' => 'অনুরোধ সীমা অতিক্রম করেছে। অনুগ্রহ করে কয়েক সেকেন্ড অপেক্ষা করে আবার চেষ্টা করুন।',
 
     // Auth
     'email' => 'ইমেইল',
@@ -267,6 +269,10 @@ return [
     'tool_draft_desc' => 'নোটিশ, আবেদন',
     'tool_question' => 'প্রশ্ন করুন',
     'tool_question_desc' => 'যেকোনো আইনি প্রশ্ন',
+    'tool_inheritance' => 'উত্তরাধিকার ক্যালকুলেটর',
+    'tool_inheritance_desc' => 'অংশ গণনা করুন',
+    'tool_timeline' => 'মামলার টাইমলাইন',
+    'tool_timeline_desc' => 'ঘটনার ক্রম',
 
     // Dhara Tool
     'dhara_title' => 'ধারা/দণ্ডবিধি খুঁজুন',
@@ -511,4 +517,15 @@ return [
     'focus_area' => 'বিশেষ ফোকাস এলাকা (ঐচ্ছিক)',
     'focus_placeholder' => 'যেমন: শাস্তির বিধান, আসামীর অধিকার...',
     'btn_analyze_pdf' => 'বিশ্লেষণ ও সারসংক্ষেপ',
+
+    // Case Types
+    'civil_case' => 'দেওয়ানি মামলা',
+    'criminal_case' => 'ফৌজদারি মামলা',
+    'family_case' => 'পারিবারিক মামলা',
+    'land_case' => 'জমি/সম্পত্তি মামলা',
+    'labor_case' => 'শ্রম মামলা',
+    'writ_case' => 'রিট পিটিশন',
+    'constitutional_case' => 'সাংবিধানিক মামলা',
+    'company_case' => 'কোম্পানি আইন মামলা',
+    'tax_case' => 'আয়কর/ভ্যাট মামলা',
 ];

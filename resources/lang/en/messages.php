@@ -39,6 +39,8 @@ return [
     'ai_assistant' => 'AI Legal Assistant',
     'ai_placeholder' => 'Ask a legal question...',
     'ai_submit' => 'Ask',
+    'ai_unavailable' => 'AI service unavailable. Please try again in a moment.',
+    'ai_rate_limit' => 'Too many requests. Please wait a few seconds and try again.',
 
     // Auth
     'email' => 'Email',
@@ -277,6 +279,10 @@ return [
     'tool_draft_desc' => 'Notice, Application',
     'tool_question' => 'Ask Question',
     'tool_question_desc' => 'Any Legal Question',
+    'tool_inheritance' => 'Inheritance Calculator',
+    'tool_inheritance_desc' => 'Calculate Shares',
+    'tool_timeline' => 'Case Timeline',
+    'tool_timeline_desc' => 'Event Chronology',
 
     // Dhara Tool
     'dhara_title' => 'Search Sections/Penal Code',
@@ -521,4 +527,15 @@ return [
     'focus_area' => 'Focus Area (Optional)',
     'focus_placeholder' => 'e.g., Penalty provisions, Rights of accused...',
     'btn_analyze_pdf' => 'Analyze & Summarize',
+
+    // Case Types
+    'civil_case' => 'Civil Case',
+    'criminal_case' => 'Criminal Case',
+    'family_case' => 'Family Case',
+    'land_case' => 'Land/Property Case',
+    'labor_case' => 'Labor Case',
+    'writ_case' => 'Writ Petition',
+    'constitutional_case' => 'Constitutional Case',
+    'company_case' => 'Company Law Case',
+    'tax_case' => 'Tax/VAT Case',
 ];

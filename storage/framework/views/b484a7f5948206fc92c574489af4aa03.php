@@ -1,5 +1,3 @@
-
-
 <?php $__env->startSection('no-padding', true); ?>
 
 <?php $__env->startPush('styles'); ?>
@@ -462,58 +460,27 @@
                         </div>
                     </div>
 
-                    <!-- Case Law Research - NEW -->
+                    <!-- =========== EXTRAORDINARY AI FEATURES =========== -->
+                    
+                    <!-- Inheritance Calculator -->
                     <div class="col-6">
-                        <div class="feature-card" data-tool="caselaw" onclick="selectTool('caselaw')">
-                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(202, 138, 4, 0.15) 100%); color: #eab308;">
-                                <i class="bi bi-journal-bookmark"></i>
-                            </div>
-                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_caselaw') ?? 'Case Law Research'); ?></h6>
-                            <small class="text-muted"><?php echo e(__('messages.tool_caselaw_desc') ?? 'Supreme Court Precedents'); ?></small>
-                        </div>
-                    </div>
-
-                    <!-- Legal Strategy - NEW -->
-                    <div class="col-6">
-                        <div class="feature-card" data-tool="strategy" onclick="selectTool('strategy')">
-                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.15) 0%, rgba(219, 39, 119, 0.15) 100%); color: #ec4899;">
-                                <i class="bi bi-lightbulb"></i>
-                            </div>
-                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_strategy') ?? 'Legal Strategy'); ?></h6>
-                            <small class="text-muted"><?php echo e(__('messages.tool_strategy_desc') ?? 'Case Strategy Advisor'); ?></small>
-                        </div>
-                    </div>
-
-                    <!-- Court Fee Calculator - NEW -->
-                    <div class="col-6">
-                        <div class="feature-card" data-tool="courtfee" onclick="selectTool('courtfee')">
+                        <div class="feature-card" data-tool="inheritance" onclick="selectTool('inheritance')">
                             <div class="feature-icon" style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.15) 100%); color: #22c55e;">
-                                <i class="bi bi-calculator"></i>
+                                <i class="bi bi-diagram-3"></i>
                             </div>
-                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_courtfee') ?? 'Court Fee'); ?></h6>
-                            <small class="text-muted"><?php echo e(__('messages.tool_courtfee_desc') ?? 'Fee Calculator'); ?></small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_inheritance') ?? 'Inheritance Calculator'); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_inheritance_desc') ?? 'Islamic/Hindu Shares'); ?></small>
                         </div>
                     </div>
 
-                    <!-- Citation Generator - NEW -->
+                    <!-- Case Timeline Builder -->
                     <div class="col-6">
-                        <div class="feature-card" data-tool="citation" onclick="selectTool('citation')">
-                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(147, 51, 234, 0.15) 100%); color: #a855f7;">
-                                <i class="bi bi-quote"></i>
+                        <div class="feature-card" data-tool="timeline" onclick="selectTool('timeline')">
+                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(109, 40, 217, 0.15) 100%); color: #8b5cf6;">
+                                <i class="bi bi-clock-history"></i>
                             </div>
-                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_citation') ?? 'Citation Generator'); ?></h6>
-                            <small class="text-muted"><?php echo e(__('messages.tool_citation_desc') ?? 'Legal Citations'); ?></small>
-                        </div>
-                    </div>
-
-                    <!-- BD Law PDF Summarizer - NEW -->
-                    <div class="col-6">
-                        <div class="feature-card" data-tool="lawpdf" onclick="selectTool('lawpdf')">
-                            <div class="feature-icon" style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%); color: #ef4444;">
-                                <i class="bi bi-file-earmark-pdf"></i>
-                            </div>
-                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_lawpdf') ?? 'BD Law Summarizer'); ?></h6>
-                            <small class="text-muted"><?php echo e(__('messages.tool_lawpdf_desc') ?? 'Upload & Summarize PDFs'); ?></small>
+                            <h6 class="fw-bold mb-1"><?php echo e(__('messages.tool_timeline') ?? 'Case Timeline'); ?></h6>
+                            <small class="text-muted"><?php echo e(__('messages.tool_timeline_desc') ?? 'Build Legal Timeline'); ?></small>
                         </div>
                     </div>
                 </div>
@@ -739,12 +706,11 @@
                         <div class="mb-3">
                             <label class="form-label fw-semibold"><?php echo e(__('messages.draft_type')); ?></label>
                             <select class="form-select" id="draft-type">
-                                <option value="<?php echo e(__('messages.draft_legal_notice')); ?>"><?php echo e(__('messages.draft_legal_notice')); ?></option>
-                                <option value="<?php echo e(__('messages.draft_application')); ?>"><?php echo e(__('messages.draft_application')); ?></option>
-                                <option value="<?php echo e(__('messages.draft_complaint')); ?>"><?php echo e(__('messages.draft_complaint')); ?></option>
-                                <option value="<?php echo e(__('messages.draft_agreement')); ?>"><?php echo e(__('messages.draft_agreement')); ?></option>
-                                <option value="<?php echo e(__('messages.draft_power_of_attorney')); ?>"><?php echo e(__('messages.draft_power_of_attorney')); ?></option>
-                                <option value="<?php echo e(__('messages.draft_affidavit')); ?>"><?php echo e(__('messages.draft_affidavit')); ?></option>
+                                <option value="legal_notice"><?php echo e(__('messages.draft_legal_notice')); ?></option>
+                                <option value="application"><?php echo e(__('messages.draft_application')); ?></option>
+                                <option value="complaint"><?php echo e(__('messages.draft_complaint')); ?></option>
+                                <option value="contract"><?php echo e(__('messages.draft_agreement')); ?></option>
+                                <option value="affidavit"><?php echo e(__('messages.draft_affidavit')); ?></option>
                             </select>
                         </div>
                         
@@ -792,321 +758,125 @@
                         <div id="question-result" class="result-box" style="display: none;"></div>
                     </div>
 
-                    <!-- Case Law Research Tool - NEW -->
-                    <div class="tool-panel" id="tool-caselaw">
+                    <!-- =========== EXTRAORDINARY AI TOOL PANELS =========== -->
+
+                    <!-- Inheritance Calculator Tool Panel -->
+                    <div class="tool-panel" id="tool-inheritance">
                         <h5 class="fw-bold mb-3">
-                            <i class="bi bi-journal-bookmark me-2" style="color: #eab308;"></i>
-                            <?php echo e(__('messages.caselaw_title') ?? 'Case Law Research'); ?>
+                            <i class="bi bi-diagram-3 me-2" style="color: #22c55e;"></i>
+                            <?php echo e(__('messages.inheritance_title') ?? 'Inheritance Calculator'); ?>
 
                         </h5>
-                        <p class="text-muted mb-4"><?php echo e(__('messages.caselaw_desc') ?? 'Search Bangladesh Supreme Court & High Court precedents and case laws'); ?></p>
-                        
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold"><?php echo e(__('messages.search_query') ?? 'Search Query'); ?></label>
-                            <input type="text" class="form-control" id="caselaw-query" placeholder="<?php echo e(__('messages.caselaw_placeholder') ?? 'e.g., Bail in murder case, Property dispute between siblings...'); ?>">
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.select_court') ?? 'Select Court'); ?></label>
-                                <select class="form-select" id="caselaw-court">
-                                    <option value="all"><?php echo e(__('messages.all_courts') ?? 'All Courts'); ?></option>
-                                    <option value="appellate_division"><?php echo e(__('messages.appellate_division') ?? 'Appellate Division'); ?></option>
-                                    <option value="high_court"><?php echo e(__('messages.high_court_division') ?? 'High Court Division'); ?></option>
-                                    <option value="supreme_court"><?php echo e(__('messages.supreme_court') ?? 'Supreme Court'); ?></option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.case_type') ?? 'Case Type'); ?></label>
-                                <select class="form-select" id="caselaw-type">
-                                    <option value="all"><?php echo e(__('messages.all_types') ?? 'All Types'); ?></option>
-                                    <option value="civil"><?php echo e(__('messages.civil') ?? 'Civil'); ?></option>
-                                    <option value="criminal"><?php echo e(__('messages.criminal') ?? 'Criminal'); ?></option>
-                                    <option value="constitutional"><?php echo e(__('messages.constitutional') ?? 'Constitutional'); ?></option>
-                                    <option value="writ"><?php echo e(__('messages.writ') ?? 'Writ'); ?></option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setCaseLawQuery('Bail conditions in non-bailable offence')">Bail Conditions</span>
-                            <span class="quick-action" onclick="setCaseLawQuery('Property succession Muslim law')">Inheritance Law</span>
-                            <span class="quick-action" onclick="setCaseLawQuery('Writ petition against government')">Writ Petition</span>
-                            <span class="quick-action" onclick="setCaseLawQuery('Fundamental rights violation')">Fundamental Rights</span>
-                        </div>
-
-                        <button class="btn px-4" style="background: linear-gradient(135deg, #eab308, #ca8a04); color: white;" onclick="searchCaseLaw()">
-                            <i class="bi bi-search me-2"></i><?php echo e(__('messages.btn_search') ?? 'Search Precedents'); ?>
-
-                        </button>
-
-                        <div id="caselaw-result" class="result-box" style="display: none;"></div>
-                    </div>
-
-                    <!-- Legal Strategy Tool - NEW -->
-                    <div class="tool-panel" id="tool-strategy">
-                        <h5 class="fw-bold mb-3">
-                            <i class="bi bi-lightbulb me-2" style="color: #ec4899;"></i>
-                            <?php echo e(__('messages.strategy_title') ?? 'Legal Strategy Advisor'); ?>
-
-                        </h5>
-                        <p class="text-muted mb-4"><?php echo e(__('messages.strategy_desc') ?? 'Get strategic recommendations for your legal case from AI'); ?></p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.inheritance_desc') ?? 'Calculate inheritance shares according to Islamic (Faraid) or Hindu Succession Law of Bangladesh'); ?></p>
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.case_type') ?? 'Case Type'); ?></label>
-                                <select class="form-select" id="strategy-casetype">
-                                    <option value="civil"><?php echo e(__('messages.civil_case') ?? 'Civil Case'); ?></option>
-                                    <option value="criminal"><?php echo e(__('messages.criminal_case') ?? 'Criminal Case'); ?></option>
-                                    <option value="family"><?php echo e(__('messages.family_case') ?? 'Family Case'); ?></option>
-                                    <option value="land"><?php echo e(__('messages.land_case') ?? 'Land/Property Case'); ?></option>
-                                    <option value="labor"><?php echo e(__('messages.labor_case') ?? 'Labor Case'); ?></option>
-                                    <option value="writ"><?php echo e(__('messages.writ_case') ?? 'Writ Petition'); ?></option>
-                                    <option value="constitutional"><?php echo e(__('messages.constitutional_case') ?? 'Constitutional Case'); ?></option>
-                                    <option value="company"><?php echo e(__('messages.company_case') ?? 'Company Case'); ?></option>
-                                    <option value="tax"><?php echo e(__('messages.tax_case') ?? 'Tax Case'); ?></option>
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.law_system') ?? 'Inheritance Law System'); ?></label>
+                                <select class="form-select" id="inheritance-system">
+                                    <option value="islamic"><?php echo e(__('messages.islamic_faraid') ?? 'Islamic Law (ফারায়েজ)'); ?></option>
+                                    <option value="hindu"><?php echo e(__('messages.hindu_succession') ?? 'Hindu Succession Law'); ?></option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.your_position') ?? 'Your Position'); ?></label>
-                                <select class="form-select" id="strategy-position">
-                                    <option value="plaintiff"><?php echo e(__('messages.plaintiff') ?? 'Plaintiff/বাদী'); ?></option>
-                                    <option value="defendant"><?php echo e(__('messages.defendant') ?? 'Defendant/বিবাদী'); ?></option>
-                                    <option value="petitioner"><?php echo e(__('messages.petitioner') ?? 'Petitioner/আবেদনকারী'); ?></option>
-                                    <option value="respondent"><?php echo e(__('messages.respondent') ?? 'Respondent/প্রতিপক্ষ'); ?></option>
-                                    <option value="appellant"><?php echo e(__('messages.appellant') ?? 'Appellant/আপিলকারী'); ?></option>
-                                    <option value="accused"><?php echo e(__('messages.accused') ?? 'Accused/আসামী'); ?></option>
-                                    <option value="complainant"><?php echo e(__('messages.complainant') ?? 'Complainant/অভিযোগকারী'); ?></option>
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.deceased_gender') ?? 'Deceased Gender'); ?></label>
+                                <select class="form-select" id="inheritance-gender">
+                                    <option value="male"><?php echo e(__('messages.male') ?? 'Male (পুরুষ)'); ?></option>
+                                    <option value="female"><?php echo e(__('messages.female') ?? 'Female (মহিলা)'); ?></option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.current_stage') ?? 'Current Stage'); ?></label>
-                                <select class="form-select" id="strategy-stage">
-                                    <option value="pre_filing"><?php echo e(__('messages.pre_filing') ?? 'Pre-Filing'); ?></option>
-                                    <option value="filed"><?php echo e(__('messages.case_filed') ?? 'Case Filed'); ?></option>
-                                    <option value="hearing"><?php echo e(__('messages.hearing_stage') ?? 'Hearing Stage'); ?></option>
-                                    <option value="evidence"><?php echo e(__('messages.evidence_stage') ?? 'Evidence Stage'); ?></option>
-                                    <option value="argument"><?php echo e(__('messages.argument_stage') ?? 'Argument Stage'); ?></option>
-                                    <option value="appeal"><?php echo e(__('messages.appeal_stage') ?? 'Appeal Stage'); ?></option>
-                                </select>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.total_estate') ?? 'Total Estate Value (৳)'); ?></label>
+                                <input type="number" class="form-control" id="inheritance-estate" placeholder="e.g., 5000000">
                             </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.urgency') ?? 'Urgency Level'); ?></label>
-                                <select class="form-select" id="strategy-urgency">
-                                    <option value="low"><?php echo e(__('messages.low') ?? 'Low'); ?></option>
-                                    <option value="medium" selected><?php echo e(__('messages.medium') ?? 'Medium'); ?></option>
-                                    <option value="high"><?php echo e(__('messages.high') ?? 'High'); ?></option>
-                                    <option value="urgent"><?php echo e(__('messages.very_urgent') ?? 'Very Urgent'); ?></option>
-                                </select>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.sons') ?? 'Number of Sons'); ?></label>
+                                <input type="number" class="form-control" id="inheritance-sons" value="0" min="0">
                             </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold"><?php echo e(__('messages.case_description') ?? 'Case Description'); ?></label>
-                            <textarea class="form-control" id="strategy-description" rows="5" placeholder="<?php echo e(__('messages.strategy_placeholder') ?? 'Describe your case in detail - facts, parties involved, dispute details, what you want to achieve...'); ?>"></textarea>
-                        </div>
-
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="strategy-budget">
-                            <label class="form-check-label" for="strategy-budget">
-                                <?php echo e(__('messages.budget_constraint') ?? 'I have budget constraints'); ?>
-
-                            </label>
-                        </div>
-
-                        <button class="btn px-4" style="background: linear-gradient(135deg, #ec4899, #db2777); color: white;" onclick="getLegalStrategy()">
-                            <i class="bi bi-lightbulb me-2"></i><?php echo e(__('messages.btn_strategy') ?? 'Get Strategy Advice'); ?>
-
-                        </button>
-
-                        <div id="strategy-result" class="result-box" style="display: none;"></div>
-                    </div>
-
-                    <!-- Court Fee Calculator Tool - NEW -->
-                    <div class="tool-panel" id="tool-courtfee">
-                        <h5 class="fw-bold mb-3">
-                            <i class="bi bi-calculator me-2" style="color: #22c55e;"></i>
-                            <?php echo e(__('messages.courtfee_title') ?? 'Court Fee Calculator'); ?>
-
-                        </h5>
-                        <p class="text-muted mb-4"><?php echo e(__('messages.courtfee_desc') ?? 'Calculate court fees based on suit value according to Bangladesh law'); ?></p>
-                        
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.suit_value') ?? 'Suit Value (৳)'); ?></label>
-                                <input type="number" class="form-control" id="courtfee-value" placeholder="e.g., 500000" min="1">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.case_type') ?? 'Case Type'); ?></label>
-                                <select class="form-select" id="courtfee-casetype">
-                                    <option value="money_suit"><?php echo e(__('messages.money_suit') ?? 'Money Suit'); ?></option>
-                                    <option value="property_suit"><?php echo e(__('messages.property_suit') ?? 'Property Suit'); ?></option>
-                                    <option value="partition_suit"><?php echo e(__('messages.partition_suit') ?? 'Partition Suit'); ?></option>
-                                    <option value="injunction"><?php echo e(__('messages.injunction') ?? 'Injunction'); ?></option>
-                                    <option value="declaration"><?php echo e(__('messages.declaration') ?? 'Declaration'); ?></option>
-                                    <option value="specific_performance"><?php echo e(__('messages.specific_performance') ?? 'Specific Performance'); ?></option>
-                                    <option value="appeal"><?php echo e(__('messages.appeal') ?? 'Appeal'); ?></option>
-                                    <option value="revision"><?php echo e(__('messages.revision') ?? 'Revision'); ?></option>
-                                    <option value="writ"><?php echo e(__('messages.writ') ?? 'Writ Petition'); ?></option>
-                                    <option value="execution"><?php echo e(__('messages.execution') ?? 'Execution'); ?></option>
-                                </select>
+                            <div class="col-md-4">
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.daughters') ?? 'Number of Daughters'); ?></label>
+                                <input type="number" class="form-control" id="inheritance-daughters" value="0" min="0">
                             </div>
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.court') ?? 'Court'); ?></label>
-                                <select class="form-select" id="courtfee-court">
-                                    <option value="civil_court"><?php echo e(__('messages.civil_court') ?? 'Civil Court'); ?></option>
-                                    <option value="district_court"><?php echo e(__('messages.district_court') ?? 'District Court'); ?></option>
-                                    <option value="high_court"><?php echo e(__('messages.high_court') ?? 'High Court'); ?></option>
-                                    <option value="appellate_division"><?php echo e(__('messages.appellate_div') ?? 'Appellate Division'); ?></option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 d-flex align-items-end gap-3">
+                            <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="courtfee-govt">
-                                    <label class="form-check-label" for="courtfee-govt">
-                                        <?php echo e(__('messages.govt_party') ?? 'Government is a party'); ?>
+                                    <input class="form-check-input" type="checkbox" id="inheritance-spouse">
+                                    <label class="form-check-label" for="inheritance-spouse">
+                                        <?php echo e(__('messages.has_spouse') ?? 'Spouse Alive (স্বামী/স্ত্রী)'); ?>
 
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-md-4">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="courtfee-appeal">
-                                    <label class="form-check-label" for="courtfee-appeal">
-                                        <?php echo e(__('messages.is_appeal') ?? 'Is Appeal'); ?>
+                                    <input class="form-check-input" type="checkbox" id="inheritance-mother">
+                                    <label class="form-check-label" for="inheritance-mother">
+                                        <?php echo e(__('messages.has_mother') ?? 'Mother Alive (মা)'); ?>
+
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="inheritance-father">
+                                    <label class="form-check-label" for="inheritance-father">
+                                        <?php echo e(__('messages.has_father') ?? 'Father Alive (বাবা)'); ?>
 
                                     </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setCourtFee(100000)">৳1 Lakh</span>
-                            <span class="quick-action" onclick="setCourtFee(500000)">৳5 Lakh</span>
-                            <span class="quick-action" onclick="setCourtFee(1000000)">৳10 Lakh</span>
-                            <span class="quick-action" onclick="setCourtFee(5000000)">৳50 Lakh</span>
-                        </div>
-
-                        <button class="btn px-4" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;" onclick="calculateCourtFee()">
-                            <i class="bi bi-calculator me-2"></i><?php echo e(__('messages.btn_calculate') ?? 'Calculate Fee'); ?>
+                        <button class="btn px-4" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;" onclick="calculateInheritance()">
+                            <i class="bi bi-calculator me-2"></i><?php echo e(__('messages.btn_calculate_inheritance') ?? 'Calculate Shares'); ?>
 
                         </button>
 
-                        <div id="courtfee-result" class="result-box" style="display: none;"></div>
+                        <div id="inheritance-result" class="result-box" style="display: none;"></div>
                     </div>
 
-                    <!-- Citation Generator Tool - NEW -->
-                    <div class="tool-panel" id="tool-citation">
+                    <!-- Case Timeline Builder Tool Panel -->
+                    <div class="tool-panel" id="tool-timeline">
                         <h5 class="fw-bold mb-3">
-                            <i class="bi bi-quote me-2" style="color: #a855f7;"></i>
-                            <?php echo e(__('messages.citation_title') ?? 'Legal Citation Generator'); ?>
+                            <i class="bi bi-clock-history me-2" style="color: #8b5cf6;"></i>
+                            <?php echo e(__('messages.timeline_title') ?? 'Case Timeline Builder'); ?>
 
                         </h5>
-                        <p class="text-muted mb-4"><?php echo e(__('messages.citation_desc') ?? 'Generate proper legal citations for Bangladesh case laws, statutes, and legal documents'); ?></p>
+                        <p class="text-muted mb-4"><?php echo e(__('messages.timeline_desc') ?? 'Build a comprehensive legal timeline with key events, deadlines, and limitation periods'); ?></p>
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.citation_type') ?? 'Citation Type'); ?></label>
-                                <select class="form-select" id="citation-type">
-                                    <option value="case_law"><?php echo e(__('messages.citation_caselaw') ?? 'Case Law'); ?></option>
-                                    <option value="statute"><?php echo e(__('messages.citation_statute') ?? 'Statute/Act'); ?></option>
-                                    <option value="constitution"><?php echo e(__('messages.citation_constitution') ?? 'Constitution'); ?></option>
-                                    <option value="ordinance"><?php echo e(__('messages.citation_ordinance') ?? 'Ordinance'); ?></option>
-                                    <option value="gazette"><?php echo e(__('messages.citation_gazette') ?? 'Gazette'); ?></option>
-                                    <option value="book"><?php echo e(__('messages.citation_book') ?? 'Legal Book'); ?></option>
-                                    <option value="article"><?php echo e(__('messages.citation_article') ?? 'Journal Article'); ?></option>
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.case_nature') ?? 'Case Nature'); ?></label>
+                                <select class="form-select" id="timeline-nature">
+                                    <option value="civil"><?php echo e(__('messages.nature_civil') ?? 'Civil Suit'); ?></option>
+                                    <option value="criminal"><?php echo e(__('messages.nature_criminal') ?? 'Criminal Case'); ?></option>
+                                    <option value="family"><?php echo e(__('messages.nature_family') ?? 'Family Court Case'); ?></option>
+                                    <option value="labor"><?php echo e(__('messages.nature_labor') ?? 'Labor Court Case'); ?></option>
+                                    <option value="writ"><?php echo e(__('messages.nature_writ') ?? 'Writ Petition'); ?></option>
+                                    <option value="company"><?php echo e(__('messages.nature_company') ?? 'Company Law Matter'); ?></option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.citation_format') ?? 'Citation Format'); ?></label>
-                                <select class="form-select" id="citation-format">
-                                    <option value="bangladesh"><?php echo e(__('messages.format_bd') ?? 'Bangladesh Standard'); ?></option>
-                                    <option value="oscola">OSCOLA (UK)</option>
-                                    <option value="blueBook">Bluebook (US)</option>
-                                    <option value="aglc">AGLC (Australian)</option>
-                                </select>
+                                <label class="form-label fw-semibold"><?php echo e(__('messages.start_date') ?? 'Incident/Case Start Date'); ?></label>
+                                <input type="date" class="form-control" id="timeline-startdate">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label fw-semibold"><?php echo e(__('messages.citation_details') ?? 'Source Details'); ?></label>
-                            <textarea class="form-control" id="citation-details" rows="4" placeholder="<?php echo e(__('messages.citation_placeholder') ?? 'Enter case name, year, court, parties, volume, page number, law name, section, etc.'); ?>"></textarea>
+                            <label class="form-label fw-semibold"><?php echo e(__('messages.events_description') ?? 'Events Description'); ?></label>
+                            <textarea class="form-control" id="timeline-events" rows="5" placeholder="<?php echo e(__('messages.timeline_placeholder') ?? 'List all events with dates: incident occurred, FIR filed, arrest made, bail obtained, hearing dates, evidence submitted...'); ?>"></textarea>
                         </div>
 
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setCitationExample('case')">Case: BLAST v Bangladesh</span>
-                            <span class="quick-action" onclick="setCitationExample('statute')">Penal Code Section 302</span>
-                            <span class="quick-action" onclick="setCitationExample('constitution')">Article 102 Constitution</span>
-                        </div>
-
-                        <button class="btn px-4" style="background: linear-gradient(135deg, #a855f7, #9333ea); color: white;" onclick="generateCitation()">
-                            <i class="bi bi-quote me-2"></i><?php echo e(__('messages.btn_generate') ?? 'Generate Citation'); ?>
+                        <button class="btn px-4" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white;" onclick="buildCaseTimeline()">
+                            <i class="bi bi-clock-history me-2"></i><?php echo e(__('messages.btn_build_timeline') ?? 'Build Timeline'); ?>
 
                         </button>
 
-                        <div id="citation-result" class="result-box" style="display: none;"></div>
-                    </div>
-
-                    <!-- BD Law PDF Summarizer Tool - NEW -->
-                    <div class="tool-panel" id="tool-lawpdf">
-                        <h5 class="fw-bold mb-3">
-                            <i class="bi bi-file-earmark-pdf me-2" style="color: #ef4444;"></i>
-                            <?php echo e(__('messages.lawpdf_title') ?? 'BD Law PDF Summarizer'); ?>
-
-                        </h5>
-                        <p class="text-muted mb-4"><?php echo e(__('messages.lawpdf_desc') ?? 'Upload any Bangladesh law PDF and get AI-powered comprehensive summary and analysis'); ?></p>
-                        
-                        <!-- Upload Area -->
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold"><?php echo e(__('messages.upload_pdf') ?? 'Upload Law PDF'); ?></label>
-                            <div class="upload-zone" id="pdf-upload-zone" onclick="document.getElementById('pdf-file-input').click()">
-                                <input type="file" id="pdf-file-input" accept=".pdf" style="display: none;" onchange="handlePdfSelect(this)">
-                                <div class="upload-content" id="upload-content">
-                                    <i class="bi bi-cloud-arrow-up" style="font-size: 3rem; color: #ef4444;"></i>
-                                    <p class="mt-2 mb-1 fw-semibold"><?php echo e(__('messages.drag_drop') ?? 'Click to upload or drag & drop'); ?></p>
-                                    <small class="text-muted"><?php echo e(__('messages.pdf_only') ?? 'PDF files only, max 10MB'); ?></small>
-                                </div>
-                                <div class="upload-success" id="upload-success" style="display: none;">
-                                    <i class="bi bi-file-earmark-pdf-fill" style="font-size: 2.5rem; color: #ef4444;"></i>
-                                    <p class="mt-2 mb-0 fw-semibold" id="uploaded-filename">document.pdf</p>
-                                    <small class="text-success"><i class="bi bi-check-circle me-1"></i><?php echo e(__('messages.ready_analyze') ?? 'Ready to analyze'); ?></small>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.summary_type') ?? 'Summary Type'); ?></label>
-                                <select class="form-select" id="lawpdf-type">
-                                    <option value="full"><?php echo e(__('messages.summary_full') ?? 'Full Comprehensive Summary'); ?></option>
-                                    <option value="sections"><?php echo e(__('messages.summary_sections') ?? 'Section-by-Section Analysis'); ?></option>
-                                    <option value="key_points"><?php echo e(__('messages.summary_keypoints') ?? 'Key Points Only'); ?></option>
-                                    <option value="comparison"><?php echo e(__('messages.summary_comparison') ?? 'Compare with Related Laws'); ?></option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label fw-semibold"><?php echo e(__('messages.focus_area') ?? 'Focus Area (Optional)'); ?></label>
-                                <input type="text" class="form-control" id="lawpdf-focus" placeholder="<?php echo e(__('messages.focus_placeholder') ?? 'e.g., Penalty provisions, Rights of accused...'); ?>">
-                            </div>
-                        </div>
-
-                        <div class="d-flex flex-wrap gap-2 mb-3">
-                            <span class="quick-action" onclick="setLawPdfFocus('শাস্তির বিধান')">শাস্তির বিধান</span>
-                            <span class="quick-action" onclick="setLawPdfFocus('নাগরিক অধিকার')">নাগরিক অধিকার</span>
-                            <span class="quick-action" onclick="setLawPdfFocus('আপিলের বিধান')">আপিলের বিধান</span>
-                            <span class="quick-action" onclick="setLawPdfFocus('Definitions')">Definitions</span>
-                        </div>
-
-                        <button class="btn px-4" id="analyze-pdf-btn" style="background: linear-gradient(135deg, #ef4444, #dc2626); color: white;" onclick="analyzeLawPdf()" disabled>
-                            <i class="bi bi-cpu me-2"></i><?php echo e(__('messages.btn_analyze_pdf') ?? 'Analyze & Summarize'); ?>
-
-                        </button>
-
-                        <div id="lawpdf-result" class="result-box" style="display: none;"></div>
+                        <div id="timeline-result" class="result-box" style="display: none;"></div>
                     </div>
                 </div>
             </div>
@@ -1447,257 +1217,74 @@ async function askQuestion() {
 }
 
 // =====================================================
-// NEW AI FEATURES - Case Law, Strategy, Court Fee, Citation
+// EXTRAORDINARY AI FEATURES - 2 New Tools
 // =====================================================
 
-// Case Law Research
-function setCaseLawQuery(query) {
-    document.getElementById('caselaw-query').value = query;
-}
-
-async function searchCaseLaw() {
-    const query = document.getElementById('caselaw-query').value;
-    const court = document.getElementById('caselaw-court').value;
-    const caseType = document.getElementById('caselaw-type').value;
+// Inheritance Calculator
+async function calculateInheritance() {
+    const system = document.getElementById('inheritance-system').value;
+    const gender = document.getElementById('inheritance-gender').value;
+    const estate = document.getElementById('inheritance-estate').value;
+    const sons = parseInt(document.getElementById('inheritance-sons').value) || 0;
+    const daughters = parseInt(document.getElementById('inheritance-daughters').value) || 0;
+    const hasSpouse = document.getElementById('inheritance-spouse').checked;
+    const hasMother = document.getElementById('inheritance-mother').checked;
+    const hasFather = document.getElementById('inheritance-father').checked;
     
-    if (!query) {
-        alert(currentLang === 'bn' ? 'অনুগ্রহ করে অনুসন্ধান লিখুন' : 'Please enter search query');
+    if (!estate || estate <= 0) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে সম্পত্তির মূল্য দিন' : 'Please enter estate value');
         return;
     }
     
-    showLoading('caselaw-result');
+    showLoading('inheritance-result');
     
     try {
-        const data = await makeRequest('/ai/case-law-search', { 
-            query: query, 
-            court: court,
-            case_type: caseType
+        const data = await makeRequest('/ai/inheritance', { 
+            law_system: system,
+            deceased_gender: gender,
+            estate_value: parseFloat(estate),
+            sons: sons,
+            daughters: daughters,
+            has_spouse: hasSpouse,
+            has_mother: hasMother,
+            has_father: hasFather
         });
         if (data.ok) {
-            showResult('caselaw-result', data.result);
+            showResult('inheritance-result', data.result);
         } else {
-            showError('caselaw-result', data.error);
+            showError('inheritance-result', data.error);
         }
     } catch (e) {
-        showError('caselaw-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
+        showError('inheritance-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 
-// Legal Strategy Advisor
-async function getLegalStrategy() {
-    const caseType = document.getElementById('strategy-casetype').value;
-    const position = document.getElementById('strategy-position').value;
-    const stage = document.getElementById('strategy-stage').value;
-    const urgency = document.getElementById('strategy-urgency').value;
-    const description = document.getElementById('strategy-description').value;
-    const budgetConcern = document.getElementById('strategy-budget').checked;
+// Case Timeline Builder
+async function buildCaseTimeline() {
+    const nature = document.getElementById('timeline-nature').value;
+    const startDate = document.getElementById('timeline-startdate').value;
+    const events = document.getElementById('timeline-events').value;
     
-    if (!description) {
-        alert(currentLang === 'bn' ? 'অনুগ্রহ করে মামলার বিবরণ দিন' : 'Please provide case description');
+    if (!events) {
+        alert(currentLang === 'bn' ? 'অনুগ্রহ করে ঘটনাগুলো বর্ণনা করুন' : 'Please describe the events');
         return;
     }
     
-    showLoading('strategy-result');
+    showLoading('timeline-result');
     
     try {
-        const data = await makeRequest('/ai/legal-strategy', { 
-            case_type: caseType,
-            client_position: position,
-            current_stage: stage,
-            urgency: urgency,
-            case_description: description,
-            budget_concern: budgetConcern
+        const data = await makeRequest('/ai/case-timeline', { 
+            case_nature: nature,
+            start_date: startDate,
+            events_description: events
         });
         if (data.ok) {
-            showResult('strategy-result', data.result);
+            showResult('timeline-result', data.result);
         } else {
-            showError('strategy-result', data.error);
+            showError('timeline-result', data.error);
         }
     } catch (e) {
-        showError('strategy-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
-    }
-}
-
-// Court Fee Calculator
-function setCourtFee(value) {
-    document.getElementById('courtfee-value').value = value;
-}
-
-async function calculateCourtFee() {
-    const suitValue = document.getElementById('courtfee-value').value;
-    const caseType = document.getElementById('courtfee-casetype').value;
-    const court = document.getElementById('courtfee-court').value;
-    const isGovt = document.getElementById('courtfee-govt').checked;
-    const isAppeal = document.getElementById('courtfee-appeal').checked;
-    
-    if (!suitValue || suitValue <= 0) {
-        alert(currentLang === 'bn' ? 'অনুগ্রহ করে মামলার মূল্য দিন' : 'Please enter suit value');
-        return;
-    }
-    
-    showLoading('courtfee-result');
-    
-    try {
-        const data = await makeRequest('/ai/court-fee', { 
-            suit_value: parseFloat(suitValue),
-            case_type: caseType,
-            court: court,
-            is_government_party: isGovt,
-            is_appeal: isAppeal
-        });
-        if (data.ok) {
-            showResult('courtfee-result', data.result);
-        } else {
-            showError('courtfee-result', data.error);
-        }
-    } catch (e) {
-        showError('courtfee-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
-    }
-}
-
-// Citation Generator
-function setCitationExample(type) {
-    const examples = {
-        'case': 'BLAST vs Bangladesh, 2010, Appellate Division, ADC Vol 7 Page 95, Writ Petition regarding section 54',
-        'statute': 'Penal Code 1860, Section 302, Murder, Bangladesh',
-        'constitution': 'Constitution of Bangladesh, Article 102, Writ Jurisdiction of High Court Division'
-    };
-    document.getElementById('citation-details').value = examples[type] || '';
-}
-
-async function generateCitation() {
-    const citationType = document.getElementById('citation-type').value;
-    const format = document.getElementById('citation-format').value;
-    const details = document.getElementById('citation-details').value;
-    
-    if (!details) {
-        alert(currentLang === 'bn' ? 'অনুগ্রহ করে সোর্সের বিস্তারিত দিন' : 'Please provide source details');
-        return;
-    }
-    
-    showLoading('citation-result');
-    
-    try {
-        const data = await makeRequest('/ai/citation', { 
-            citation_type: citationType,
-            format: format,
-            details: details
-        });
-        if (data.ok) {
-            showResult('citation-result', data.result);
-        } else {
-            showError('citation-result', data.error);
-        }
-    } catch (e) {
-        showError('citation-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
-    }
-}
-
-// =====================================================
-// BD Law PDF Summarizer
-// =====================================================
-
-let selectedPdfFile = null;
-
-// Setup drag and drop
-document.addEventListener('DOMContentLoaded', function() {
-    const uploadZone = document.getElementById('pdf-upload-zone');
-    if (uploadZone) {
-        uploadZone.addEventListener('dragover', function(e) {
-            e.preventDefault();
-            this.classList.add('dragover');
-        });
-        
-        uploadZone.addEventListener('dragleave', function(e) {
-            e.preventDefault();
-            this.classList.remove('dragover');
-        });
-        
-        uploadZone.addEventListener('drop', function(e) {
-            e.preventDefault();
-            this.classList.remove('dragover');
-            const files = e.dataTransfer.files;
-            if (files.length > 0 && files[0].type === 'application/pdf') {
-                handlePdfFile(files[0]);
-            } else {
-                alert(currentLang === 'bn' ? 'শুধুমাত্র PDF ফাইল আপলোড করুন' : 'Please upload PDF files only');
-            }
-        });
-    }
-});
-
-function handlePdfSelect(input) {
-    if (input.files && input.files[0]) {
-        handlePdfFile(input.files[0]);
-    }
-}
-
-function handlePdfFile(file) {
-    if (file.size > 10 * 1024 * 1024) {
-        alert(currentLang === 'bn' ? 'ফাইল সাইজ 10MB এর বেশি হতে পারবে না' : 'File size cannot exceed 10MB');
-        return;
-    }
-    
-    selectedPdfFile = file;
-    
-    // Update UI
-    document.getElementById('upload-content').style.display = 'none';
-    document.getElementById('upload-success').style.display = 'block';
-    document.getElementById('uploaded-filename').textContent = file.name;
-    document.getElementById('pdf-upload-zone').classList.add('has-file');
-    document.getElementById('analyze-pdf-btn').disabled = false;
-}
-
-function setLawPdfFocus(focus) {
-    document.getElementById('lawpdf-focus').value = focus;
-}
-
-async function analyzeLawPdf() {
-    if (!selectedPdfFile) {
-        alert(currentLang === 'bn' ? 'অনুগ্রহ করে একটি PDF ফাইল আপলোড করুন' : 'Please upload a PDF file');
-        return;
-    }
-    
-    const summaryType = document.getElementById('lawpdf-type').value;
-    const focusArea = document.getElementById('lawpdf-focus').value;
-    
-    showLoading('lawpdf-result');
-    
-    // Disable button during processing
-    const btn = document.getElementById('analyze-pdf-btn');
-    btn.disabled = true;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>' + 
-        (currentLang === 'bn' ? 'বিশ্লেষণ হচ্ছে...' : 'Analyzing...');
-    
-    try {
-        const formData = new FormData();
-        formData.append('pdf_file', selectedPdfFile);
-        formData.append('summary_type', summaryType);
-        formData.append('focus_area', focusArea);
-        formData.append('language', currentLang);
-        
-        const response = await fetch('/ai/summarize-law-pdf', {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Accept': 'application/json'
-            },
-            body: formData
-        });
-        
-        const data = await response.json();
-        
-        if (data.ok) {
-            showResult('lawpdf-result', data.result);
-        } else {
-            showError('lawpdf-result', data.error);
-        }
-    } catch (e) {
-        showError('lawpdf-result', currentLang === 'bn' ? 'পিডিএফ বিশ্লেষণে সমস্যা হয়েছে। আবার চেষ্টা করুন।' : 'Error analyzing PDF. Please try again.');
-    } finally {
-        btn.disabled = false;
-        btn.innerHTML = '<i class="bi bi-cpu me-2"></i>' + 
-            (currentLang === 'bn' ? 'বিশ্লেষণ ও সারসংক্ষেপ' : 'Analyze & Summarize');
+        showError('timeline-result', currentLang === 'bn' ? 'একটি ত্রুটি হয়েছে। আবার চেষ্টা করুন।' : 'An error occurred. Please try again.');
     }
 }
 </script>
