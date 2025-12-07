@@ -809,7 +809,7 @@
         <div class="position-absolute" style="inset: 0; background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 50px 50px;"></div>
         
         <div class="container text-center py-5 position-relative reveal">
-            <span class="badge bg-white bg-opacity-15 text-white px-4 py-2 rounded-pill mb-4 fw-semibold" style="backdrop-filter: blur(10px);">
+            <span class="badge px-4 py-2 rounded-pill mb-4 fw-semibold" style="background: rgba(16, 185, 129, 0.2); color: #34d399; backdrop-filter: blur(10px); border: 1px solid rgba(52, 211, 153, 0.3);">
                 <i class="bi bi-rocket-takeoff me-2"></i>{{ __('messages.get_started_today') }}
             </span>
             <h2 class="fw-bold mb-4 gradient-text-animate" style="font-size: 3rem; -webkit-text-fill-color: white;">{{ __('messages.cta_title') }}</h2>

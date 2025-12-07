@@ -2,124 +2,131 @@
 
 @section('content')
     <style>
-        /* Premium Articles Page */
+        /* ===== LAWLITE ARTICLES THEME ===== */
+        
+        /* Hero Section */
         .articles-hero {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(79, 70, 229, 0.08) 50%, rgba(245, 158, 11, 0.08) 100%);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            margin-bottom: 2.5rem;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 50%, #f0fdf4 100%);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
+
         .articles-hero::before {
             content: '';
             position: absolute;
-            top: -30%;
-            left: -10%;
+            top: -50%;
+            right: -10%;
             width: 250px;
             height: 250px;
-            background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
-            animation: floatBlob 10s ease-in-out infinite;
-        }
-        .articles-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20%;
-            right: -10%;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
-            animation: floatBlob 8s ease-in-out infinite reverse;
-        }
-        @keyframes floatBlob {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(20px, -20px) scale(1.1); }
-            66% { transform: translate(-10px, 10px) scale(0.95); }
-        }
-        .hero-title {
-            background: linear-gradient(135deg, #10b981 0%, #4f46e5 50%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        /* Glass Search */
+        .hero-title {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* Search */
         .glass-search {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
             border-radius: 16px;
             padding: 1.25rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
         }
+
         .search-input {
-            border: 2px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
             padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            background: #ffffff;
+            color: #1f2937;
         }
+
         .search-input:focus {
             border-color: #10b981;
-            box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none;
         }
+
+        .search-input::placeholder {
+            color: #9ca3af;
+        }
+
         .search-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            background: #10b981;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 0.75rem 1.5rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            color: white;
+            transition: all 0.25s ease;
         }
+
         .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            color: white;
         }
 
         /* Article Cards */
         .article-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            transition: all 0.3s ease;
             overflow: hidden;
             height: 100%;
+            position: relative;
         }
+
         .article-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #10b981, #4f46e5);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981 0%, #06b6d4 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
+
         .article-card:hover::before {
-            transform: scaleX(1);
+            opacity: 1;
         }
+
         .article-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            border-color: rgba(16, 185, 129, 0.2);
         }
+
         .article-card .card-body {
-            padding: 1.75rem;
+            padding: 1.5rem;
         }
+
         .article-title {
             font-weight: 700;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             margin-bottom: 0.75rem;
             line-height: 1.4;
+            color: #1f2937;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+
         .article-excerpt {
-            color: #64748b;
+            color: #6b7280;
             font-size: 0.95rem;
             line-height: 1.6;
             display: -webkit-box;
@@ -128,74 +135,110 @@
             overflow: hidden;
             margin-bottom: 1.25rem;
         }
+
         .read-btn {
-            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            color: white;
+            background: #10b981;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            opacity: 1 !important;
+            text-shadow: none !important;
             border: none;
-            border-radius: 50px;
-            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            padding: 0.6rem 1.25rem;
             font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 0.875rem;
+            transition: all 0.25s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
         }
+
         .read-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
-            color: white;
+            background: #059669;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            opacity: 1 !important;
         }
+
         .read-btn i {
-            transition: transform 0.3s ease;
+            transition: transform 0.25s ease;
         }
+
         .read-btn:hover i {
-            transform: translateX(4px);
+            transform: translateX(3px);
         }
 
         /* Empty State */
         .empty-state {
             padding: 4rem 2rem;
             text-align: center;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
+            background: #f8fafc;
+            border-radius: 16px;
+            border: 1px solid #e5e7eb;
         }
+
         .empty-icon {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(79, 70, 229, 0.1) 100%);
+            background: rgba(16, 185, 129, 0.1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
         }
 
-        /* Dark Mode */
+        /* ===== DARK MODE ===== */
         html[data-theme="dark"] .articles-hero {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(79, 70, 229, 0.12) 50%, rgba(245, 158, 11, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(16, 185, 129, 0.03) 100%);
+            border-color: rgba(16, 185, 129, 0.15);
         }
+
+        html[data-theme="dark"] .hero-title {
+            color: #f1f5f9;
+        }
+
         html[data-theme="dark"] .glass-search {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            border-color: #334155;
         }
+
         html[data-theme="dark"] .search-input {
-            background: rgba(15, 23, 42, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
+            background: #0f172a;
+            border-color: #334155;
+            color: #f1f5f9;
         }
+
+        html[data-theme="dark"] .search-input::placeholder {
+            color: #64748b;
+        }
+
         html[data-theme="dark"] .article-card {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            border-color: #334155;
         }
+
+        html[data-theme="dark"] .article-card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
         html[data-theme="dark"] .article-title {
             color: #f1f5f9;
         }
+
         html[data-theme="dark"] .article-excerpt {
             color: #94a3b8;
         }
+
         html[data-theme="dark"] .empty-state {
-            background: rgba(30, 41, 59, 0.5);
+            background: #1e293b;
+            border-color: #334155;
+        }
+
+        html[data-theme="dark"] .text-muted {
+            color: #94a3b8 !important;
         }
     </style>
 

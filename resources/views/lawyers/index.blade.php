@@ -2,6 +2,22 @@
 
 @section('content')
     <style>
+        /* ===== LAWLITE PROFESSIONAL THEME ===== */
+        :root {
+            --ll-primary: #10b981;
+            --ll-primary-dark: #059669;
+            --ll-primary-light: #34d399;
+            --ll-secondary: #0f172a;
+            --ll-accent: #06b6d4;
+            --ll-text: #1f2937;
+            --ll-text-muted: #6b7280;
+            --ll-bg: #f8fafc;
+            --ll-card-bg: #ffffff;
+            --ll-border: #e5e7eb;
+            --ll-shadow: rgba(0, 0, 0, 0.08);
+            --ll-shadow-lg: rgba(0, 0, 0, 0.12);
+        }
+
         .marquee-container {
             display: flex;
             overflow: hidden;
@@ -18,263 +34,353 @@
         }
 
         @keyframes marquee {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-100%);
-            }
+            from { transform: translateX(0); }
+            to { transform: translateX(-100%); }
         }
 
-        /* Pause on hover */
         .marquee-container:hover .marquee-content {
             animation-play-state: paused;
         }
 
-        /* Premium Page Header */
+        /* ===== PAGE HEADER ===== */
         .page-header-premium {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(245, 158, 11, 0.08) 100%);
-            border-radius: 24px;
-            padding: 3rem 2rem;
-            margin-bottom: 2.5rem;
+            background: linear-gradient(135deg, #f0fdfa 0%, #ecfeff 50%, #f0fdf4 100%);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2rem;
             position: relative;
             overflow: hidden;
         }
+
         .page-header-premium::before {
             content: '';
             position: absolute;
             top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
-            animation: floatOrb 8s ease-in-out infinite;
-        }
-        @keyframes floatOrb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-30px, 20px) scale(1.1); }
+            right: -10%;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        /* Glass Search Bar */
+        .page-title-gradient {
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        /* ===== SEARCH BAR ===== */
         .glass-search-container {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: var(--ll-card-bg);
+            border: 1px solid var(--ll-border);
             border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            padding: 1.25rem;
+            box-shadow: 0 4px 20px var(--ll-shadow);
             transition: all 0.3s ease;
-        }
-        .glass-search-container:focus-within {
-            box-shadow: 0 12px 40px rgba(79, 70, 229, 0.15);
-            border-color: rgba(79, 70, 229, 0.3);
-        }
-        .search-input-premium {
-            border: 2px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
-            padding: 0.875rem 1.25rem;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-        }
-        .search-input-premium:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-        }
-        .search-btn-premium {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            border: none;
-            border-radius: 12px;
-            padding: 0.875rem 2rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .search-btn-premium:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(79, 70, 229, 0.35);
+            position: relative;
+            z-index: 100;
         }
 
-        /* Premium Lawyer Cards */
+        .glass-search-container:focus-within {
+            box-shadow: 0 8px 30px rgba(16, 185, 129, 0.12);
+            border-color: var(--ll-primary);
+        }
+
+        .search-input-premium {
+            border: 2px solid var(--ll-border);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
+            transition: all 0.25s ease;
+            background: var(--ll-card-bg);
+            color: var(--ll-text);
+        }
+
+        .search-input-premium:focus {
+            border-color: var(--ll-primary);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+            outline: none;
+        }
+
+        .search-input-premium::placeholder {
+            color: var(--ll-text-muted);
+        }
+
+        .search-btn-premium {
+            background: var(--ll-primary);
+            border: none;
+            border-radius: 10px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            color: white;
+            transition: all 0.25s ease;
+        }
+
+        .search-btn-premium:hover {
+            background: var(--ll-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            color: white;
+        }
+
+        /* ===== LAWYER CARDS ===== */
         .lawyer-card-premium {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--ll-card-bg);
+            border: 1px solid var(--ll-border);
+            border-radius: 16px;
+            transition: all 0.3s ease;
             overflow: hidden;
             position: relative;
         }
+
         .lawyer-card-premium::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #4f46e5, #10b981, #f59e0b);
+            height: 3px;
+            background: linear-gradient(90deg, var(--ll-primary) 0%, var(--ll-accent) 100%);
             opacity: 0;
             transition: opacity 0.3s ease;
         }
+
         .lawyer-card-premium:hover::before {
             opacity: 1;
         }
+
         .lawyer-card-premium:hover {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
-            border-color: rgba(79, 70, 229, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px var(--ll-shadow-lg);
+            border-color: rgba(16, 185, 129, 0.2);
         }
+
         .lawyer-avatar {
             position: relative;
             display: inline-block;
         }
+
         .lawyer-avatar img,
         .lawyer-avatar .avatar-placeholder {
-            border: 3px solid rgba(79, 70, 229, 0.2);
+            border: 3px solid rgba(16, 185, 129, 0.15);
             transition: all 0.3s ease;
         }
+
         .lawyer-card-premium:hover .lawyer-avatar img,
         .lawyer-card-premium:hover .lawyer-avatar .avatar-placeholder {
-            border-color: #4f46e5;
-            transform: scale(1.05);
+            border-color: var(--ll-primary);
+            transform: scale(1.03);
         }
+
+        .avatar-placeholder {
+            background: linear-gradient(135deg, var(--ll-primary) 0%, var(--ll-primary-dark) 100%) !important;
+        }
+
         .expertise-badge {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-            color: #4f46e5;
-            padding: 0.35rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--ll-primary-dark);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
             font-weight: 600;
             display: inline-block;
+            border: 1px solid rgba(16, 185, 129, 0.15);
         }
+
         .view-profile-btn {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: var(--ll-primary);
             border: none;
-            border-radius: 50px;
+            border-radius: 10px;
             padding: 0.75rem 1.5rem;
             font-weight: 600;
-            color: white;
-            transition: all 0.3s ease;
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            opacity: 1 !important;
+            text-shadow: none !important;
+            transition: all 0.25s ease;
             position: relative;
             overflow: hidden;
         }
-        .view-profile-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s ease;
-        }
-        .view-profile-btn:hover::before {
-            left: 100%;
-        }
-        .view-profile-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
-            color: white;
+
+        .view-profile-btn:hover, .view-profile-btn:focus, .view-profile-btn:active {
+            background: var(--ll-primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            opacity: 1 !important;
         }
 
-        /* Suggestions Dropdown Premium */
+        /* ===== SUGGESTIONS DROPDOWN ===== */
         .suggestions-dropdown {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(79, 70, 229, 0.1) !important;
-            border-radius: 16px !important;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15) !important;
+            background: var(--ll-card-bg);
+            border: 1px solid var(--ll-border) !important;
+            border-radius: 12px !important;
+            box-shadow: 0 12px 40px var(--ll-shadow-lg) !important;
             overflow: hidden;
+            margin-top: 8px;
+            z-index: 99999 !important;
         }
+
         .suggestion-item {
             transition: all 0.2s ease !important;
+            border-bottom: 1px solid var(--ll-border) !important;
+            color: var(--ll-text);
         }
+
+        .suggestion-item:last-child {
+            border-bottom: none !important;
+        }
+
         .suggestion-item:hover {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%) !important;
+            background: #f0fdfa !important;
         }
 
-        /* Dark Mode Enhancements */
-        html[data-theme="dark"] .page-header-premium {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(16, 185, 129, 0.1) 50%, rgba(245, 158, 11, 0.08) 100%);
-        }
-        html[data-theme="dark"] .glass-search-container {
-            background: rgba(30, 41, 59, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        html[data-theme="dark"] .search-input-premium {
-            background: rgba(15, 23, 42, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
-        }
-        html[data-theme="dark"] .lawyer-card-premium {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        html[data-theme="dark"] .expertise-badge {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.25) 0%, rgba(124, 58, 237, 0.2) 100%);
-        }
-        html[data-theme="dark"] .suggestions-dropdown {
-            background: rgba(15, 23, 42, 0.95) !important;
-            border-color: rgba(255, 255, 255, 0.1) !important;
+        .suggestion-item .fw-semibold {
+            color: var(--ll-text);
         }
 
-        /* Empty State */
+        /* ===== EMPTY STATE ===== */
         .empty-state {
             padding: 4rem 2rem;
             text-align: center;
         }
+
         .empty-state-icon {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+            background: rgba(16, 185, 129, 0.1);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 1.5rem;
-            animation: pulse 2s ease-in-out infinite;
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.05); opacity: 0.8; }
+
+        /* ===== DARK MODE ===== */
+        html[data-theme="dark"] {
+            --ll-text: #f1f5f9;
+            --ll-text-muted: #94a3b8;
+            --ll-bg: #0f172a;
+            --ll-card-bg: #1e293b;
+            --ll-border: #334155;
+            --ll-shadow: rgba(0, 0, 0, 0.3);
+            --ll-shadow-lg: rgba(0, 0, 0, 0.4);
+        }
+
+        html[data-theme="dark"] .page-header-premium {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(6, 182, 212, 0.05) 50%, rgba(16, 185, 129, 0.03) 100%);
+            border-color: rgba(16, 185, 129, 0.15);
+        }
+
+        html[data-theme="dark"] .page-title-gradient {
+            color: #f1f5f9 !important;
+        }
+
+        html[data-theme="dark"] .glass-search-container {
+            background: var(--ll-card-bg);
+            border-color: var(--ll-border);
+        }
+
+        html[data-theme="dark"] .search-input-premium {
+            background: #0f172a;
+            border-color: var(--ll-border);
+            color: var(--ll-text);
+        }
+
+        html[data-theme="dark"] .search-input-premium::placeholder {
+            color: var(--ll-text-muted);
+        }
+
+        html[data-theme="dark"] .lawyer-card-premium {
+            background: var(--ll-card-bg);
+            border-color: var(--ll-border);
+        }
+
+        html[data-theme="dark"] .lawyer-card-premium:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        html[data-theme="dark"] .lawyer-card-premium h5,
+        html[data-theme="dark"] .lawyer-card-premium .card-title {
+            color: var(--ll-text) !important;
+        }
+
+        html[data-theme="dark"] .expertise-badge {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--ll-primary-light);
+            border-color: rgba(16, 185, 129, 0.25);
+        }
+
+        html[data-theme="dark"] .suggestions-dropdown {
+            background: var(--ll-card-bg) !important;
+            border-color: var(--ll-border) !important;
+        }
+
+        html[data-theme="dark"] .suggestion-item {
+            border-bottom-color: var(--ll-border) !important;
+            color: var(--ll-text);
+        }
+
+        html[data-theme="dark"] .suggestion-item:hover {
+            background: rgba(16, 185, 129, 0.08) !important;
+        }
+
+        html[data-theme="dark"] .suggestion-item .fw-semibold {
+            color: var(--ll-text) !important;
+        }
+
+        html[data-theme="dark"] .empty-state-icon {
+            background: rgba(16, 185, 129, 0.15);
+        }
+
+        html[data-theme="dark"] .text-muted {
+            color: var(--ll-text-muted) !important;
+        }
+
+        html[data-theme="dark"] .text-primary {
+            color: var(--ll-primary-light) !important;
+        }
+
+        html[data-theme="dark"] .text-danger {
+            color: #f87171 !important;
         }
     </style>
 
     <div class="container py-5">
         <!-- Premium Header -->
         <div class="page-header-premium reveal text-center">
-            <h1 class="display-5 fw-bold mb-3" style="background: linear-gradient(135deg, #1e293b 0%, #4f46e5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+            <h1 class="display-5 fw-bold mb-3 page-title-gradient">
                 {{ __('messages.find_lawyers') }}
             </h1>
             <p class="text-muted lead mb-0">{{ __('messages.find_lawyers_description') }}</p>
         </div>
 
         <!-- Glass Search Bar -->
-        <div class="row mb-5 reveal">
+        <div class="row mb-5 pb-3 reveal" style="position: relative; z-index: 100;">
             <div class="col-lg-8 mx-auto">
                 <div class="glass-search-container">
                     <form method="GET" action="{{ route('lawyers.index') }}" id="lawyer-search-form">
-                        <div class="input-group position-relative">
-                            <input type="text" name="search" id="lawyer-search-input" 
-                                class="form-control search-input-premium"
-                                placeholder="{{ __('messages.search_lawyers_placeholder') }}" 
-                                value="{{ request('search') }}"
-                                autocomplete="off">
-                            <button type="submit" class="btn btn-primary search-btn-premium ms-2">
+                        <div class="d-flex gap-2 position-relative">
+                            <div class="flex-grow-1 position-relative">
+                                <input type="text" name="search" id="lawyer-search-input" 
+                                    class="form-control search-input-premium w-100"
+                                    placeholder="{{ __('messages.search_lawyers_placeholder') }}" 
+                                    value="{{ request('search') }}"
+                                    autocomplete="off">
+                                <!-- Suggestions Dropdown -->
+                                <div id="suggestions-dropdown" class="position-absolute w-100 suggestions-dropdown"
+                                    style="top: calc(100% + 8px); left: 0; z-index: 99999; display: none; max-height: 320px; overflow-y: auto;">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary search-btn-premium">
                                 <i class="bi bi-search me-2"></i>{{ __('messages.search') }}
                             </button>
                             @if (request('search'))
-                                <a href="{{ route('lawyers.index') }}" class="btn btn-outline-secondary ms-2" style="border-radius: 12px;">
+                                <a href="{{ route('lawyers.index') }}" class="btn btn-outline-secondary" style="border-radius: 12px;">
                                     <i class="bi bi-x-lg"></i>
                                 </a>
                             @endif
-
-                            <!-- Suggestions Dropdown -->
-                            <div id="suggestions-dropdown" class="position-absolute border rounded shadow-sm w-100 suggestions-dropdown"
-                                style="top: 100%; left: 0; z-index: 1000; display: none; max-height: 300px; overflow-y: auto; margin-top: 8px;">
-                            </div>
                         </div>
                     </form>
                 </div>
@@ -292,8 +398,8 @@
                                         alt="{{ $lawyer->user->name }}" class="rounded-circle object-fit-cover shadow"
                                         style="width: 100px; height: 100px;">
                                 @else
-                                    <div class="rounded-circle bg-gradient-primary d-inline-flex align-items-center justify-content-center text-white avatar-placeholder shadow"
-                                        style="width: 100px; height: 100px; font-size: 2.5rem; background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);">
+                                    <div class="rounded-circle d-inline-flex align-items-center justify-content-center text-white avatar-placeholder shadow-sm"
+                                        style="width: 100px; height: 100px; font-size: 2.5rem; background: linear-gradient(135deg, #10b981 0%, #059669 100%);">
                                         {{ substr($lawyer->user->name ?? 'L', 0, 1) }}
                                     </div>
                                 @endif
@@ -336,7 +442,7 @@
                 <div class="col-12">
                     <div class="empty-state reveal">
                         <div class="empty-state-icon">
-                            <i class="bi bi-person-x" style="font-size: 2.5rem; color: #4f46e5;"></i>
+                            <i class="bi bi-person-x" style="font-size: 2rem; color: #10b981;"></i>
                         </div>
                         <h4 class="fw-bold mb-2">{{ __('messages.no_lawyers_found') }}</h4>
                         <p class="text-muted">Try adjusting your search criteria</p>
@@ -386,7 +492,7 @@
 
                         if (lawyerCards.length === 0) {
                             suggestionsDropdown.innerHTML =
-                                '<div class="p-3 text-muted">{{ __('messages.no_lawyers_found') }}</div>';
+                                '<div class="px-4 py-3 text-center" style="color: #6b7280;"><i class="bi bi-search me-2"></i>{{ __('messages.no_lawyers_found') }}</div>';
                             suggestionsDropdown.style.display = 'block';
                             return;
                         }
@@ -395,34 +501,32 @@
                         let suggestionsHTML = '';
                         lawyerCards.forEach(card => {
                             const name = card.querySelector('.card-title')?.textContent?.trim() || '';
-                            const expertise = card.querySelector('.card-text')?.textContent?.trim() ||
-                                '';
-                            const location = card.querySelector('small')?.textContent?.trim() || '';
                             const profileLink = card.querySelector('a')?.getAttribute('href') || '#';
 
+                            // Skip empty entries
+                            if (!name || name === '' || profileLink === '#') {
+                                return;
+                            }
+
                             suggestionsHTML += `
-                            <a href="${profileLink}" class="d-block p-3 text-decoration-none border-bottom suggestion-item" 
-                               style="cursor: pointer;">
-                                <div class="fw-bold">${name}</div>
-                                <div class="small text-muted">${expertise}</div>
-                                <div class="small text-muted">${location}</div>
+                            <a href="${profileLink}" class="d-flex align-items-center gap-3 px-4 py-3 text-decoration-none suggestion-item">
+                                <div class="d-flex align-items-center justify-content-center rounded-circle" 
+                                     style="width: 36px; height: 36px; background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; font-weight: 600; font-size: 0.875rem; flex-shrink: 0;">
+                                    ${name.charAt(0).toUpperCase()}
+                                </div>
+                                <div class="fw-semibold" style="font-size: 0.95rem;">${name}</div>
                             </a>
                         `;
                         });
 
-                        suggestionsDropdown.innerHTML = suggestionsHTML;
+                        // Only show dropdown if we have valid suggestions
+                        if (suggestionsHTML.trim() === '') {
+                            suggestionsDropdown.innerHTML =
+                                '<div class="px-4 py-3 text-center" style="color: #6b7280;"><i class="bi bi-search me-2"></i>{{ __('messages.no_lawyers_found') }}</div>';
+                        } else {
+                            suggestionsDropdown.innerHTML = suggestionsHTML;
+                        }
                         suggestionsDropdown.style.display = 'block';
-
-                        // Add hover effect - respect dark mode
-                        const isDarkMode = document.documentElement.getAttribute('data-theme') === 'dark';
-                        document.querySelectorAll('.suggestion-item').forEach(item => {
-                            item.addEventListener('mouseenter', function() {
-                                this.style.backgroundColor = isDarkMode ? '#1e293b' : '#f8f9fa';
-                            });
-                            item.addEventListener('mouseleave', function() {
-                                this.style.backgroundColor = isDarkMode ? '#0f172a' : 'white';
-                            });
-                        });
                     })
                     .catch(error => {
                         console.error('Error fetching suggestions:', error);

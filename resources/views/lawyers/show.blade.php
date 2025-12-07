@@ -2,13 +2,12 @@
 
 @section('content')
     <style>
+        /* ===== MODERN PROFESSIONAL THEME ===== */
         .profile-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
             overflow: hidden;
             position: relative;
         }
@@ -18,160 +17,195 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 120px;
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #10b981 100%);
+            height: 100px;
+            background: #f8fafc;
+            border-bottom: 1px solid #e5e7eb;
         }
         .profile-photo {
             position: relative;
             z-index: 1;
-            margin-top: 60px;
+            margin-top: 50px;
         }
         .profile-photo img,
         .profile-photo .avatar-placeholder {
-            border: 5px solid white;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 4px solid white;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
         .profile-photo:hover img,
         .profile-photo:hover .avatar-placeholder {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .avatar-placeholder {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+            background: #10b981 !important;
         }
         .verified-badge {
-            background: linear-gradient(135deg, #10b981, #059669);
+            background: #10b981;
             border: 3px solid white;
-            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
         .expertise-badge {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-            color: #4f46e5;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
             padding: 0.5rem 1.25rem;
             border-radius: 50px;
             font-weight: 600;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
         .action-btn-primary {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: #10b981;
             border: none;
-            border-radius: 50px;
-            padding: 0.875rem 1.5rem;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .action-btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        .action-btn-primary:hover::before {
-            left: 100%;
+            color: white;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 48px;
         }
         .action-btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(79, 70, 229, 0.4);
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+            color: white;
         }
         .action-btn-outline {
             background: transparent;
-            border: 2px solid rgba(79, 70, 229, 0.3);
-            color: #4f46e5;
-            border-radius: 50px;
-            padding: 0.8rem 1.5rem;
+            border: 2px solid #10b981;
+            color: #10b981;
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 48px;
         }
         .action-btn-outline:hover {
-            background: rgba(79, 70, 229, 0.1);
-            border-color: #4f46e5;
-            color: #4f46e5;
-            transform: translateY(-3px);
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+            transform: translateY(-2px);
         }
         .detail-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
             overflow: hidden;
-            position: relative;
-        }
-        .detail-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #4f46e5, #7c3aed, #10b981);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .detail-card:hover::before {
-            opacity: 1;
         }
         .detail-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-color: rgba(16, 185, 129, 0.3);
         }
         .section-title {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #10b981;
+            font-weight: 700;
         }
         .education-item,
         .experience-item {
-            background: rgba(79, 70, 229, 0.05);
-            border-radius: 12px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
             padding: 1rem 1.25rem;
             margin-bottom: 0.75rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            color: #374151;
         }
         .education-item:hover,
         .experience-item:hover {
-            background: rgba(79, 70, 229, 0.1);
+            background: rgba(16, 185, 129, 0.05);
+            border-color: rgba(16, 185, 129, 0.2);
             transform: translateX(4px);
         }
         .language-badge {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
-            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
             border: 1px solid rgba(16, 185, 129, 0.2);
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-weight: 600;
             font-size: 0.9rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
         .language-badge:hover {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.2) 100%);
-            transform: scale(1.05);
+            background: rgba(16, 185, 129, 0.15);
+            transform: scale(1.03);
         }
-        html[data-theme="dark"] .profile-card,
+        
+        /* ===== DARK MODE ===== */
+        html[data-theme="dark"] .profile-card {
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html[data-theme="dark"] .profile-card::before {
+            background: #0f172a;
+            border-bottom-color: #334155;
+        }
+        html[data-theme="dark"] .profile-photo img,
+        html[data-theme="dark"] .profile-photo .avatar-placeholder {
+            border-color: #1e293b;
+        }
         html[data-theme="dark"] .detail-card {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html[data-theme="dark"] .detail-card:hover {
+            border-color: rgba(52, 211, 153, 0.3);
         }
         html[data-theme="dark"] .education-item,
         html[data-theme="dark"] .experience-item {
-            background: rgba(79, 70, 229, 0.15);
+            background: #0f172a;
+            border-color: #334155;
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .education-item:hover,
+        html[data-theme="dark"] .experience-item:hover {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+        html[data-theme="dark"] .section-title {
+            color: #34d399;
+        }
+        html[data-theme="dark"] .action-btn-outline {
+            color: #34d399;
+            border-color: #34d399;
+        }
+        html[data-theme="dark"] .action-btn-outline:hover {
+            background: #10b981;
+            color: white;
+        }
+        html[data-theme="dark"] .text-muted {
+            color: #94a3b8 !important;
+        }
+        html[data-theme="dark"] .fw-bold,
+        html[data-theme="dark"] h3 {
+            color: #f1f5f9;
+        }
+        html[data-theme="dark"] .expertise-badge {
+            background: rgba(52, 211, 153, 0.1);
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.2);
+        }
+        html[data-theme="dark"] .language-badge {
+            background: rgba(52, 211, 153, 0.1);
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.2);
         }
     </style>
 
-    <div class="container py-5">
+    <div class="container py-5 pb-5 mb-5">
         <div class="row g-4">
             <!-- Left Column: Profile Card -->
             <div class="col-lg-4">
-                <div class="profile-card sticky-top reveal" style="top: 100px; z-index: 1;">
-                    <div class="card-body text-center p-5">
+                <div class="profile-card reveal">
+                    <div class="card-body text-center p-4">
                         <div class="profile-photo d-inline-block mb-4">
                             @if ($lawyer->user->profile_photo_path)
                                 <img src="{{ asset('storage/' . $lawyer->user->profile_photo_path) }}"

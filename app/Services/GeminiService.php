@@ -79,8 +79,8 @@ class GeminiService
             ]
         ];
 
-        // Use gemini-2.0-flash model (gemini-1.5-flash is deprecated)
-        $fullUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$this->apiKey}";
+        // Use gemini-flash-latest on the v1beta endpoint (current stable model)
+        $fullUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={$this->apiKey}";
         $response = $this->request('POST', $fullUrl, [
             'json' => $payload,
         ]);
@@ -164,6 +164,28 @@ class GeminiService
                 return ['raw' => strval($body)];
             } catch (GuzzleException $e) {
                 $lastEx = $e;
+
+                // If upstream says quota exceeded, stop retrying and bubble a clear error
+                $statusCode = method_exists($e, 'getCode') ? (int) $e->getCode() : 0;
+                $response = method_exists($e, 'getResponse') ? $e->getResponse() : null;
+                $retryAfterHeader = $response && $response->hasHeader('Retry-After')
+                    ? (int) $response->getHeaderLine('Retry-After')
+                    : null;
+                if ($statusCode === 429) {
+                    $retryCfg = config('gemini.retry_after', 30);
+                    if (!is_scalar($retryCfg) && $retryCfg !== null) {
+                        $retryCfg = 30;
+                    }
+                    $retryAfter = $retryAfterHeader ?? (int) $retryCfg;
+                    throw new GeminiException(
+                        'Gemini quota exceeded (429). Please update API key or billing.',
+                        $statusCode,
+                        $e,
+                        $attempts,
+                        $retryAfter
+                    );
+                }
+
                 // log the failed attempt so we can monitor retries
                 Log::warning('GeminiService request failed (GuzzleException)', [
                     'method' => $method,
@@ -244,8 +266,8 @@ class GeminiService
             ]
         ];
 
-        // Use gemini-2.0-flash model which supports document analysis
-        $fullUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$this->apiKey}";
+        // Use gemini-flash-latest on the v1beta endpoint for document analysis
+        $fullUrl = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key={$this->apiKey}";
         
         $response = $this->request('POST', $fullUrl, [
             'json' => $payload,

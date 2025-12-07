@@ -208,13 +208,20 @@ class AiFeaturesController extends Controller
         } catch (GeminiException $e) {
             Log::error('Gemini API error: ' . $e->getMessage());
             $retryAfter = $e->getRetryAfter() ?? 30;
+            $status = $e->getCode() === 429 ? 429 : 502;
+            $errorMessage = $language === 'bn'
+                ? ($status === 429
+                    ? 'AI কোটার সীমা অতিক্রম হয়েছে। অনুগ্রহ করে নতুন API কী বা বিলিং আপডেট করুন।'
+                    : 'AI সেবা অনুপলব্ধ। অনুগ্রহ করে পরে আবার চেষ্টা করুন।')
+                : ($status === 429
+                    ? 'AI quota exceeded. Please update API key or billing.'
+                    : 'AI service unavailable. Please try again later.');
+
             return new JsonResponse([
                 'ok' => false,
-                'error' => $language === 'bn' 
-                    ? 'AI সেবা অনুপলব্ধ। অনুগ্রহ করে পরে আবার চেষ্টা করুন।'
-                    : 'AI service unavailable. Please try again later.',
+                'error' => $errorMessage,
                 'retry_after' => $retryAfter
-            ], 502);
+            ], $status);
         } catch (\Exception $e) {
             Log::error('Unexpected error in AI Features: ' . $e->getMessage());
             return new JsonResponse([

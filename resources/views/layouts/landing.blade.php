@@ -841,6 +841,10 @@
             background: var(--gradient-primary);
         }
 
+        .bg-gradient-primary {
+            background: var(--gradient-accent) !important;
+        }
+
         /* Utilities */
         .small-muted {
             color: var(--muted);
@@ -1367,6 +1371,16 @@
             color: #e2e8f0 !important;
         }
 
+        /* Button overrides for dark mode */
+        html[data-theme="dark"] .btn-primary,
+        html[data-theme="dark"] .btn-accent {
+            color: #ffffff !important;
+        }
+        html[data-theme="dark"] .btn-primary i,
+        html[data-theme="dark"] .btn-accent i {
+            color: #ffffff !important;
+        }
+
         /* Suggestion dropdowns and autocomplete */
         html[data-theme="dark"] #suggestions-dropdown,
         html[data-theme="dark"] .suggestions-dropdown,
@@ -1493,6 +1507,18 @@
 
         html[data-theme="dark"] ::-webkit-scrollbar-track {
             background: #0a1628;
+        }
+
+        /* Fix for user dropdown background in dark mode */
+        html[data-theme="dark"] #navbarDropdown {
+            background-color: transparent !important;
+            border: 1px solid transparent;
+        }
+
+        html[data-theme="dark"] #navbarDropdown:hover,
+        html[data-theme="dark"] #navbarDropdown[aria-expanded="true"] {
+            background-color: rgba(52, 211, 153, 0.1) !important;
+            border-color: rgba(52, 211, 153, 0.2);
         }
 
         /* ===== COMPREHENSIVE DARK MODE TEXT FIXES ===== */

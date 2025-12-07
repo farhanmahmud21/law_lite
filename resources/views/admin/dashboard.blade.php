@@ -2,48 +2,34 @@
 
 @section('content')
     <style>
+        /* ===== MODERN PROFESSIONAL ADMIN DASHBOARD ===== */
         .admin-header {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(245, 158, 11, 0.08) 50%, rgba(79, 70, 229, 0.06) 100%);
-            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
             padding: 2.5rem;
             margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .admin-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
         }
         .admin-title {
-            background: linear-gradient(135deg, #ef4444 0%, #f59e0b 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #10b981;
+            font-weight: 700;
         }
         .admin-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
             overflow: hidden;
         }
         .admin-link {
             display: flex;
             align-items: center;
             padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #f1f5f9;
             text-decoration: none;
-            color: #1e293b;
-            transition: all 0.3s ease;
+            color: #1f2937;
+            transition: all 0.25s ease;
             position: relative;
-            overflow: hidden;
         }
         .admin-link::before {
             content: '';
@@ -52,13 +38,14 @@
             top: 0;
             bottom: 0;
             width: 0;
-            background: linear-gradient(135deg, #ef4444, #f59e0b);
-            transition: width 0.3s ease;
+            background: #10b981;
+            transition: width 0.25s ease;
+            border-radius: 0 4px 4px 0;
         }
         .admin-link:hover {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(245, 158, 11, 0.08) 100%);
-            transform: translateX(8px);
-            color: #1e293b;
+            background: #f8fafc;
+            transform: translateX(4px);
+            color: #1f2937;
         }
         .admin-link:hover::before {
             width: 4px;
@@ -75,25 +62,25 @@
             justify-content: center;
             font-size: 1.25rem;
             margin-right: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
         .admin-link:hover .icon {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
         .icon-users {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
-            color: #4f46e5;
+            background: rgba(59, 130, 246, 0.1);
+            color: #3b82f6;
         }
         .icon-lawyers {
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%);
+            background: rgba(16, 185, 129, 0.1);
             color: #10b981;
         }
         .icon-articles {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.15) 100%);
-            color: #3b82f6;
+            background: rgba(99, 102, 241, 0.1);
+            color: #6366f1;
         }
         .icon-dev {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(217, 119, 6, 0.15) 100%);
+            background: rgba(245, 158, 11, 0.1);
             color: #f59e0b;
         }
         .admin-link-text {
@@ -104,27 +91,58 @@
             margin-left: auto;
             opacity: 0;
             transform: translateX(-10px);
-            transition: all 0.3s ease;
-            color: #64748b;
+            transition: all 0.25s ease;
+            color: #10b981;
         }
         .admin-link:hover .admin-link-arrow {
             opacity: 1;
             transform: translateX(0);
         }
+
+        /* ===== DARK MODE ===== */
         html[data-theme="dark"] .admin-header {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(245, 158, 11, 0.12) 50%, rgba(79, 70, 229, 0.1) 100%);
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html[data-theme="dark"] .admin-title {
+            color: #34d399;
+        }
+        html[data-theme="dark"] .admin-header p {
+            color: #94a3b8 !important;
         }
         html[data-theme="dark"] .admin-card {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            border-color: #334155;
         }
         html[data-theme="dark"] .admin-link {
-            color: #e2e8f0;
-            border-color: rgba(255, 255, 255, 0.05);
+            color: #f1f5f9;
+            border-bottom-color: #334155;
         }
         html[data-theme="dark"] .admin-link:hover {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.15) 0%, rgba(245, 158, 11, 0.12) 100%);
-            color: #e2e8f0;
+            background: rgba(16, 185, 129, 0.08);
+            color: #f1f5f9;
+        }
+        html[data-theme="dark"] .admin-link::before {
+            background: #34d399;
+        }
+        html[data-theme="dark"] .admin-link-arrow {
+            color: #34d399;
+        }
+        html[data-theme="dark"] .icon-users {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+        }
+        html[data-theme="dark"] .icon-lawyers {
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+        }
+        html[data-theme="dark"] .icon-articles {
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+        }
+        html[data-theme="dark"] .icon-dev {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
         }
     </style>
 

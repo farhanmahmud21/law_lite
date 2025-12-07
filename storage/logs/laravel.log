@@ -100,3 +100,384 @@
 #8 G:\\CG\\LawLite\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(23): require_once('G:\\\\CG\\\\LawLite\\\\p...')
 #9 {main}
 "} 
+[2025-12-07 11:34:05] local.ERROR: Command "test" is not defined.
+
+Did you mean one of these?
+    make:test
+    schedule:test {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"test\" is not defined.
+
+Did you mean one of these?
+    make:test
+    schedule:test at G:\\CG\\LawLite\\vendor\\symfony\\console\\Application.php:740)
+[stacktrace]
+#0 G:\\CG\\LawLite\\vendor\\symfony\\console\\Application.php(298): Symfony\\Component\\Console\\Application->find('test')
+#1 G:\\CG\\LawLite\\vendor\\symfony\\console\\Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 G:\\CG\\LawLite\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 G:\\CG\\LawLite\\artisan(12): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 
+[2025-12-07 11:34:26] local.ERROR: Gemini API error: upstream error  
+[2025-12-07 11:34:26] local.ERROR: Gemini API error: upstream error  
+[2025-12-07 11:34:26] local.ERROR: Gemini API error: upstream error  
+[2025-12-07 11:34:26] local.ERROR: Gemini API error: upstream error  
+[2025-12-07 11:34:26] local.ERROR: Gemini API error: upstream error  
+[2025-12-07 11:34:26] local.ERROR: Gemini API error: upstream error  
+[2025-12-07 11:34:31] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":1,"error":"request failed"} 
+[2025-12-07 11:34:32] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":2,"error":"request failed"} 
+[2025-12-07 11:34:32] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":1,"error":"network error"} 
+[2025-12-07 11:59:12] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:12] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:13] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:13] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    " (truncated...)
+ (retry_after=30)  
+[2025-12-07 11:59:17] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:17] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:17] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:17] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    " (truncated...)
+ (retry_after=30)  
+[2025-12-07 11:59:30] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:30] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:31] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  \"error\": {
+    \"code\": 403,
+    \"message\": \"Your API key was reported as leaked. Please use another API key.\",
+    \" (truncated...)
+"} 
+[2025-12-07 11:59:31] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyAjXl58yxNB9MkwrzGLd62_DFdaTg24lWA` resulted in a `403 Forbidden` response:
+{
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    " (truncated...)
+ (retry_after=30)  
+[2025-12-07 12:53:22] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:53:23] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:53:23] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:53:23] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing deta (truncated...)
+ (retry_after=30)  
+[2025-12-07 12:53:24] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:53:25] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:53:25] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:53:25] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing deta (truncated...)
+ (retry_after=30)  
+[2025-12-07 12:57:21] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:57:22] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:57:22] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  \"error\": {
+    \"code\": 429,
+    \"message\": \"You exceeded your current quota, please check your plan and billing deta (truncated...)
+"} 
+[2025-12-07 12:57:22] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `429 Too Many Requests` response:
+{
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing deta (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:06:33] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:06:33] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:06:33] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:06:33] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:06:38] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:06:38] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:06:39] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:06:39] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:07:30] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:07:30] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:07:30] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:07:30] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBBXtMGz5SPfqhGbhsh7aFTokIcNp4Yj7E` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:09:48] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:09:49] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:09:49] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+"} 
+[2025-12-07 13:09:49] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1beta, or is not s (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:11:13] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+"} 
+[2025-12-07 13:11:13] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+"} 
+[2025-12-07 13:11:14] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+"} 
+[2025-12-07 13:11:14] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:11:45] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+"} 
+[2025-12-07 13:11:45] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+"} 
+[2025-12-07 13:11:46] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+"} 
+[2025-12-07 13:11:46] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash is not found for API version v1, or is not suppo (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:13:49] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+"} 
+[2025-12-07 13:13:49] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+"} 
+[2025-12-07 13:13:49] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+"} 
+[2025-12-07 13:13:49] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:13:51] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":1,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+"} 
+[2025-12-07 13:13:51] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":2,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+"} 
+[2025-12-07 13:13:51] local.WARNING: GeminiService request failed (GuzzleException) {"method":"POST","uri":"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8","attempt":3,"error":"Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  \"error\": {
+    \"code\": 404,
+    \"message\": \"models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+"} 
+[2025-12-07 13:13:51] local.ERROR: Gemini API error: GeminiService request failed after 3 attempts: Client error: `POST https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyAZiN0yn8qD-9_1QJWojtgZHJ1BqO1PSk8` resulted in a `404 Not Found` response:
+{
+  "error": {
+    "code": 404,
+    "message": "models/gemini-1.5-flash-latest is not found for API version v1, or is no (truncated...)
+ (retry_after=30)  
+[2025-12-07 13:18:15] local.ERROR: Command "tinker" is not defined. {"exception":"[object] (Symfony\\Component\\Console\\Exception\\CommandNotFoundException(code: 0): Command \"tinker\" is not defined. at G:\\CG\\LawLite\\vendor\\symfony\\console\\Application.php:740)
+[stacktrace]
+#0 G:\\CG\\LawLite\\vendor\\symfony\\console\\Application.php(298): Symfony\\Component\\Console\\Application->find('tinker')
+#1 G:\\CG\\LawLite\\vendor\\symfony\\console\\Application.php(195): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#2 G:\\CG\\LawLite\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(197): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 G:\\CG\\LawLite\\artisan(12): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 {main}
+"} 

@@ -1,11 +1,125 @@
 @extends('layouts.landing')
 
 @section('content')
+    <style>
+        html[data-theme="dark"] .invoice-card {
+            background-color: #1e293b !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+        html[data-theme="dark"] .card {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+        }
+        html[data-theme="dark"] .table-responsive {
+            background-color: transparent !important;
+        }
+        html[data-theme="dark"] .invoice-table {
+            --bs-table-bg: transparent !important;
+            --bs-table-color: #e2e8f0 !important;
+            color: #e2e8f0 !important;
+            background-color: transparent !important;
+        }
+        /* Nuke any nested background that might leak white */
+        html[data-theme="dark"] .invoice-table,
+        html[data-theme="dark"] .invoice-table * {
+            background-color: transparent !important;
+        }
+        /* Reinforce on specific elements to beat any specificity */
+        html[data-theme="dark"] table.invoice-table,
+        html[data-theme="dark"] table.invoice-table thead,
+        html[data-theme="dark"] table.invoice-table tbody,
+        html[data-theme="dark"] table.invoice-table tfoot,
+        html[data-theme="dark"] table.invoice-table tr,
+        html[data-theme="dark"] table.invoice-table th,
+        html[data-theme="dark"] table.invoice-table td {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+        }
+        html[data-theme="dark"] .invoice-table th,
+        html[data-theme="dark"] .invoice-table td {
+            background-color: #1e293b !important;
+            color: #e2e8f0 !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+        }
+        html[data-theme="dark"] .invoice-table thead,
+        html[data-theme="dark"] .invoice-table tbody,
+        html[data-theme="dark"] .invoice-table tr {
+            background-color: #1e293b !important;
+        }
+        html[data-theme="dark"] .invoice-header {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: #e2e8f0 !important;
+        }
+        html[data-theme="dark"] .invoice-table .bg-light {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            color: #e2e8f0 !important;
+        }
+        html[data-theme="dark"] .invoice-table tfoot {
+            background-color: rgba(255, 255, 255, 0.08) !important;
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+        html[data-theme="dark"] .text-muted {
+            color: #94a3b8 !important;
+        }
+        html[data-theme="dark"] .text-primary {
+            color: #818cf8 !important;
+        }
+        html[data-theme="dark"] .btn-light {
+            background-color: rgba(255, 255, 255, 0.1) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #e2e8f0 !important;
+        }
+        html[data-theme="dark"] .btn-light:hover {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+        }
+        .invoice-logo-circle {
+            width: 36px;
+            height: 36px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: #ffffff;
+            box-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+        }
+        .invoice-logo-circle i {
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+        @media print {
+            body {
+                background: #ffffff !important;
+            }
+            .invoice-card {
+                box-shadow: none !important;
+                border: 1px solid #e5e7eb !important;
+            }
+            .invoice-brand {
+                display: flex !important;
+            }
+            .invoice-logo-circle {
+                box-shadow: none !important;
+            }
+        }
+    </style>
     <div class="container py-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <div class="card shadow-lg border-0 overflow-hidden rounded-4">
+                <div class="card invoice-card shadow-lg border-0 overflow-hidden rounded-4">
                     <div class="card-body p-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4 invoice-brand d-print-flex">
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="invoice-logo-circle">
+                                    <i class="bi bi-balance-scale"></i>
+                                </span>
+                                <span class="fw-bold" style="font-size:1.1rem;">{{ config('app.name', 'LawLite') }}</span>
+                            </div>
+                            <div class="text-end small text-muted d-none d-print-block">
+                                {{ config('app.url') ?? 'lowlite.local' }}
+                            </div>
+                        </div>
                         <div class="d-flex justify-content-between align-items-start mb-5">
                             <div>
                                 <h2 class="mb-1 fw-bold text-primary">INVOICE</h2>
@@ -37,8 +151,8 @@
                         </div>
 
                         <div class="table-responsive mb-5">
-                            <table class="table table-borderless">
-                                <thead class="bg-light">
+                            <table class="table invoice-table table-borderless">
+                                <thead class="invoice-header">
                                     <tr>
                                         <th class="py-3 ps-4 rounded-start">Description</th>
                                         <th class="text-end py-3 pe-4 rounded-end">Amount</th>

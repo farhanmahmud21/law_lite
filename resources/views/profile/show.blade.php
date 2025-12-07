@@ -2,53 +2,37 @@
 
 @section('content')
     <style>
+        /* ===== MODERN PROFESSIONAL PROFILE THEME ===== */
         .profile-header {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(16, 185, 129, 0.08) 50%, rgba(245, 158, 11, 0.06) 100%);
-            border-radius: 24px;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
             padding: 2rem;
             margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-        .profile-header::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
         }
         .profile-title {
-            background: linear-gradient(135deg, #4f46e5 0%, #10b981 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #10b981;
+            font-weight: 700;
         }
         .glass-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-            transition: all 0.4s ease;
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
             overflow: hidden;
         }
         .glass-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            border-color: rgba(16, 185, 129, 0.3);
         }
         .glass-header {
-            background: rgba(255, 255, 255, 0.5);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            background: #f8fafc;
+            border-bottom: 1px solid #e5e7eb;
             padding: 1.25rem 1.5rem;
         }
         .glass-header h5 {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #10b981;
         }
         .profile-photo-wrapper {
             position: relative;
@@ -56,119 +40,198 @@
         }
         .profile-photo-wrapper img,
         .profile-photo-wrapper .avatar-placeholder {
-            border: 4px solid rgba(79, 70, 229, 0.2);
+            border: 4px solid rgba(16, 185, 129, 0.2);
             transition: all 0.3s ease;
         }
         .profile-photo-wrapper:hover img,
         .profile-photo-wrapper:hover .avatar-placeholder {
-            border-color: #4f46e5;
+            border-color: #10b981;
             transform: scale(1.02);
         }
         .avatar-placeholder {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%) !important;
+            background: #10b981 !important;
         }
         .role-badge {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
-            color: #4f46e5;
+            background: rgba(16, 185, 129, 0.1);
+            color: #059669;
             padding: 0.5rem 1.25rem;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            border: 1px solid rgba(16, 185, 129, 0.2);
         }
         .premium-input {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
             padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            color: #1f2937;
         }
         .premium-input:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
             background: white;
+            outline: none;
         }
         .premium-select {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
             padding: 0.75rem 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
+            color: #1f2937;
         }
         .premium-select:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+            outline: none;
         }
         .input-icon {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-            border: none;
-            border-radius: 12px 0 0 12px;
-            color: #4f46e5;
+            background: rgba(16, 185, 129, 0.1);
+            border: 2px solid #e5e7eb;
+            border-right: none;
+            border-radius: 10px 0 0 10px;
+            color: #10b981;
         }
         .save-btn {
-            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            background: #10b981;
             border: none;
-            border-radius: 12px;
+            border-radius: 10px;
             padding: 0.875rem 2rem;
             font-weight: 600;
-            transition: all 0.3s ease;
+            color: white;
+            transition: all 0.25s ease;
         }
         .save-btn:hover {
+            background: #059669;
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
         }
         .security-card .glass-header {
-            background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(249, 115, 22, 0.05) 100%);
+            background: #fef2f2;
         }
         .security-card .glass-header h5 {
-            background: linear-gradient(135deg, #ef4444 0%, #f97316 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #dc2626;
         }
         .password-btn {
-            background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+            background: #64748b;
             border: none;
-            border-radius: 12px;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            color: white;
         }
         .password-btn:hover {
+            background: #475569;
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(100, 116, 139, 0.35);
+            box-shadow: 0 6px 16px rgba(100, 116, 139, 0.3);
         }
         .camera-btn {
             background: white;
-            border: 2px solid rgba(79, 70, 229, 0.2);
+            border: 2px solid rgba(16, 185, 129, 0.3);
             border-radius: 50%;
             padding: 0.5rem;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
         }
         .camera-btn:hover {
-            background: #4f46e5;
-            border-color: #4f46e5;
+            background: #10b981;
+            border-color: #10b981;
         }
         .camera-btn:hover i {
             color: white !important;
         }
+        .camera-btn i {
+            color: #10b981 !important;
+        }
+        .form-label {
+            color: #374151;
+        }
+        
+        /* ===== DARK MODE ===== */
         html[data-theme="dark"] .profile-header {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.15) 0%, rgba(16, 185, 129, 0.12) 50%, rgba(245, 158, 11, 0.1) 100%);
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html[data-theme="dark"] .profile-title {
+            color: #34d399;
         }
         html[data-theme="dark"] .glass-card {
-            background: rgba(30, 41, 59, 0.85);
-            border-color: rgba(255, 255, 255, 0.1);
+            background: #1e293b;
+            border-color: #334155;
+        }
+        html[data-theme="dark"] .glass-card:hover {
+            border-color: rgba(52, 211, 153, 0.3);
         }
         html[data-theme="dark"] .glass-header {
-            background: rgba(255, 255, 255, 0.05);
+            background: #0f172a;
+            border-bottom-color: #334155;
+        }
+        html[data-theme="dark"] .glass-header h5 {
+            color: #34d399;
+        }
+        html[data-theme="dark"] .profile-photo-wrapper img,
+        html[data-theme="dark"] .profile-photo-wrapper .avatar-placeholder {
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+        html[data-theme="dark"] .profile-photo-wrapper:hover img,
+        html[data-theme="dark"] .profile-photo-wrapper:hover .avatar-placeholder {
+            border-color: #34d399;
+        }
+        html[data-theme="dark"] .role-badge {
+            background: rgba(52, 211, 153, 0.1);
+            color: #34d399;
+            border-color: rgba(52, 211, 153, 0.2);
         }
         html[data-theme="dark"] .premium-input,
         html[data-theme="dark"] .premium-select {
-            background: rgba(15, 23, 42, 0.8);
-            border-color: rgba(255, 255, 255, 0.1);
-            color: #e2e8f0;
+            background: #0f172a;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+        html[data-theme="dark"] .premium-input:focus,
+        html[data-theme="dark"] .premium-select:focus {
+            border-color: #34d399;
+            box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.15);
         }
         html[data-theme="dark"] .input-icon {
-            background: rgba(79, 70, 229, 0.2);
+            background: rgba(52, 211, 153, 0.1);
+            border-color: #334155;
+            color: #34d399;
+        }
+        html[data-theme="dark"] .form-label {
+            color: #e2e8f0;
+        }
+        html[data-theme="dark"] .text-muted {
+            color: #94a3b8 !important;
+        }
+        html[data-theme="dark"] h5.fw-bold {
+            color: #f1f5f9;
+        }
+        html[data-theme="dark"] .security-card .glass-header {
+            background: rgba(220, 38, 38, 0.1);
+        }
+        html[data-theme="dark"] .security-card .glass-header h5 {
+            color: #f87171;
+        }
+        html[data-theme="dark"] .camera-btn {
+            background: #1e293b;
+            border-color: rgba(52, 211, 153, 0.3);
+        }
+        html[data-theme="dark"] .camera-btn i {
+            color: #34d399 !important;
+        }
+        html[data-theme="dark"] .camera-btn:hover {
+            background: #10b981;
+        }
+        html[data-theme="dark"] .camera-btn:hover i {
+            color: white !important;
+        }
+        html[data-theme="dark"] .alert-success {
+            background: rgba(16, 185, 129, 0.15);
+            border-color: rgba(16, 185, 129, 0.3);
+            color: #34d399;
         }
     </style>
 

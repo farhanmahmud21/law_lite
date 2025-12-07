@@ -8,17 +8,12 @@
                 <div class="p-3 border-bottom bg-white d-flex justify-content-between align-items-center flex-shrink-0 shadow-sm">
                     <h5 class="mb-0 fw-bold text-primary"><i
                             class="bi bi-chat-dots-fill me-2"></i>{{ __('messages.messages') }}</h5>
-                    <div class="d-flex align-items-center gap-2">
-                        <button class="btn btn-sm btn-primary rounded-circle shadow-sm" onclick="showNewChatModal()" title="New Chat" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;">
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
-                        @php
-                            $totalUnread = $conversations->sum('unread_count');
-                        @endphp
-                        <span id="total-unread-badge" class="badge bg-danger rounded-pill {{ $totalUnread > 0 ? '' : 'd-none' }}" style="min-width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
-                            {{ $totalUnread }}
-                        </span>
-                    </div>
+                    @php
+                        $totalUnread = $conversations->sum('unread_count');
+                    @endphp
+                    <span id="total-unread-badge" class="badge bg-danger rounded-pill {{ $totalUnread > 0 ? '' : 'd-none' }}" style="min-width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                        {{ $totalUnread }}
+                    </span>
                 </div>
                 <!-- Search -->
                 <div class="p-3 bg-light flex-shrink-0">
@@ -46,8 +41,8 @@
                             data-user-name="{{ $partner->name }}">
                             <div class="d-flex align-items-center">
                                 <div class="position-relative">
-                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($partner->name) }}&background=random"
-                                        class="rounded-circle" width="45" height="45" alt="{{ $partner->name }}">
+                                    <img src="https://ui-avatars.com/api/?name={{ urlencode($partner->name) }}&background=10b981&color=ffffff&bold=true"
+                                        class="rounded-circle avatar-professional" width="45" height="45" alt="{{ $partner->name }}">
                                     @if ($unread > 0)
                                         <span
                                             class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger border border-light">
@@ -113,9 +108,52 @@
                                 onclick="startCall()" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
                                 <i class="bi bi-telephone"></i>
                             </button>
-                            <button class="btn btn-light btn-sm rounded-circle shadow-sm" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
-                                <i class="bi bi-three-dots-vertical"></i>
-                            </button>
+                            <div class="dropdown">
+                                <button class="btn btn-light btn-sm rounded-circle shadow-sm" data-bs-toggle="dropdown" aria-expanded="false" style="width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
+                                    <i class="bi bi-three-dots-vertical"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0 chat-dropdown" style="min-width: 200px;">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#" onclick="viewUserProfile()">
+                                            <i class="bi bi-person-circle text-primary"></i>
+                                            <span>View Profile</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#" onclick="searchInChat()">
+                                            <i class="bi bi-search text-info"></i>
+                                            <span>Search in Chat</span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider my-1"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#" onclick="toggleMuteNotifications()">
+                                            <i class="bi bi-bell-slash text-warning" id="mute-icon"></i>
+                                            <span id="mute-text">Mute Notifications</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#" onclick="clearChatDisplay()">
+                                            <i class="bi bi-eraser text-secondary"></i>
+                                            <span>Clear Chat Display</span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider my-1"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="#" onclick="exportChat()">
+                                            <i class="bi bi-download text-success"></i>
+                                            <span>Export Chat</span>
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider my-1"></li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2 text-danger" href="#" onclick="blockUser()">
+                                            <i class="bi bi-slash-circle"></i>
+                                            <span>Block User</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -153,29 +191,6 @@
                                 <button type="button" class="btn-close btn-close-sm ms-2" style="font-size: 0.7rem;"
                                     aria-label="Close" onclick="clearFile()"></button>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- New Chat Modal -->
-    <div class="modal fade" id="new-chat-modal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">New Conversation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-0">
-                    <div class="p-2">
-                        <input type="text" class="form-control" id="new-chat-search" placeholder="Search users..." oninput="filterNewChat(this.value)">
-                    </div>
-                    <div class="list-group list-group-flush" id="new-chat-list">
-                        <!-- Users will be loaded here -->
-                        <div class="text-center p-4">
-                            <div class="spinner-border text-primary" role="status"></div>
                         </div>
                     </div>
                 </div>
@@ -235,37 +250,37 @@
            MODERN MESSAGING UI - INDUSTRY LEVEL DESIGN
            ============================================ */
         
-        /* Custom Scrollbar - Modern Design */
+        /* Custom Scrollbar - Professional Design */
         ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+            width: 6px;
+            height: 6px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f5f5f5;
+            background: #f1f5f9;
             border-radius: 10px;
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
             border-radius: 10px;
             transition: all 0.3s ease;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            background: linear-gradient(180deg, #059669 0%, #047857 100%);
         }
 
         [data-theme="dark"] ::-webkit-scrollbar-track {
-            background: #1a1a1a;
+            background: #1e293b;
         }
 
         [data-theme="dark"] ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
         }
 
         [data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #059669 0%, #34d399 100%);
+            background: linear-gradient(180deg, #34d399 0%, #10b981 100%);
         }
 
         /* Main Container - Glass Morphism Effect */
@@ -275,15 +290,16 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Conversation List - Modern Card Design */
+        /* Conversation List - Professional Clean Design */
         .conversation-item {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.25s ease;
             border-radius: 12px !important;
             margin: 4px 8px;
             padding: 12px 16px !important;
             border: none !important;
             position: relative;
             overflow: hidden;
+            background: #ffffff;
         }
 
         .conversation-item::before {
@@ -293,32 +309,68 @@
             top: 0;
             bottom: 0;
             width: 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            transition: width 0.3s ease;
+            background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+            transition: width 0.25s ease;
+            border-radius: 0 4px 4px 0;
         }
 
         .conversation-item:hover {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%) !important;
-            transform: translateX(4px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            background: #f8fafb !important;
+            transform: translateX(2px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .conversation-item.active {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%) !important;
-            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08) 0%, rgba(5, 150, 105, 0.04) 100%) !important;
+            box-shadow: 0 2px 12px rgba(16, 185, 129, 0.12);
         }
 
         .conversation-item.active::before {
             width: 4px;
         }
 
+        .conversation-item h6 {
+            color: #1f2937 !important;
+            font-weight: 600;
+        }
+
+        .conversation-item .text-muted {
+            color: #6b7280 !important;
+        }
+
+        .conversation-item .text-primary {
+            color: #10b981 !important;
+        }
+
+        /* Professional Avatar Styling */
+        .avatar-professional {
+            box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+            border: 2px solid #ffffff;
+        }
+
+        [data-theme="dark"] .conversation-item {
+            background: rgba(15, 23, 42, 0.6);
+        }
+
         [data-theme="dark"] .conversation-item:hover {
-            background: linear-gradient(135deg, rgba(52, 211, 153, 0.12) 0%, rgba(5, 150, 105, 0.12) 100%) !important;
+            background: rgba(52, 211, 153, 0.08) !important;
         }
 
         [data-theme="dark"] .conversation-item.active {
-            background: linear-gradient(135deg, rgba(52, 211, 153, 0.18) 0%, rgba(5, 150, 105, 0.18) 100%) !important;
-            box-shadow: 0 4px 16px rgba(52, 211, 153, 0.25);
+            background: rgba(52, 211, 153, 0.12) !important;
+            box-shadow: 0 2px 12px rgba(52, 211, 153, 0.15);
+        }
+
+        [data-theme="dark"] .conversation-item h6 {
+            color: #f1f5f9 !important;
+        }
+
+        [data-theme="dark"] .conversation-item .text-muted {
+            color: #94a3b8 !important;
+        }
+
+        [data-theme="dark"] .avatar-professional {
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         /* Modern Message Bubbles */
@@ -351,11 +403,11 @@
         }
 
         .message-sent {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: #ffffff !important;
             border-bottom-right-radius: 6px;
             margin-left: auto;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
         }
 
         .message-received {
@@ -401,8 +453,8 @@
         }
 
         #chat-interface .input-group:focus-within {
-            border-color: #667eea !important;
-            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
+            border-color: #10b981 !important;
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.15);
         }
 
         #chat-input {
@@ -413,15 +465,15 @@
         #chat-send {
             width: 44px !important;
             height: 44px !important;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
             border: none !important;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
             transition: all 0.3s ease;
         }
 
         #chat-send:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
         }
 
         #chat-send:active {
@@ -709,6 +761,75 @@
         [data-theme="dark"] #chat-empty-state i {
             opacity: 0.2;
         }
+
+        /* Chat Dropdown Menu Styling */
+        .chat-dropdown {
+            border-radius: 12px !important;
+            padding: 8px !important;
+            background: #ffffff;
+        }
+
+        .chat-dropdown .dropdown-item {
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .chat-dropdown .dropdown-item:hover {
+            background: #f1f5f9;
+            transform: translateX(4px);
+        }
+
+        .chat-dropdown .dropdown-item.text-danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .chat-dropdown .dropdown-divider {
+            border-color: #e5e7eb;
+        }
+
+        .chat-dropdown .dropdown-item i {
+            font-size: 1rem;
+            width: 20px;
+        }
+
+        [data-theme="dark"] .chat-dropdown {
+            background: #1e293b !important;
+            border: 1px solid #334155 !important;
+        }
+
+        [data-theme="dark"] .chat-dropdown .dropdown-item {
+            color: #e2e8f0 !important;
+        }
+
+        [data-theme="dark"] .chat-dropdown .dropdown-item:hover {
+            background: rgba(52, 211, 153, 0.1) !important;
+        }
+
+        [data-theme="dark"] .chat-dropdown .dropdown-item.text-danger {
+            color: #f87171 !important;
+        }
+
+        [data-theme="dark"] .chat-dropdown .dropdown-item.text-danger:hover {
+            background: rgba(248, 113, 113, 0.1) !important;
+        }
+
+        [data-theme="dark"] .chat-dropdown .dropdown-divider {
+            border-color: #334155;
+        }
+
+        /* Search in Chat Modal */
+        .search-chat-container {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        [data-theme="dark"] .search-chat-container {
+            background: #0f172a;
+        }
     </style>
 
     <script>
@@ -788,109 +909,6 @@
             }
         }
 
-        // New Chat Logic
-        let newChatModal = null;
-        
-        async function showNewChatModal() {
-            if (!newChatModal) {
-                newChatModal = new bootstrap.Modal(document.getElementById('new-chat-modal'));
-            }
-            newChatModal.show();
-            
-            const list = document.getElementById('new-chat-list');
-            list.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-primary" role="status"></div></div>';
-            
-            try {
-                const res = await fetch('/chat/users', {
-                    headers: { 'Accept': 'application/json', 'X-CSRF-TOKEN': csrf() }
-                });
-                const data = await res.json();
-                
-                if (data.ok && data.users) {
-                    list.innerHTML = '';
-                    if (data.users.length === 0) {
-                        list.innerHTML = '<div class="p-4 text-center text-muted">No users found</div>';
-                        return;
-                    }
-                    
-                    data.users.forEach(user => {
-                        const item = document.createElement('a');
-                        item.href = '#';
-                        item.className = 'list-group-item list-group-item-action d-flex align-items-center p-3';
-                        item.onclick = (e) => {
-                            e.preventDefault();
-                            startNewChat(user);
-                        };
-                        
-                        item.innerHTML = `
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random" 
-                                class="rounded-circle me-3" width="40" height="40">
-                            <div>
-                                <h6 class="mb-0">${user.name}</h6>
-                                <small class="text-muted">${user.role || 'User'}</small>
-                            </div>
-                        `;
-                        list.appendChild(item);
-                    });
-                }
-            } catch (err) {
-                console.error(err);
-                list.innerHTML = '<div class="p-4 text-center text-danger">Failed to load users</div>';
-            }
-        }
-
-        function filterNewChat(term) {
-            term = term.toLowerCase();
-            document.querySelectorAll('#new-chat-list .list-group-item').forEach(item => {
-                const text = item.textContent.toLowerCase();
-                item.classList.toggle('d-none', !text.includes(term));
-            });
-        }
-
-        function startNewChat(user) {
-            newChatModal.hide();
-            
-            // Check if conversation already exists in sidebar
-            const existing = document.querySelector(`.conversation-item[data-user-id="${user.id}"]`);
-            if (existing) {
-                existing.click();
-            } else {
-                // Create temporary item in sidebar
-                const tempItem = document.createElement('a');
-                tempItem.href = '#';
-                tempItem.className = 'list-group-item list-group-item-action border-0 py-3 conversation-item conversation-link active';
-                tempItem.dataset.userId = user.id;
-                tempItem.dataset.userName = user.name;
-                
-                tempItem.innerHTML = `
-                    <div class="d-flex align-items-center">
-                        <div class="position-relative">
-                            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=random"
-                                class="rounded-circle" width="45" height="45">
-                        </div>
-                        <div class="ms-3 flex-grow-1 overflow-hidden">
-                            <div class="d-flex justify-content-between align-items-baseline">
-                                <h6 class="mb-0 text-truncate fw-semibold">${user.name}</h6>
-                                <small class="text-muted conversation-updated-at">Just now</small>
-                            </div>
-                            <p class="mb-0 text-muted text-truncate small conversation-preview">
-                                <span class="text-primary">New conversation</span>
-                            </p>
-                        </div>
-                    </div>
-                `;
-                
-                // Insert at top
-                const list = document.getElementById('conversation-list');
-                if (list.querySelector('.text-center')) {
-                    list.innerHTML = ''; // Remove empty state
-                }
-                list.insertBefore(tempItem, list.firstChild);
-                
-                openChatWith(user.id, user.name);
-            }
-        }
-
         async function openChatWith(partnerId, partnerName) {
             console.log('openChatWith initiated for:', partnerId);
             currentWithUser = partnerId;
@@ -920,7 +938,7 @@
             const headerStatus = document.getElementById('chat-header-status');
 
             if (headerName) headerName.textContent = partnerName;
-            if (headerAvatar) headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(partnerName)}&background=random`;
+            if (headerAvatar) headerAvatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(partnerName)}&background=10b981&color=ffffff&bold=true`;
             if (headerStatus) headerStatus.innerHTML = '<span class="text-muted">Checking status...</span>';
 
             // Highlight active conversation
@@ -1357,7 +1375,7 @@
 
                 document.getElementById('incoming-call-name').textContent = senderName;
                 document.getElementById('incoming-call-avatar').src =
-                    `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=random`;
+                    `https://ui-avatars.com/api/?name=${encodeURIComponent(senderName)}&background=10b981&color=ffffff&bold=true`;
                 new bootstrap.Modal(document.getElementById('incoming-call-modal')).show();
             } else if (signal.type === 'answer') {
                 if (peerConnection) {
@@ -1453,6 +1471,233 @@
                 }
             }
         }
+
+        // ============================================
+        // THREE-DOT MENU FUNCTIONS
+        // ============================================
+        
+        let isMuted = false;
+        
+        function viewUserProfile() {
+            event.preventDefault();
+            if (!currentWithUser) return;
+            
+            // Get lawyer profile URL or user profile
+            const userName = document.getElementById('chat-header-name').textContent;
+            
+            // Try to find if user is a lawyer
+            fetch(`/api/user/${currentWithUser}/profile-url`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.url) {
+                        window.open(data.url, '_blank');
+                    } else {
+                        // Show user info in a toast/alert
+                        showToast(`User: ${userName}`, 'info');
+                    }
+                })
+                .catch(() => {
+                    showToast(`User: ${userName}`, 'info');
+                });
+        }
+        
+        function searchInChat() {
+            event.preventDefault();
+            const box = document.getElementById('chat-messages');
+            if (!box) return;
+            
+            const searchTerm = prompt('Search for messages containing:');
+            if (!searchTerm || !searchTerm.trim()) return;
+            
+            const messages = box.querySelectorAll('.message-bubble');
+            let found = false;
+            
+            // Remove previous highlights
+            messages.forEach(msg => {
+                msg.style.outline = '';
+                msg.style.boxShadow = '';
+            });
+            
+            // Find and highlight matching messages
+            messages.forEach(msg => {
+                const text = msg.textContent.toLowerCase();
+                if (text.includes(searchTerm.toLowerCase())) {
+                    msg.style.outline = '2px solid #10b981';
+                    msg.style.boxShadow = '0 0 10px rgba(16, 185, 129, 0.3)';
+                    if (!found) {
+                        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        found = true;
+                    }
+                }
+            });
+            
+            if (!found) {
+                showToast('No messages found matching: ' + searchTerm, 'warning');
+            } else {
+                showToast('Found matching messages (highlighted in green)', 'success');
+            }
+        }
+        
+        function toggleMuteNotifications() {
+            event.preventDefault();
+            isMuted = !isMuted;
+            
+            const icon = document.getElementById('mute-icon');
+            const text = document.getElementById('mute-text');
+            
+            if (isMuted) {
+                icon.className = 'bi bi-bell-fill text-success';
+                text.textContent = 'Unmute Notifications';
+                showToast('Notifications muted for this chat', 'success');
+            } else {
+                icon.className = 'bi bi-bell-slash text-warning';
+                text.textContent = 'Mute Notifications';
+                showToast('Notifications unmuted', 'success');
+            }
+        }
+        
+        function clearChatDisplay() {
+            event.preventDefault();
+            if (!confirm('Clear chat display? (Messages will still be saved)')) return;
+            
+            const box = document.getElementById('chat-messages');
+            if (box) {
+                box.innerHTML = '<div class="text-center text-muted mt-5"><i class="bi bi-chat-dots display-4"></i><p class="mt-2">Chat display cleared. Refresh to reload messages.</p></div>';
+                showToast('Chat display cleared', 'success');
+            }
+        }
+        
+        function exportChat() {
+            event.preventDefault();
+            const box = document.getElementById('chat-messages');
+            if (!box) return;
+            
+            const userName = document.getElementById('chat-header-name').textContent;
+            const messages = box.querySelectorAll('.message-bubble');
+            
+            if (messages.length === 0) {
+                showToast('No messages to export', 'warning');
+                return;
+            }
+            
+            let exportText = `Chat with ${userName}\nExported on: ${new Date().toLocaleString()}\n${'='.repeat(50)}\n\n`;
+            
+            messages.forEach(msg => {
+                const isSent = msg.classList.contains('message-sent');
+                const time = msg.querySelector('.message-time')?.textContent || '';
+                const content = msg.textContent.replace(time, '').trim();
+                const sender = isSent ? 'You' : userName;
+                exportText += `[${time}] ${sender}: ${content}\n`;
+            });
+            
+            // Download as text file
+            const blob = new Blob([exportText], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `chat_${userName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.txt`;
+            a.click();
+            URL.revokeObjectURL(url);
+            
+            showToast('Chat exported successfully', 'success');
+        }
+        
+        function blockUser() {
+            event.preventDefault();
+            const userName = document.getElementById('chat-header-name').textContent;
+            
+            if (!confirm(`Are you sure you want to block ${userName}? You won't receive messages from them.`)) return;
+            
+            // API call to block user (implement backend endpoint)
+            fetch('/chat/block', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': csrf()
+                },
+                body: JSON.stringify({ user_id: currentWithUser })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.ok) {
+                    showToast(`${userName} has been blocked`, 'success');
+                    // Remove from conversation list
+                    const item = document.querySelector(`.conversation-item[data-user-id="${currentWithUser}"]`);
+                    if (item) item.remove();
+                    // Clear chat
+                    document.getElementById('chat-interface').classList.add('d-none');
+                    document.getElementById('chat-empty-state').classList.remove('d-none');
+                } else {
+                    showToast(data.message || 'Could not block user', 'error');
+                }
+            })
+            .catch(() => {
+                showToast('Feature coming soon', 'info');
+            });
+        }
+        
+        // Toast notification helper
+        function showToast(message, type = 'info') {
+            // Remove existing toasts
+            const existingToast = document.querySelector('.chat-toast');
+            if (existingToast) existingToast.remove();
+            
+            const colors = {
+                success: '#10b981',
+                error: '#ef4444',
+                warning: '#f59e0b',
+                info: '#3b82f6'
+            };
+            
+            const icons = {
+                success: 'bi-check-circle-fill',
+                error: 'bi-x-circle-fill',
+                warning: 'bi-exclamation-triangle-fill',
+                info: 'bi-info-circle-fill'
+            };
+            
+            const toast = document.createElement('div');
+            toast.className = 'chat-toast';
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background: #1e293b;
+                color: white;
+                padding: 12px 20px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+                z-index: 9999;
+                animation: slideIn 0.3s ease;
+                border-left: 4px solid ${colors[type]};
+            `;
+            toast.innerHTML = `<i class="bi ${icons[type]}" style="color: ${colors[type]}"></i> ${message}`;
+            
+            document.body.appendChild(toast);
+            
+            // Auto remove after 3 seconds
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+        
+        // Add toast animation styles
+        const toastStyle = document.createElement('style');
+        toastStyle.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(toastStyle);
 
         // Real-time updates (Echo)
         document.addEventListener('DOMContentLoaded', function() {

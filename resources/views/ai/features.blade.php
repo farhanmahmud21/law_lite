@@ -156,9 +156,36 @@
         white-space: pre-wrap;
         font-size: 0.95rem;
         line-height: 1.8;
-        max-height: 500px;
+        max-height: 450px;
         overflow-y: auto;
         box-shadow: var(--shadow-sm);
+        position: relative;
+    }
+
+    /* Custom scrollbar styling for result box */
+    .result-box::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .result-box::-webkit-scrollbar-track {
+        background: #f1f5f9;
+        border-radius: 10px;
+    }
+
+    .result-box::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+        border-radius: 10px;
+        border: 2px solid #f1f5f9;
+    }
+
+    .result-box::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, #059669 0%, #047857 100%);
+    }
+
+    /* Firefox scrollbar */
+    .result-box {
+        scrollbar-width: thin;
+        scrollbar-color: #10b981 #f1f5f9;
     }
 
     .result-box .typewriter-content {
@@ -275,6 +302,16 @@
         background: rgba(11, 18, 32, 0.95);
         border-color: rgba(255,255,255,0.08);
         color: #e6eef8;
+        scrollbar-color: #10b981 rgba(255,255,255,0.05);
+    }
+
+    html[data-theme="dark"] .result-box::-webkit-scrollbar-track {
+        background: rgba(255,255,255,0.05);
+    }
+
+    html[data-theme="dark"] .result-box::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+        border-color: rgba(11, 18, 32, 0.95);
     }
     html[data-theme="dark"] .quick-action {
         background: rgba(255,255,255,0.05);
@@ -318,6 +355,32 @@
     html[data-theme="dark"] .tool-section p,
     html[data-theme="dark"] .tool-section span {
         color: #e2e8f0 !important;
+    }
+
+    /* Dark mode input styling */
+    html[data-theme="dark"] .form-control,
+    html[data-theme="dark"] input[type="text"],
+    html[data-theme="dark"] input[type="number"],
+    html[data-theme="dark"] input[type="date"],
+    html[data-theme="dark"] textarea {
+        background-color: #0f172a !important;
+        color: #e2e8f0 !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+
+    html[data-theme="dark"] .form-control:focus,
+    html[data-theme="dark"] input:focus,
+    html[data-theme="dark"] textarea:focus {
+        background-color: #1e293b !important;
+        border-color: #3b82f6 !important;
+        color: #e2e8f0 !important;
+        box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25) !important;
+    }
+
+    html[data-theme="dark"] .form-control::placeholder,
+    html[data-theme="dark"] input::placeholder,
+    html[data-theme="dark"] textarea::placeholder {
+        color: #64748b !important;
     }
 </style>
 @endpush
@@ -746,38 +809,38 @@
                     <div class="tool-panel" id="tool-inheritance">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-diagram-3 me-2" style="color: #22c55e;"></i>
-                            {{ __('messages.inheritance_title') ?? 'Inheritance Calculator' }}
+                            {{ Lang::has('messages.inheritance_title') ? __('messages.inheritance_title') : 'Inheritance Calculator' }}
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.inheritance_desc') ?? 'Calculate inheritance shares according to Islamic (Faraid) or Hindu Succession Law of Bangladesh' }}</p>
+                        <p class="text-muted mb-4">{{ Lang::has('messages.inheritance_desc') ? __('messages.inheritance_desc') : 'Calculate inheritance shares according to Islamic (Faraid) or Hindu Succession Law of Bangladesh' }}</p>
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">{{ __('messages.law_system') ?? 'Inheritance Law System' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.law_system') ? __('messages.law_system') : 'Inheritance Law System' }}</label>
                                 <select class="form-select" id="inheritance-system">
-                                    <option value="islamic">{{ __('messages.islamic_faraid') ?? 'Islamic Law (ফারায়েজ)' }}</option>
-                                    <option value="hindu">{{ __('messages.hindu_succession') ?? 'Hindu Succession Law' }}</option>
+                                    <option value="islamic">{{ Lang::has('messages.islamic_faraid') ? __('messages.islamic_faraid') : 'Islamic Law (ফারায়েজ)' }}</option>
+                                    <option value="hindu">{{ Lang::has('messages.hindu_succession') ? __('messages.hindu_succession') : 'Hindu Succession Law' }}</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">{{ __('messages.deceased_gender') ?? 'Deceased Gender' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.deceased_gender') ? __('messages.deceased_gender') : 'Deceased Gender' }}</label>
                                 <select class="form-select" id="inheritance-gender">
-                                    <option value="male">{{ __('messages.male') ?? 'Male (পুরুষ)' }}</option>
-                                    <option value="female">{{ __('messages.female') ?? 'Female (মহিলা)' }}</option>
+                                    <option value="male">{{ Lang::has('messages.male') ? __('messages.male') : 'Male (পুরুষ)' }}</option>
+                                    <option value="female">{{ Lang::has('messages.female') ? __('messages.female') : 'Female (মহিলা)' }}</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">{{ __('messages.total_estate') ?? 'Total Estate Value (৳)' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.total_estate') ? __('messages.total_estate') : 'Total Estate Value (৳)' }}</label>
                                 <input type="number" class="form-control" id="inheritance-estate" placeholder="e.g., 5000000">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">{{ __('messages.sons') ?? 'Number of Sons' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.sons') ? __('messages.sons') : 'Number of Sons' }}</label>
                                 <input type="number" class="form-control" id="inheritance-sons" value="0" min="0">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label fw-semibold">{{ __('messages.daughters') ?? 'Number of Daughters' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.daughters') ? __('messages.daughters') : 'Number of Daughters' }}</label>
                                 <input type="number" class="form-control" id="inheritance-daughters" value="0" min="0">
                             </div>
                         </div>
@@ -787,7 +850,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="inheritance-spouse">
                                     <label class="form-check-label" for="inheritance-spouse">
-                                        {{ __('messages.has_spouse') ?? 'Spouse Alive (স্বামী/স্ত্রী)' }}
+                                        {{ Lang::has('messages.has_spouse') ? __('messages.has_spouse') : 'Spouse Alive (স্বামী/স্ত্রী)' }}
                                     </label>
                                 </div>
                             </div>
@@ -795,7 +858,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="inheritance-mother">
                                     <label class="form-check-label" for="inheritance-mother">
-                                        {{ __('messages.has_mother') ?? 'Mother Alive (মা)' }}
+                                        {{ Lang::has('messages.has_mother') ? __('messages.has_mother') : 'Mother Alive (মা)' }}
                                     </label>
                                 </div>
                             </div>
@@ -803,14 +866,14 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" id="inheritance-father">
                                     <label class="form-check-label" for="inheritance-father">
-                                        {{ __('messages.has_father') ?? 'Father Alive (বাবা)' }}
+                                        {{ Lang::has('messages.has_father') ? __('messages.has_father') : 'Father Alive (বাবা)' }}
                                     </label>
                                 </div>
                             </div>
                         </div>
 
                         <button class="btn px-4" style="background: linear-gradient(135deg, #22c55e, #16a34a); color: white;" onclick="calculateInheritance()">
-                            <i class="bi bi-calculator me-2"></i>{{ __('messages.btn_calculate_inheritance') ?? 'Calculate Shares' }}
+                            <i class="bi bi-calculator me-2"></i>{{ Lang::has('messages.btn_calculate_inheritance') ? __('messages.btn_calculate_inheritance') : 'Calculate Shares' }}
                         </button>
 
                         <div id="inheritance-result" class="result-box" style="display: none;"></div>
@@ -820,35 +883,35 @@
                     <div class="tool-panel" id="tool-timeline">
                         <h5 class="fw-bold mb-3">
                             <i class="bi bi-clock-history me-2" style="color: #8b5cf6;"></i>
-                            {{ __('messages.timeline_title') ?? 'Case Timeline Builder' }}
+                            {{ Lang::has('messages.timeline_title') ? __('messages.timeline_title') : 'Case Timeline Builder' }}
                         </h5>
-                        <p class="text-muted mb-4">{{ __('messages.timeline_desc') ?? 'Build a comprehensive legal timeline with key events, deadlines, and limitation periods' }}</p>
+                        <p class="text-muted mb-4">{{ Lang::has('messages.timeline_desc') ? __('messages.timeline_desc') : 'Build a comprehensive legal timeline with key events, deadlines, and limitation periods' }}</p>
                         
                         <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">{{ __('messages.case_nature') ?? 'Case Nature' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.case_nature') ? __('messages.case_nature') : 'Case Nature' }}</label>
                                 <select class="form-select" id="timeline-nature">
-                                    <option value="civil">{{ __('messages.nature_civil') ?? 'Civil Suit' }}</option>
-                                    <option value="criminal">{{ __('messages.nature_criminal') ?? 'Criminal Case' }}</option>
-                                    <option value="family">{{ __('messages.nature_family') ?? 'Family Court Case' }}</option>
-                                    <option value="labor">{{ __('messages.nature_labor') ?? 'Labor Court Case' }}</option>
-                                    <option value="writ">{{ __('messages.nature_writ') ?? 'Writ Petition' }}</option>
-                                    <option value="company">{{ __('messages.nature_company') ?? 'Company Law Matter' }}</option>
+                                    <option value="civil">{{ Lang::has('messages.nature_civil') ? __('messages.nature_civil') : 'Civil Suit' }}</option>
+                                    <option value="criminal">{{ Lang::has('messages.nature_criminal') ? __('messages.nature_criminal') : 'Criminal Case' }}</option>
+                                    <option value="family">{{ Lang::has('messages.nature_family') ? __('messages.nature_family') : 'Family Court Case' }}</option>
+                                    <option value="labor">{{ Lang::has('messages.nature_labor') ? __('messages.nature_labor') : 'Labor Court Case' }}</option>
+                                    <option value="writ">{{ Lang::has('messages.nature_writ') ? __('messages.nature_writ') : 'Writ Petition' }}</option>
+                                    <option value="company">{{ Lang::has('messages.nature_company') ? __('messages.nature_company') : 'Company Law Matter' }}</option>
                                 </select>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold">{{ __('messages.start_date') ?? 'Incident/Case Start Date' }}</label>
+                                <label class="form-label fw-semibold">{{ Lang::has('messages.start_date') ? __('messages.start_date') : 'Incident/Case Start Date' }}</label>
                                 <input type="date" class="form-control" id="timeline-startdate">
                             </div>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label fw-semibold">{{ __('messages.events_description') ?? 'Events Description' }}</label>
-                            <textarea class="form-control" id="timeline-events" rows="5" placeholder="{{ __('messages.timeline_placeholder') ?? 'List all events with dates: incident occurred, FIR filed, arrest made, bail obtained, hearing dates, evidence submitted...' }}"></textarea>
+                            <label class="form-label fw-semibold">{{ Lang::has('messages.events_description') ? __('messages.events_description') : 'Events Description' }}</label>
+                            <textarea class="form-control" id="timeline-events" rows="5" placeholder="{{ Lang::has('messages.timeline_placeholder') ? __('messages.timeline_placeholder') : 'List all events with dates: incident occurred, FIR filed, arrest made, bail obtained, hearing dates, evidence submitted...' }}"></textarea>
                         </div>
 
                         <button class="btn px-4" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white;" onclick="buildCaseTimeline()">
-                            <i class="bi bi-clock-history me-2"></i>{{ __('messages.btn_build_timeline') ?? 'Build Timeline' }}
+                            <i class="bi bi-clock-history me-2"></i>{{ Lang::has('messages.btn_build_timeline') ? __('messages.btn_build_timeline') : 'Build Timeline' }}
                         </button>
 
                         <div id="timeline-result" class="result-box" style="display: none;"></div>
@@ -891,6 +954,55 @@
     html[data-theme="dark"] .upload-zone:hover {
         border-color: #ef4444;
     }
+
+    /* Scroll indicator for result box */
+    .result-box-wrapper {
+        position: relative;
+    }
+
+    .scroll-indicator {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 60px;
+        background: linear-gradient(to top, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0) 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 8px;
+        pointer-events: none;
+        border-radius: 0 0 16px 16px;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .scroll-indicator.visible {
+        opacity: 1;
+    }
+
+    .scroll-indicator span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.8rem;
+        color: #10b981;
+        font-weight: 500;
+        animation: bounceDown 1.5s infinite;
+    }
+
+    .scroll-indicator span i {
+        font-size: 1rem;
+    }
+
+    @keyframes bounceDown {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(4px); }
+    }
+
+    html[data-theme="dark"] .scroll-indicator {
+        background: linear-gradient(to top, rgba(11, 18, 32, 0.98) 0%, rgba(11, 18, 32, 0) 100%);
+    }
 </style>
 @endpush
 
@@ -919,6 +1031,24 @@ function showResult(elementId, content) {
     const el = document.getElementById(elementId);
     el.classList.remove('loading');
     
+    // Wrap result box in a wrapper if not already wrapped
+    if (!el.parentElement.classList.contains('result-box-wrapper')) {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'result-box-wrapper';
+        el.parentNode.insertBefore(wrapper, el);
+        wrapper.appendChild(el);
+        
+        // Add scroll indicator
+        const indicator = document.createElement('div');
+        indicator.className = 'scroll-indicator';
+        indicator.innerHTML = '<span><i class="bi bi-chevron-double-down"></i> ' + 
+            (currentLang === 'bn' ? 'আরও দেখতে স্ক্রল করুন' : 'Scroll for more') + '</span>';
+        wrapper.appendChild(indicator);
+    }
+    
+    const wrapper = el.parentElement;
+    const indicator = wrapper.querySelector('.scroll-indicator');
+    
     // Format the content first
     const formattedContent = formatResult(content);
     
@@ -926,6 +1056,34 @@ function showResult(elementId, content) {
     el.innerHTML = '<div class="typewriter-content"></div><span class="typing-cursor">|</span>';
     const contentEl = el.querySelector('.typewriter-content');
     const cursorEl = el.querySelector('.typing-cursor');
+    
+    // Handle scroll indicator visibility
+    function updateScrollIndicator() {
+        if (indicator) {
+            const isScrollable = el.scrollHeight > el.clientHeight;
+            const isAtBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 30;
+            indicator.classList.toggle('visible', isScrollable && !isAtBottom);
+        }
+    }
+    
+    el.addEventListener('scroll', updateScrollIndicator);
+    
+    // Track if user has manually scrolled up
+    let userScrolledUp = false;
+    let lastScrollTop = 0;
+    
+    el.addEventListener('scroll', function() {
+        // Detect if user scrolled up manually
+        if (el.scrollTop < lastScrollTop) {
+            userScrolledUp = true;
+        }
+        // Reset if user scrolls back to bottom
+        const isAtBottom = el.scrollHeight - el.scrollTop - el.clientHeight < 50;
+        if (isAtBottom) {
+            userScrolledUp = false;
+        }
+        lastScrollTop = el.scrollTop;
+    });
     
     // Typewriter effect - character by character
     let i = 0;
@@ -939,8 +1097,13 @@ function showResult(elementId, content) {
             contentEl.innerHTML = formatResult(currentText);
             i++;
             
-            // Scroll to bottom as text appears
-            el.scrollTop = el.scrollHeight;
+            // Only auto-scroll if user hasn't scrolled up manually
+            if (!userScrolledUp) {
+                el.scrollTop = el.scrollHeight;
+            }
+            
+            // Update scroll indicator
+            updateScrollIndicator();
             
             // Vary speed slightly for natural feel
             const variance = Math.random() * 10;
@@ -948,6 +1111,11 @@ function showResult(elementId, content) {
         } else {
             // Remove cursor when done
             cursorEl.style.display = 'none';
+            
+            // Show scroll indicator after typing completes (don't force scroll)
+            setTimeout(() => {
+                updateScrollIndicator();
+            }, 300);
         }
     }
     

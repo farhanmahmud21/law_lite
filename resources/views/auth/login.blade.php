@@ -183,11 +183,13 @@
             box-shadow: 0 0 0 3px rgba(100, 116, 139, 0.15);
         }
         html[data-theme="dark"] .auth-btn {
-            background: #f1f5f9;
-            color: #0f172a;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: #ffffff !important;
+            border: none;
         }
         html[data-theme="dark"] .auth-btn:hover {
-            background: #e2e8f0;
+            box-shadow: 0 0 15px rgba(79, 70, 229, 0.5);
+            transform: translateY(-1px);
         }
         html[data-theme="dark"] .divider {
             color: #64748b;
